@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     textAlign: 'center',
+    textAlignVertical: 'center',
     margin: 'auto',
     color: 'darkslateblue',
   },
@@ -28,6 +29,12 @@ const styles = StyleSheet.create({
   },
   view: {
     backgroundColor: 'black',
+  },
+  logo: {
+    width: 50,
+    height: 50,
+    borderRadius: 15,
+    resizeMode: 'contain',
   },
 });
 

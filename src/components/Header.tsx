@@ -1,13 +1,12 @@
 import React from "react";
-import { View, Text, Button, Image } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { View, Text, Image } from "react-native";
 
 import styles from "./Styles";
 
 const Header: React.FC = () => {
     return (
         <View style={styles.header}>
-            <Image source={require('../assets/logo.jpg')} />
+            <Image source={require('../assets/logo.jpg')} style={styles.logo} />
             <Text style={styles.title}>GameHoard</Text>
             {/* <Icon name='facebook' size={20} color='firebrick' /> */}
             <Text style={styles.text}>Star</Text>
