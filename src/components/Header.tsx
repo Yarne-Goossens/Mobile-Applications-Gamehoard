@@ -7,7 +7,7 @@ import styles from "./Styles";
 const Header: React.FC = () => {
     return (
         <View style={styles.header}>
-            {/* <Image source={require('/src/assets/logo.jpg')} /> */}
+            <Image source={require('../assets/logo.jpg')} />
             <Text style={styles.title}>GameHoard</Text>
             {/* <Icon name='facebook' size={20} color='firebrick' /> */}
             <Text style={styles.text}>Star</Text>
