@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     resizeMode: 'contain',
   },
+  gamecard: {},
 });
 
 export default styles;

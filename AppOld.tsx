@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { PropsWithChildren } from 'react';
 import {
   SafeAreaView,
@@ -10,13 +10,10 @@ import {
   View,
 } from 'react-native';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { Colors, LearnMoreLinks } from 'react-native/Libraries/NewAppScreen';
 
 import Header from './src/components/Header';
 import Footer from './src/components/Footer';
-import GameCard from './src/components/Game/GameCard';
-import gameService from './src/services/game.service';
-import { Game } from './src/types/types';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -55,9 +52,6 @@ function App(): JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const [collection, setCollection] = useState<Array<Game>>();
-  setCollection(gameService.getAllGames())
-
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -72,29 +66,16 @@ function App(): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <GameCard games={collection} />
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
           </Section>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
+          <Section title="Learn More">
+            Read the docs to discover what to do next:
           </Section>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
+          <LearnMoreLinks />
+          <Footer />
         </View>
-        <Footer />
       </ScrollView>
     </SafeAreaView>
   );
