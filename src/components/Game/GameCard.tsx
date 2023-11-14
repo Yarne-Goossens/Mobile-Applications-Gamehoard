@@ -12,8 +12,10 @@ type GameProps = { game: Game };
 
 const GameView = ({ game }: GameProps) => (
     <View style={styles.gamecard}>
-        <Text style={styles.text}>{game.game_id}</Text>
-        <Text style={styles.text}>{game.name}</Text>
+        <Text style={styles.textGame}>{game.game_id}</Text>
+        <Text style={styles.textGame}>{game.name}</Text>
+        <Text style={styles.textGame}>{game.genre}</Text>
+        <Text style={styles.textGame}>{game.price} €</Text>
     </View>
 );
 
@@ -25,7 +27,7 @@ const GameCard: React.FC<Props> = ({ games }: Props) => {
             style={styles.gamecard}
             data={games}
             renderItem={({ item }) => <GameView game={item} />}
-            // keyExtractor={item => item.game_id}
+        // keyExtractor={item => item.game_id}
         />
     )
 }

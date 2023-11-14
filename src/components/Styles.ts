@@ -36,7 +36,18 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     resizeMode: 'contain',
   },
-  gamecard: {},
+  gamecard: {
+    flexDirection: 'row',
+    alignContent: 'center',
+  },
+  textGame: {
+    color: 'darkslateblue',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    padding: 10,
+  },
 });
 
 export default styles;
