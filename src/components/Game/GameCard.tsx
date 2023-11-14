@@ -8,12 +8,12 @@ type Props = {
     games: Array<Game> | undefined
 }
 
-type GameProps = { name: string };
+type GameProps = { game: Game };
 
-const GameView = ({ name }: GameProps) => (
+const GameView = ({ game }: GameProps) => (
     <View style={styles.gamecard}>
-        {/* <Text style={styles.text}>{game.game_id}</Text> */}
-        <Text style={styles.text}>{name}</Text>
+        <Text style={styles.text}>{game.game_id}</Text>
+        <Text style={styles.text}>{game.name}</Text>
     </View>
 );
 
@@ -21,16 +21,12 @@ const GameCard: React.FC<Props> = ({ games }: Props) => {
     const [name, setName] = useState("");
 
     return (
-        <View style={styles.header}>
-            {games && (
-                <FlatList
-                    style={styles.gamecard}
-                    data={games}
-                    renderItem={({ game }) => <GameView name={game.name} />}
-                // keyExtractor={game => game.game_id}
-                />
-            )}
-        </View >
+        <FlatList
+            style={styles.gamecard}
+            data={games}
+            renderItem={({ item }) => <GameView game={item} />}
+            // keyExtractor={item => item.game_id}
+        />
     )
 }
 

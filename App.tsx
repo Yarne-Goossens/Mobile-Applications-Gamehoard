@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { PropsWithChildren } from 'react';
 import {
   SafeAreaView,
@@ -56,7 +56,11 @@ function App(): JSX.Element {
   };
 
   const [collection, setCollection] = useState<Array<Game>>();
-  setCollection(gameService.getAllGames())
+
+  useEffect(() => {
+    console.log("index-useEffect")
+    setCollection(gameService.getAllGames())
+  }, [])
 
   return (
     <SafeAreaView style={backgroundStyle}>
