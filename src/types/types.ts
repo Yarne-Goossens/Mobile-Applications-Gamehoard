@@ -1,5 +1,5 @@
 export type Game = {
-  game_id?: number;
+  game_id: number;
   name: string;
   genre: string[];
   price: number;

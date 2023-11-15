@@ -62,6 +62,10 @@ function App(): JSX.Element {
     setCollection(gameService.getAllGames())
   }, [])
 
+  const deleteItem = (id: number) => {
+    gameService.removeGameById(id);
+  }
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -76,19 +80,7 @@ function App(): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <GameCard games={collection} />
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
+          <GameCard games={collection} deleteItem={deleteItem} />
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.

@@ -8,4 +8,12 @@ collection = [
   {game_id: 3, name: 'Risk of Rain', genre: ['Rogue-Like'], price: 20},
 ];
 
-export default collection;
+const setCollection = (collection_new: Game[]) => {
+  collection = collection_new;
+};
+
+const getCollection = () => {
+  return collection;
+};
+
+export default {getCollection, setCollection};

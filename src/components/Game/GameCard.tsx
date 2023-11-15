@@ -7,12 +7,13 @@ import { Game } from "../../types/types";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 type Props = {
-    games: Array<Game> | undefined
+    games: Array<Game> | undefined;
+    deleteItem: (id: number) => void;
 }
 
-type GameProps = { game: Game };
+type GameProps = { game: Game; deleteItem: (id: number) => void; };
 
-const GameView = ({ game }: GameProps) => (
+const GameView = ({ game, deleteItem }: GameProps) => (
     <Card wrapperStyle={styles.gamecard}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
             <Card.Title style={styles.gameTitle}>{game.name}</Card.Title>
@@ -30,19 +31,20 @@ const GameView = ({ game }: GameProps) => (
                 <Text style={styles.textGame}>Genre(s): {game.genre}</Text>
                 <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text>
                 <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {game.playtime ? game.playtime : 'NA'}</Text>
+                <Icon style={{ alignSelf: 'flex-end', flexDirection: 'row' }} name="remove" size={20} color="firebrick" onPress={() => deleteItem(game.game_id)} />
             </View>
         </View>
     </Card >
 );
 
-const GameCard: React.FC<Props> = ({ games }: Props) => {
+const GameCard: React.FC<Props> = ({ games, deleteItem }: Props) => {
     const [name, setName] = useState("");
 
     return (
         <FlatList
             style={styles.gamecard}
             data={games}
-            renderItem={({ item }) => <GameView game={item} />}
+            renderItem={({ item }) => <GameView game={item} deleteItem={deleteItem} />}
         // keyExtractor={item => item.game_id}
         />
     )
