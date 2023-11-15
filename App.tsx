@@ -64,6 +64,7 @@ function App(): JSX.Element {
 
   const deleteItem = (id: number) => {
     gameService.removeGameById(id);
+    setCollection(gameService.getAllGames())
   }
 
   return (
