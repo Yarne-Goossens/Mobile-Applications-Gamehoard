@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   title: {
     fontSize: 25,
+    fontWeight: '600',
     textAlign: 'center',
     textAlignVertical: 'center',
     margin: 'auto',
@@ -36,9 +37,11 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     resizeMode: 'contain',
   },
+  icon: {
+    verticalAlign: 'middle',
+  },
   gamecard: {
     flexDirection: 'row',
-    alignContent: 'center',
   },
   textGame: {
     color: 'darkslateblue',
