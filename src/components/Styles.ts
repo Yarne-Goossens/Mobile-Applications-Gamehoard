@@ -40,9 +40,11 @@ const styles = StyleSheet.create({
   icon: {
     verticalAlign: 'middle',
   },
-  gamecard: {
+  gamecard: {},
+  gamecardInternal: {
     flexDirection: 'row',
   },
+  gameTitle: {fontSize: 30},
   textGame: {
     color: 'darkslateblue',
     fontSize: 18,
