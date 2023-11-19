@@ -9,6 +9,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
@@ -17,6 +18,10 @@ import Footer from './src/components/Footer';
 import GameCard from './src/components/Game/GameCard';
 import gameService from './src/services/game.service';
 import { Game } from './src/types/types';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SettingsScreen from './src/screens/settings';
+import { Button } from 'react-native';
+import GameDetailsScreen from './src/components/Game/GameDetails';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -48,7 +53,7 @@ function Section({ children, title }: SectionProps): JSX.Element {
   );
 }
 
-function App(): JSX.Element {
+function HomeScreen({ navigation }): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -81,7 +86,11 @@ function App(): JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <GameCard games={collection} deleteItem={deleteItem} />
+          <Button
+            title="Go to Settings"
+            onPress={() => navigation.navigate('Settings')}
+          />
+          <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} />
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
@@ -94,6 +103,20 @@ function App(): JSX.Element {
         <Footer />
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+        {/* <Stack.Screen name="Details" component={GameDetailsScreen} /> */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

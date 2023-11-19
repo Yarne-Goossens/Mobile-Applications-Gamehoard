@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, FlatList, Image } from "react-native";
+import { View, Text, FlatList, Image, Button } from "react-native";
 import { Card } from '@rneui/themed';
 
 import styles from "../Styles";
@@ -9,9 +9,14 @@ import Icon from "react-native-vector-icons/FontAwesome";
 type Props = {
     games: Array<Game> | undefined;
     deleteItem: (id: number) => void;
+    // navigation: any;
 }
 
-type GameProps = { game: Game; deleteItem: (id: number) => void; };
+type GameProps = {
+    game: Game;
+    deleteItem: (id: number) => void;
+    // navigation: any
+};
 
 const GameView = ({ game, deleteItem }: GameProps) => (
     <Card wrapperStyle={styles.gamecard}>
@@ -32,6 +37,7 @@ const GameView = ({ game, deleteItem }: GameProps) => (
                 <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text>
                 <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {game.playtime ? game.playtime : 'NA'}</Text>
                 <Icon style={{ alignSelf: 'flex-end', flexDirection: 'row' }} name="remove" size={20} color="firebrick" onPress={() => deleteItem(game.game_id)} />
+
             </View>
         </View>
     </Card >
