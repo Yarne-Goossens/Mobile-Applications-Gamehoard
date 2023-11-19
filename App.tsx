@@ -13,7 +13,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import Header from './src/components/Header';
+import { Header, HeaderButtons } from './src/components/Header';
 import Footer from './src/components/Footer';
 import GameCard from './src/components/Game/GameCard';
 import gameService from './src/services/game.service';
@@ -22,6 +22,7 @@ import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navig
 import SettingsScreen from './src/screens/settings';
 import { Button } from 'react-native';
 import GameDetailsScreen from './src/components/Game/GameDetails';
+import styles from './src/components/Styles';
 
 export type ParamList = {
   Home: undefined;
@@ -38,10 +39,10 @@ type SectionProps = PropsWithChildren<{
 function Section({ children, title }: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.sectionContainer}>
+    <View style={stylesApp.sectionContainer}>
       <Text
         style={[
-          styles.sectionTitle,
+          stylesApp.sectionTitle,
           {
             color: isDarkMode ? Colors.white : Colors.black,
           },
@@ -50,7 +51,7 @@ function Section({ children, title }: SectionProps): JSX.Element {
       </Text>
       <Text
         style={[
-          styles.sectionDescription,
+          stylesApp.sectionDescription,
           {
             color: isDarkMode ? Colors.light : Colors.dark,
           },
@@ -91,7 +92,6 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -102,11 +102,11 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
           />
           <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} />
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
+            Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
           </Section>
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
+            Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
           </Section>
         </View>
@@ -120,15 +120,33 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-        <Stack.Screen name="Details" component={GameDetailsScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{
+          headerStyle: {
+            backgroundColor: styles.header.backgroundColor,
+          },
+          headerTitle: (props) => <Header />,
+          headerRight: (props) => <HeaderButtons />
+        }} />
+        <Stack.Screen name="Settings" component={SettingsScreen} options={{
+          headerStyle: {
+            backgroundColor: styles.header.backgroundColor,
+          },
+          headerTitle: (props) => <Header />,
+          headerRight: (props) => <HeaderButtons />
+        }} />
+        <Stack.Screen name="Details" component={GameDetailsScreen} options={{
+          headerStyle: {
+            backgroundColor: styles.header.backgroundColor,
+          },
+          headerTitle: (props) => <Header />,
+          headerRight: (props) => <HeaderButtons />
+        }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
+const stylesApp = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,

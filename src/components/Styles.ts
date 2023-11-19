@@ -7,13 +7,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
     margin: 'auto',
+    paddingLeft: 15,
     color: 'darkslateblue',
   },
   header: {
     justifyContent: 'space-evenly',
     flexDirection: 'row',
     backgroundColor: '#FF2800',
-    padding: 15,
+    paddingVertical: 15,
   },
   footer: {
     justifyContent: 'space-evenly',
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     verticalAlign: 'middle',
+    padding: 5,
   },
   gamecard: {},
   gamecardInternal: {

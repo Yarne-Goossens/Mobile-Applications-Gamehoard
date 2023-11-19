@@ -9,11 +9,18 @@ const Header: React.FC = () => {
         <View style={styles.header}>
             <Image source={require('../assets/logo.jpg')} style={styles.logo} />
             <Text style={styles.title}>GameHoard</Text>
-            <Icon style={styles.icon} name='star' size={30} color='darkslateblue' />
-            <Icon style={styles.icon} name='sliders' size={30} color='darkslateblue' />
-            <Icon style={styles.icon} name='arrow-left' size={30} color='darkslateblue' />
         </View>
     )
 }
 
-export default Header;
+const HeaderButtons: React.FC = () => {
+    return (
+        <View style={styles.header}>
+            <Icon style={styles.icon} name='star' size={30} color='darkslateblue' />
+            <Icon style={styles.icon} name='sliders' size={30} color='darkslateblue' />
+            {/* <Icon style={styles.icon} name='arrow-left' size={30} color='darkslateblue' /> */}
+        </View>
+    )
+}
+
+export { Header, HeaderButtons };
