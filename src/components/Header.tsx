@@ -15,11 +15,11 @@ const Header = () => {
     )
 }
 
-const HeaderButtons = () => {
+const HeaderButtons = ({ navigation }: any) => {
     return (
         <View style={styles.header}>
             <Button style={styles.icon} name='star' size={30} color='darkslateblue' />
-            <Button style={styles.icon} name='sliders' size={30} color='darkslateblue' />
+            <Button style={styles.icon} name='sliders' size={30} color='darkslateblue' onPress={() => navigation.navigate('Settings')} />
             {/* <Icon style={styles.icon} name='arrow-left' size={30} color='darkslateblue' /> */}
         </View>
     )
