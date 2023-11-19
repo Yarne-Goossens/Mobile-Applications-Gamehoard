@@ -18,10 +18,18 @@ import Footer from './src/components/Footer';
 import GameCard from './src/components/Game/GameCard';
 import gameService from './src/services/game.service';
 import { Game } from './src/types/types';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
 import SettingsScreen from './src/screens/settings';
 import { Button } from 'react-native';
 import GameDetailsScreen from './src/components/Game/GameDetails';
+
+export type ParamList = {
+  Home: undefined;
+  Details: { gameId: number };
+  Settings: undefined;
+};
+
+const Stack = createNativeStackNavigator<ParamList>();
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -53,7 +61,9 @@ function Section({ children, title }: SectionProps): JSX.Element {
   );
 }
 
-function HomeScreen({ navigation }): React.JSX.Element {
+type ScreenProps = NativeStackScreenProps<ParamList, 'Home'>;
+
+function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -106,15 +116,13 @@ function HomeScreen({ navigation }): React.JSX.Element {
   );
 }
 
-const Stack = createNativeStackNavigator();
-
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
-        {/* <Stack.Screen name="Details" component={GameDetailsScreen} /> */}
+        <Stack.Screen name="Details" component={GameDetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

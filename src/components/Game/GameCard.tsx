@@ -9,16 +9,16 @@ import Icon from "react-native-vector-icons/FontAwesome";
 type Props = {
     games: Array<Game> | undefined;
     deleteItem: (id: number) => void;
-    // navigation: any;
+    navigation: any;
 }
 
 type GameProps = {
     game: Game;
     deleteItem: (id: number) => void;
-    // navigation: any
+    navigation: any
 };
 
-const GameView = ({ game, deleteItem }: GameProps) => (
+const GameView = ({ game, deleteItem, navigation }: GameProps) => (
     <Card wrapperStyle={styles.gamecard}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
             <Card.Title style={styles.gameTitle}>{game.name}</Card.Title>
@@ -37,20 +37,23 @@ const GameView = ({ game, deleteItem }: GameProps) => (
                 <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text>
                 <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {game.playtime ? game.playtime : 'NA'}</Text>
                 <Icon style={{ alignSelf: 'flex-end', flexDirection: 'row' }} name="remove" size={20} color="firebrick" onPress={() => deleteItem(game.game_id)} />
-
+                <Button
+                    title="Go to Details"
+                    onPress={() => navigation.navigate('Details', { gameId: game.game_id })}
+                />
             </View>
         </View>
     </Card >
 );
 
-const GameCard: React.FC<Props> = ({ games, deleteItem }: Props) => {
+const GameCard: React.FC<Props> = ({ games, deleteItem, navigation }: Props) => {
     const [name, setName] = useState("");
 
     return (
         <FlatList
             style={styles.gamecard}
             data={games}
-            renderItem={({ item }) => <GameView game={item} deleteItem={deleteItem} />}
+            renderItem={({ item }) => <GameView game={item} deleteItem={deleteItem} navigation={navigation} />}
         // keyExtractor={item => item.game_id}
         />
     )

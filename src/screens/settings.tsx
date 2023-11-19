@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ParamList } from '../../App';
 
-const SettingsScreen = ({ navigation }) => {
+type ScreenProps = NativeStackScreenProps<ParamList, 'Settings'>;
+
+const SettingsScreen = ({ route, navigation }: ScreenProps) => {
   return (
     <View style={styles.root}>
       <Text>Settings Screen</Text>
