@@ -119,28 +119,16 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} options={{
-          headerStyle: {
-            backgroundColor: styles.header.backgroundColor,
-          },
-          headerTitle: (props) => <Header />,
-          headerRight: (props) => <HeaderButtons />
-        }} />
-        <Stack.Screen name="Settings" component={SettingsScreen} options={{
-          headerStyle: {
-            backgroundColor: styles.header.backgroundColor,
-          },
-          headerTitle: (props) => <Header />,
-          headerRight: (props) => <HeaderButtons />
-        }} />
-        <Stack.Screen name="Details" component={GameDetailsScreen} options={{
-          headerStyle: {
-            backgroundColor: styles.header.backgroundColor,
-          },
-          headerTitle: (props) => <Header />,
-          headerRight: (props) => <HeaderButtons />
-        }} />
+      <Stack.Navigator initialRouteName="Home" screenOptions={{
+        headerStyle: {
+          backgroundColor: styles.header.backgroundColor,
+        },
+        headerTitle: (props) => <Header />,
+        headerRight: (props) => <HeaderButtons />
+      }}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="Details" component={GameDetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
