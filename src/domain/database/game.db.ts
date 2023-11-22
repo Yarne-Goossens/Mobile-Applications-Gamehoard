@@ -5,11 +5,11 @@ const getAllGames = () => {
   return db.getCollection();
 };
 
-const getGameById = (id: number) => {
+const getGameById = (id: string) => {
   return db.getCollection().find(elem => elem.game_id == id);
 };
 
-const removeGameById = (id: number) => {
+const removeGameById = (id: string) => {
   db.setCollection(db.getCollection().filter(elem => elem.game_id != id));
 };
 

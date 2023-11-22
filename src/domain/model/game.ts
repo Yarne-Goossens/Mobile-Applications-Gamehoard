@@ -1,5 +1,5 @@
 export class Game {
-  game_id: number;
+  game_id: string;
   name: string;
   genre: string[];
   price: number;
@@ -14,7 +14,7 @@ export class Game {
   picture?: string;
 
   constructor(game: {
-    game_id: number;
+    game_id: string;
     name: string;
     genre: string[];
     price: number;

@@ -69,7 +69,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         fetchData();
     }, [])
 
-    const deleteItem = async (id: number) => {
+    const deleteItem = async (id: string) => {
         gameService.removeGameById(id);
         setCollection(await gameService.getAllGames())
     }

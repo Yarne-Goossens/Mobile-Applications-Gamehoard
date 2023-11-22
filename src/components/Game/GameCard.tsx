@@ -8,13 +8,13 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 type Props = {
     games: Array<Game> | undefined;
-    deleteItem: (id: number) => void;
+    deleteItem: (id: string) => void;
     navigation: any;
 }
 
 type GameProps = {
     game: Game;
-    deleteItem: (id: number) => void;
+    deleteItem: (id: string) => void;
     navigation: any
 };
 
