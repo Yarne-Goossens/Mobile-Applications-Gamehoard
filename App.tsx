@@ -74,14 +74,18 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
 
   const [collection, setCollection] = useState<Array<Game>>();
 
+  async function fetchData() {
+    setCollection(await gameService.getAllGames())
+  }
+
   useEffect(() => {
     console.log("index-useEffect")
-    setCollection(gameService.getAllGames())
+    fetchData();
   }, [])
 
-  const deleteItem = (id: number) => {
+  const deleteItem = async (id: number) => {
     gameService.removeGameById(id);
-    setCollection(gameService.getAllGames())
+    setCollection(await gameService.getAllGames())
   }
 
   return (
@@ -90,25 +94,25 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      {/* <ScrollView
+      <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}> */}
-      <View
-        style={{
-          backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        }}>
-        <Button
-          title="Refresh Sample Data"
-          onPress={() => gameService.sampleData}
-        />
-        <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} />
-        <Section title="Step One">
-          Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
-          screen and then come back to see your edits.
-        </Section>
-      </View>
-      <Footer />
-      {/* </ScrollView> */}
+        style={backgroundStyle}>
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
+          <Button
+            title="Refresh Sample Data"
+            onPress={async () => { await gameService.sampleData(); fetchData(); }}
+          />
+          <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} />
+          <Section title="Step One">
+            Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
+        </View>
+        <Footer />
+      </ScrollView>
     </SafeAreaView>
   );
 }

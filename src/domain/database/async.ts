@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Game} from '../../types/types';
+import {Game as GameType} from '../../types/types';
+import {Game} from '../model/game';
 
-const getItem = async (key: string) => {
+const getItem = async (key: string): Promise<Game> => {
   try {
     const jsonValue = await AsyncStorage.getItem(key);
     // console.log(jsonValue);
@@ -11,12 +12,16 @@ const getItem = async (key: string) => {
   }
 };
 
-const getAll = async () => {
+const getAll = async (): Promise<Game[]> => {
   try {
     const keys = await AsyncStorage.getAllKeys();
     const result = await AsyncStorage.multiGet(keys);
 
-    return result.map(req => JSON.parse(req[1])).forEach(console.log);
+    let list: Game[] = [];
+    console.log(list);
+    result.map(req => list.push(JSON.parse(req[1])));
+    console.log(list);
+    return list;
   } catch (error) {
     console.log('error: ', error);
   }

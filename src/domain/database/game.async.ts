@@ -1,22 +1,23 @@
-import {Game} from '../../types/types';
+import {Game as GameInput} from '../../types/types';
+import {Game} from '../model/game';
 import async from './async';
 
-const getAllGames = () => {
+const getAllGames = (): Promise<Game[]> => {
   console.log('async-getAll');
   return async.getAll();
 };
 
-const getGameById = (id: number) => {
+const getGameById = (id: number): Promise<Game> => {
   console.log('async-getId');
   return async.getItem(id.toString());
 };
 
-const addGame = (game: Game) => {
+const addGame = (game: GameInput) => {
   console.log('async-add');
   async.addItem(game.game_id.toString(), game);
 };
 
-const updateGame = (id: number, game: Game) => {
+const updateGame = (id: number, game: GameInput) => {
   console.log('async-update');
   async.updateItem(id.toString(), game);
 };

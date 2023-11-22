@@ -2,33 +2,38 @@
 import gameAsync from '../domain/database/game.async';
 import {Game} from '../types/types';
 
-const getAllGames = () => {
+const getAllGames = async (): Promise<Game[]> => {
   console.log('service-GetAll');
-  return gameAsync.getAllGames();
+  return await gameAsync.getAllGames();
 };
 
-const getGameById = (id: number) => {
+const getGameById = async (id: number): Promise<Game> => {
   console.log('service-GetId');
-  return gameAsync.getGameById(id);
+  return await gameAsync.getGameById(id);
 };
 
-const addGame = (game: Game) => {
-  return gameAsync.addGame(game);
+const addGame = async (game: Game) => {
+  return await gameAsync.addGame(game);
 };
 
-const updateGame = (id: number, game: Game) => {
-  return gameAsync.updateGame(id, game);
+const updateGame = async (id: number, game: Game) => {
+  return await gameAsync.updateGame(id, game);
 };
 
-const removeGameById = (id: number) => {
+const removeGameById = async (id: number) => {
   console.log('service-RemoveId');
-  return gameAsync.removeGameById(id);
+  return await gameAsync.removeGameById(id);
 };
 
-const sampleData = () => {
-  addGame({game_id: 1, name: 'God of War', genre: ['Action'], price: 10});
-  addGame({game_id: 2, name: 'Among Us', genre: ['Comedy'], price: 5});
-  addGame({game_id: 3, name: 'Risk of Rain', genre: ['Rogue-Like'], price: 20});
+const sampleData = async () => {
+  await addGame({game_id: 1, name: 'God of War', genre: ['Action'], price: 10});
+  await addGame({game_id: 2, name: 'Among Us', genre: ['Comedy'], price: 5});
+  await addGame({
+    game_id: 3,
+    name: 'Risk of Rain',
+    genre: ['Rogue-Like'],
+    price: 20,
+  });
 };
 
 export default {
