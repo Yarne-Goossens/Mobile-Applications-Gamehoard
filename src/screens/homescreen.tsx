@@ -17,6 +17,7 @@ import {
     View,
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { getDate } from '../services/util.service';
 
 
 type SectionProps = PropsWithChildren<{
@@ -83,6 +84,8 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         gameService.removeGameById(id);
         updateScreen();
     }
+
+    getDate();
 
     return (
         <SafeAreaView style={backgroundStyle}>
