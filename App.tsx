@@ -23,6 +23,7 @@ import SettingsScreen from './src/screens/settings';
 import { Button } from 'react-native';
 import GameDetailsScreen from './src/components/Game/GameDetails';
 import styles from './src/components/Styles';
+import async from './src/domain/database/async';
 
 export type ParamList = {
   Home: undefined;
@@ -89,34 +90,33 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
+      {/* <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Button
-            title="Go to Settings"
-            onPress={() => navigation.navigate('Settings')}
-          />
-          <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} />
-          <Section title="Step One">
-            Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="Step One">
-            Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-        </View>
-        <Footer />
-      </ScrollView>
+        style={backgroundStyle}> */}
+      <View
+        style={{
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
+        }}>
+        <Button
+          title="Refresh Sample Data"
+          onPress={() => gameService.sampleData}
+        />
+        <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} />
+        <Section title="Step One">
+          Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
+          screen and then come back to see your edits.
+        </Section>
+      </View>
+      <Footer />
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
 }
 
 function App() {
+  gameService.sampleData();
+  console.log(gameService.getAllGames());
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" screenOptions={({ navigation, route }) => ({
