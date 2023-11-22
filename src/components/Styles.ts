@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   gamecard: {},
+  gamecardContainer: {marginBottom: 10},
   gamecardInternal: {
     flexDirection: 'row',
   },

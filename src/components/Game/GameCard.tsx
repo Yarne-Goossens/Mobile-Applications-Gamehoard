@@ -22,7 +22,7 @@ type GameProps = {
 };
 
 const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => (
-    <Card wrapperStyle={styles.gamecard}>
+    <Card wrapperStyle={styles.gamecard} containerStyle={styles.gamecardContainer}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
             <Card.Title style={styles.gameTitle}>{game.name}</Card.Title>
             {game.favorite ? <Icon style={{ paddingLeft: 60, paddingTop: 5 }} name='star' size={30} color='darkslateblue' onPress={async () => { await gameService.favoriteGame(game.game_id); updateScreen() }} /> : <Icon style={{ paddingLeft: 60, paddingTop: 5 }} name='star-o' size={30} color='darkslateblue' onPress={async () => { await gameService.favoriteGame(game.game_id); updateScreen() }} />}

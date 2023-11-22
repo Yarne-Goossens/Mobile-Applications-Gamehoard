@@ -57,6 +57,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+        flex: 1
     };
 
     const [collection, setCollection] = useState<Array<Game>>();
@@ -85,29 +86,34 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
 
     return (
         <SafeAreaView style={backgroundStyle}>
-            <StatusBar
-                barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-                backgroundColor={backgroundStyle.backgroundColor}
-            />
-            <ScrollView
+            <View style={{ flex: 1 }}>
+                <StatusBar
+                    barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+                    backgroundColor={backgroundStyle.backgroundColor}
+                />
+                {/* <ScrollView
                 contentInsetAdjustmentBehavior="automatic"
-                style={backgroundStyle}>
+                style={backgroundStyle}> */}
                 <View
                     style={{
                         backgroundColor: isDarkMode ? Colors.black : Colors.white,
+                        flex: 1,
                     }}>
                     <Button
                         title="Add Sample Data"
                         onPress={async () => { await gameService.sampleData(); updateScreen(); }}
                     />
                     <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
-                    <Section title="Step One">
+                    {/* <Section title="Step One">
                         Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
                         screen and then come back to see your edits.
-                    </Section>
+                    </Section> */}
                 </View>
+            </View>
+            <View style={{ flexShrink: .1 }}>
                 <Footer />
-            </ScrollView>
+            </View>
+            {/* </ScrollView> */}
         </SafeAreaView>
     );
 }
