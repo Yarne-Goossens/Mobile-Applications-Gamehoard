@@ -55,6 +55,15 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     padding: 10,
   },
+  textGenre: {
+    color: 'darkslateblue',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    padding: 10,
+    // flexWrap: 'wrap',
+  },
 });
 
 export default styles;

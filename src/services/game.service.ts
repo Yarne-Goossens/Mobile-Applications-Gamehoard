@@ -1,5 +1,5 @@
 // import gameDb from '../domain/database/game.db';
-import {uuid} from 'uuidv4';
+import {v4 as uuid} from 'uuid';
 import gameAsync from '../domain/database/game.async';
 import {Game} from '../types/types';
 
@@ -28,24 +28,35 @@ const removeGameById = async (id: string) => {
   return await gameAsync.removeGameById(id);
 };
 
+const favoriteGame = async (id: string) => {
+  console.log('service-Favorite');
+  let game = await getGameById(id);
+  game.favorite ? (game.favorite = false) : (game.favorite = true);
+  console.log(game);
+  return await gameAsync.updateGame(id, game);
+};
+
 const sampleData = async () => {
   await addGame({
-    game_id: uuid(),
+    game_id: 'uuid_1',
     name: 'God of War',
     genre: ['Action'],
     price: 10,
+    added_on: '',
   });
   await addGame({
-    game_id: uuid(),
+    game_id: 'uuid_2',
     name: 'Among Us',
     genre: ['Comedy'],
     price: 5,
+    added_on: '',
   });
   await addGame({
-    game_id: uuid(),
+    game_id: 'uuid_3',
     name: 'Risk of Rain',
-    genre: ['Rogue-Like'],
+    genre: ['Rogue-Like', 'Action'],
     price: 20,
+    added_on: '',
   });
 };
 
@@ -55,5 +66,6 @@ export default {
   addGame,
   updateGame,
   removeGameById,
+  favoriteGame,
   sampleData,
 };

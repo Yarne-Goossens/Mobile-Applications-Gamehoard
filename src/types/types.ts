@@ -2,6 +2,7 @@ export type Game = {
   game_id: string;
   name: string;
   genre: string[];
+  added_on: string;
   price: number;
   msrp?: number;
   rating?: number;
@@ -11,5 +12,6 @@ export type Game = {
   coop?: string;
   playtime?: number;
   completiontime?: number;
+  favorite?: boolean;
   picture?: string;
 };

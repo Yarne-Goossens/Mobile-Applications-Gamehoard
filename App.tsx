@@ -17,9 +17,6 @@ export type ParamList = {
 const Stack = createNativeStackNavigator<ParamList>();
 
 function App() {
-  gameService.sampleData();
-  console.log(gameService.getAllGames());
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" screenOptions={({ navigation, route }) => ({

@@ -59,19 +59,29 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
     };
 
     const [collection, setCollection] = useState<Array<Game>>();
+    const [update, setUpdate] = useState<Boolean>(false)
 
-    async function fetchData() {
+    const updateScreen = () => {
+        console.log("update-screen");
+        update ? setUpdate(false) : setUpdate(true);
+    }
+
+    const fetchData = async () => {
         setCollection(await gameService.getAllGames())
+        if (collection?.length == 0) {
+            await gameService.sampleData();
+            setCollection(await gameService.getAllGames());
+        }
     }
 
     useEffect(() => {
         console.log("index-useEffect")
         fetchData();
-    }, [])
+    }, [update])
 
     const deleteItem = async (id: string) => {
         gameService.removeGameById(id);
-        setCollection(await gameService.getAllGames())
+        updateScreen();
     }
 
     return (
@@ -91,7 +101,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         title="Refresh Sample Data"
                         onPress={async () => { await gameService.sampleData(); fetchData(); }}
                     />
-                    <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} />
+                    <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
                     <Section title="Step One">
                         Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
                         screen and then come back to see your edits.
