@@ -1,4 +1,5 @@
 // import gameDb from '../domain/database/game.db';
+import 'react-native-get-random-values';
 import {v4 as uuid} from 'uuid';
 import gameAsync from '../domain/database/game.async';
 import {Game} from '../types/types';
@@ -39,21 +40,21 @@ const favoriteGame = async (id: string) => {
 
 const sampleData = async () => {
   await addGame({
-    game_id: 'uuid_1',
+    game_id: uuid(),
     name: 'God of War',
     genre: ['Action'],
     price: 10,
     added_on: getDate(),
   });
   await addGame({
-    game_id: 'uuid_2',
+    game_id: uuid(),
     name: 'Among Us',
     genre: ['Comedy'],
     price: 5,
     added_on: getDate(),
   });
   await addGame({
-    game_id: 'uuid_3',
+    game_id: uuid(),
     name: 'Risk of Rain',
     genre: ['Rogue-Like', 'Action'],
     price: 20,

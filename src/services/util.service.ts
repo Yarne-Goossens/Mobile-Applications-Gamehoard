@@ -3,7 +3,7 @@ function getDate() {
   const month = today.getMonth() + 1;
   const year = today.getFullYear();
   const date = today.getDate();
-  console.log(`${year}-${month}-${date}`);
+  //   console.log(`${year}-${month}-${date}`);
   return `${year}-${month}-${date}`;
 }
 

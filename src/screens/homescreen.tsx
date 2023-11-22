@@ -69,14 +69,10 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
 
     const fetchData = async () => {
         setCollection(await gameService.getAllGames())
-        if (collection?.length == 0) {
-            await gameService.sampleData();
-            setCollection(await gameService.getAllGames());
-        }
     }
 
     useEffect(() => {
-        console.log("index-useEffect")
+        console.log("home-useEffect")
         fetchData();
     }, [update])
 
@@ -101,8 +97,8 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         backgroundColor: isDarkMode ? Colors.black : Colors.white,
                     }}>
                     <Button
-                        title="Refresh Sample Data"
-                        onPress={async () => { await gameService.sampleData(); fetchData(); }}
+                        title="Add Sample Data"
+                        onPress={async () => { await gameService.sampleData(); updateScreen(); }}
                     />
                     <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
                     <Section title="Step One">
