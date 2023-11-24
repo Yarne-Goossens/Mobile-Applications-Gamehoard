@@ -40,21 +40,21 @@ const favoriteGame = async (id: string) => {
 
 const sampleData = async () => {
   await addGame({
-    game_id: uuid(),
+    game_id: '1',
     name: 'God of War',
     genre: ['Action'],
     price: 10,
     added_on: getDate(),
   });
   await addGame({
-    game_id: uuid(),
+    game_id: '2',
     name: 'Among Us',
     genre: ['Comedy'],
     price: 5,
     added_on: getDate(),
   });
   await addGame({
-    game_id: uuid(),
+    game_id: '3',
     name: 'Risk of Rain',
     genre: ['Rogue-Like', 'Action'],
     price: 20,
