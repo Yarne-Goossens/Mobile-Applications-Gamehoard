@@ -45,6 +45,7 @@ const sampleData = async () => {
     genre: ['Action'],
     price: 10,
     added_on: getDate(),
+    picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.png',
   });
   await addGame({
     game_id: '2',
@@ -52,6 +53,7 @@ const sampleData = async () => {
     genre: ['Comedy'],
     price: 5,
     added_on: getDate(),
+    picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co6kqt.png',
   });
   await addGame({
     game_id: '3',
@@ -59,6 +61,7 @@ const sampleData = async () => {
     genre: ['Rogue-Like', 'Action'],
     price: 20,
     added_on: getDate(),
+    picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2k2z.png',
   });
 };
 

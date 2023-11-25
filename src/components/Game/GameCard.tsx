@@ -32,7 +32,7 @@ const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => 
             <Image
                 style={{ width: "35%", height: 180 }}
                 resizeMode="contain"
-                source={require('../../assets/godOfWarPlaceholder.jpg')}
+                source={{uri: game.picture}}
             />
             <View style={{ width: "65%" }}>
                 <Text style={styles.textGame}>Id: {game.game_id}</Text>

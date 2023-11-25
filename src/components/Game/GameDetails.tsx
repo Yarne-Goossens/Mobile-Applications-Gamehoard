@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import styles from "../Styles";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ParamList } from "../../../App";
@@ -6,6 +6,7 @@ import gameService from "../../services/game.service";
 import { useEffect, useState } from "react";
 import { Game } from "../../types/types";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { Card } from "@rneui/themed";
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'Details'>;
 
@@ -22,25 +23,28 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
     }, [route.params.gameId])
 
     return(
-        <View>
-            {details?(<>
-                    <Text style={styles.textGame}>Id: {details.game_id}</Text>
-                    <Text style={styles.textGenre}>Genre(s): {details.genre.toString()}</Text>
-                    <Text style={styles.textGame}>Price: {details.price} / {details.msrp ? details.msrp : 'NA'} €</Text>
-                    <Text style={styles.textGame}>Added On: {details.added_on}</Text>
-                    <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {details.playtime ? details.playtime : 'NA'}</Text>
-                    <Text style={styles.textGame}>Rating: {details.rating ? details.rating : 'NA'}</Text>
-                    <Text style={styles.textGame}>Platforms: {details.platforms ? details.platforms : 'NA'}</Text>
-                    <Text style={styles.textGame}>Singleplayer: {details.singleplayer ? details.singleplayer : 'NA'}</Text>
-                    <Text style={styles.textGame}>Multiplayer: {details.multiplayer ? details.multiplayer : 'NA'}</Text>
-                    <Text style={styles.textGame}>Coop: {details.coop ? details.coop : 'NA'}</Text>
-                    <Text style={styles.textGame}>Completiontime: {details.completiontime ? details.completiontime : 'NA'}</Text>
-                    <Text style={styles.textGame}>Favorite: {details.favorite ? details.favorite : 'NA'}</Text>
-                    <Text style={styles.textGame}>Picture: {details.picture ? details.picture : 'NA'}</Text>
-                </>): (
-                    <Text>Loading...</Text>
-            )}
-        </View>
+        <Card wrapperStyle={styles.gamecard} containerStyle={styles.gamecardContainer}>
+            <View>
+                {details?(<>
+                        <Image style={{ width: "35%", height: 180 }} resizeMode="contain" source={{uri: details.picture}} />                      
+                        <Text style={styles.textGame}>Id: {details.game_id}</Text>
+                        <Text style={styles.textGenre}>Genre(s): {details.genre.toString()}</Text>
+                        <Text style={styles.textGame}>Price: {details.price} / {details.msrp ? details.msrp : 'NA'} €</Text>
+                        <Text style={styles.textGame}>Added On: {details.added_on}</Text>
+                        <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {details.playtime ? details.playtime : 'NA'}</Text>
+                        <Text style={styles.textGame}>Rating: {details.rating ? details.rating : 'NA'}</Text>
+                        <Text style={styles.textGame}>Platforms: {details.platforms ? details.platforms : 'NA'}</Text>
+                        <Text style={styles.textGame}>Singleplayer: {details.singleplayer ? details.singleplayer : 'NA'}</Text>
+                        <Text style={styles.textGame}>Multiplayer: {details.multiplayer ? details.multiplayer : 'NA'}</Text>
+                        <Text style={styles.textGame}>Coop: {details.coop ? details.coop : 'NA'}</Text>
+                        <Text style={styles.textGame}>Completiontime: {details.completiontime ? details.completiontime : 'NA'}</Text>
+                        <Text style={styles.textGame}>Favorite: {details.favorite ? details.favorite : 'NA'}</Text>
+                        <Text style={styles.textGame}>Picture: {details.picture ? details.picture : 'NA'}</Text>
+                    </>): (
+                        <Text>Loading...</Text>
+                )}
+            </View>
+        </Card >
     );
 };
 
