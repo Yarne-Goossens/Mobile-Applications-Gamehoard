@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, ScrollView, Text, useColorScheme } from "react-native";
+import { Image, SafeAreaView, ScrollView, Text, View, useColorScheme } from "react-native";
 import styles from "../Styles";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ParamList } from "../../../App";
@@ -34,21 +34,24 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
             <Card wrapperStyle={styles.gamecard} containerStyle={styles.gamecardContainer}>
                 <ScrollView>
                         {details?(<>
-                                <Image style={{ width: "35%", height: 180 }} resizeMode="contain" source={{uri: details.picture}} />                      
-                                <Text style={styles.textGame}>Id: {details.game_id}</Text>
-                                <Text style={styles.textGenre}>Genre(s): {details.genre.toString()}</Text>
-                                <Text style={styles.textGame}>Price: {details.price} / {details.msrp ? details.msrp : 'NA'} €</Text>
-                                <Text style={styles.textGame}>Added On: {details.added_on}</Text>
-                                <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {details.playtime ? details.playtime : 'NA'}</Text>
-                                <Text style={styles.textGame}>Rating: {details.rating ? details.rating : 'NA'}</Text>
-                                <Text style={styles.textGame}>Platforms: {details.platforms ? details.platforms : 'NA'}</Text>
-                                <Text style={styles.textGame}>Singleplayer: {details.singleplayer ? details.singleplayer : 'NA'}</Text>
-                                <Text style={styles.textGame}>Multiplayer: {details.multiplayer ? details.multiplayer : 'NA'}</Text>
-                                <Text style={styles.textGame}>Coop: {details.coop ? details.coop : 'NA'}</Text>
-                                <Text style={styles.textGame}>Completiontime: {details.completiontime ? details.completiontime : 'NA'}</Text>
-                                <Text style={styles.textGame}>Favorite: {details.favorite ? details.favorite : 'NA'}</Text>
-                                <Text style={styles.textGame}>Picture: {details.picture ? details.picture : 'NA'}</Text>
-                                
+                                <View>
+                                    <Image style={{ width: "35%", height: 180 }} resizeMode="contain" source={{uri: details.picture}} />   
+                                </View>
+                                <View> 
+                                    <Text style={styles.textGame}>Id: {details.game_id}</Text>
+                                    <Text style={styles.textGenre}>Genre(s): {details.genre.toString()}</Text>
+                                    <Text style={styles.textGame}>Price: {details.price} / {details.msrp ? details.msrp : 'NA'} €</Text>
+                                    <Text style={styles.textGame}>Added On: {details.added_on}</Text>
+                                    <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {details.playtime ? details.playtime : 'NA'}</Text>
+                                    <Text style={styles.textGame}>Rating: {details.rating ? details.rating : 'NA'}</Text>
+                                    <Text style={styles.textGame}>Platforms: {details.platforms ? details.platforms : 'NA'}</Text>
+                                    <Text style={styles.textGame}>Singleplayer: {details.singleplayer ? details.singleplayer : 'NA'}</Text>
+                                    <Text style={styles.textGame}>Multiplayer: {details.multiplayer ? details.multiplayer : 'NA'}</Text>
+                                    <Text style={styles.textGame}>Coop: {details.coop ? details.coop : 'NA'}</Text>
+                                    <Text style={styles.textGame}>Completiontime: {details.completiontime ? details.completiontime : 'NA'}</Text>
+                                    <Text style={styles.textGame}>Favorite: {details.favorite ? details.favorite : 'NA'}</Text>
+                                    <Text style={styles.textGame}>Picture: {details.picture ? details.picture : 'NA'}</Text>
+                                </View>
                             </>): (
                                 <Text>Loading...</Text>
                         )}

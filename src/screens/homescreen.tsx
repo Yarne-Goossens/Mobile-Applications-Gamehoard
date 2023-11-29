@@ -103,6 +103,10 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         title="Add Sample Data"
                         onPress={async () => { await gameService.sampleData(); updateScreen(); }}
                     />
+                    <Button
+                        title="Add A Game"
+                        onPress={() => navigation.navigate('Add')}
+                    />
                     <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
                     {/* <Section title="Step One">
                         Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
