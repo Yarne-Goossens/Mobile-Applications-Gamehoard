@@ -104,6 +104,10 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         onPress={async () => { await gameService.sampleData(); updateScreen(); }}
                     />
                     <Button
+                        title="Refresh"
+                        onPress={() => updateScreen()}
+                    />
+                    <Button
                         title="Add A Game"
                         onPress={() => navigation.navigate('Add')}
                     />
