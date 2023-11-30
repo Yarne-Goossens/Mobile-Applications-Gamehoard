@@ -2,23 +2,22 @@ import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ParamList } from '../../App';
-import { Game } from '../domain/model/game';
 import gameService from '../services/game.service';
 import { getDate } from '../services/util.service';
 import {v4 as uuid} from 'uuid';
+import CheckBox from '@react-native-community/checkbox';
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'Add'>;
 
 const AddScreen = ({ route, navigation }: ScreenProps) => {
-  const [game_id, setGame_id] = useState<string>('');
+  const [game_id, setGame_id] = useState<string>(uuid());
   const [name, setName] = useState<string>('');
   const [genre, setGenre] = useState<string[]>(['']);
-  const [added_on, setAdded_on] = useState<string>('');
+  const [added_on, setAdded_on] = useState<string>(getDate());
   const [price, setPrice] = useState<number>(0);
   const [msrp, setMsrp] = useState<number>(0);
   const [rating, setRating] = useState<number>(0);
   const [platforms , setPlatform] = useState<string[]>(['']);
-  const [singleplayer, setSingleplayer] = useState<boolean>(false);
   const [multiplayer, setMultiplayer] = useState<boolean>(false);
   const [coop, setCoop] = useState<string>('');
   const [playtime, setPlaytime] = useState<number>(0);
@@ -30,11 +29,9 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
 
   const onSubmit = async() => {
     console.log('onSubmit');
-    setGame_id(uuid());
-    setAdded_on(getDate());
     console.log(game_id);
     console.log(added_on);
-    await gameService.addGame({game_id ,name, genre, added_on, price, msrp, rating, platforms, singleplayer, multiplayer, coop, playtime, completiontime, favorite, picture});
+    await gameService.addGame({game_id ,name, genre, added_on, price, msrp, rating, platforms, multiplayer, coop, playtime, completiontime, favorite, picture});
     navigation.navigate('Home');
   }
 
@@ -46,8 +43,7 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
       <TextInput placeholder="MSRP" onChangeText={(val)=>setMsrp(Number(val))} />
       <TextInput placeholder="Rating" onChangeText={(val)=>setRating(Number(val))} />
       <TextInput placeholder="Platforms" onChangeText={(val)=>setPlatform(val)} />
-      <TextInput placeholder="Singleplayer" onChangeText={(val)=>setSingleplayer(val)} />
-      <TextInput placeholder="Multiplayer" onChangeText={(val)=>setMultiplayer((val))} />
+      <CheckBox value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
       <TextInput placeholder="Coop" onChangeText={(val)=>setCoop(val)} />
       <TextInput placeholder="Picture" onChangeText={(val)=>setPicture(val)} />
       <Button title="Add Game" onPress={() => onSubmit() } />

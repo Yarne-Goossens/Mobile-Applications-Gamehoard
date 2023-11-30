@@ -8,6 +8,7 @@ import { Game } from "../../types/types";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Card } from "@rneui/themed";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import MIcon from "react-native-vector-icons/MaterialIcons";
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'Details'>;
 
@@ -45,9 +46,8 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
                             <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {details.playtime ? details.playtime : 'NA'}</Text>
                             <Text style={styles.textGame}>Rating: {details.rating ? details.rating : 'NA'}</Text>
                             <Text style={styles.textGame}>Platforms: {details.platforms ? details.platforms : 'NA'}</Text>
-                            <Text style={styles.textGame}>Singleplayer: {details.singleplayer ? details.singleplayer : 'NA'}</Text>
-                            <Text style={styles.textGame}>Multiplayer: {details.multiplayer ? details.multiplayer : 'NA'}</Text>
-                            <Text style={styles.textGame}>Coop: {details.coop ? details.coop : 'NA'}</Text>
+                            <Text style={styles.textGame}>Multiplayer: {details.multiplayer ? <MIcon name="people" size={20} color={styles.icon.color}/> : 'NA'}</Text>
+                            <Text style={styles.textGame}>Coop: {details.coop ? <MIcon name="cruelty-free" size={20} color={styles.icon.color}/> : 'NA'}</Text>
                             <Text style={styles.textGame}>Completiontime: {details.completiontime ? details.completiontime : 'NA'}</Text>
                             <Text style={styles.textGame}>Favorite: {details.favorite ? details.favorite : 'NA'}</Text>
                             <Text style={styles.textGame}>Picture: {details.picture ? details.picture : 'NA'}</Text>

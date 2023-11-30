@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   icon: {
     verticalAlign: 'middle',
     padding: 5,
+    color: constants.textColor,
   },
   gamecard: {},
   gamecardContainer: {marginBottom: 10},
