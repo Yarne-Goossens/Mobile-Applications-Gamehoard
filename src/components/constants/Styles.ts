@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import constants from './constants';
 
 const styles = StyleSheet.create({
   title: {
@@ -8,22 +9,22 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     margin: 'auto',
     paddingLeft: 15,
-    color: 'darkslateblue',
+    color: constants.textColor,
   },
   header: {
     justifyContent: 'space-evenly',
     flexDirection: 'row',
-    backgroundColor: '#FF2800',
+    backgroundColor: constants.bannerColor,
     paddingVertical: 15,
   },
   footer: {
     justifyContent: 'space-evenly',
     flexDirection: 'row',
-    backgroundColor: '#FF2800',
+    backgroundColor: constants.bannerColor,
     padding: 15,
   },
   text: {
-    color: 'darkslateblue',
+    color: constants.textColor,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   },
   gameTitle: {fontSize: 30},
   textGame: {
-    color: 'darkslateblue',
+    color: constants.textColor,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   textGenre: {
-    color: 'darkslateblue',
+    color: constants.textColor,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',

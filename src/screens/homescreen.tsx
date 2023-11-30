@@ -4,7 +4,7 @@ import GameCard from '../components/Game/GameCard';
 import gameService from '../services/game.service';
 import { Game } from '../types/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import styles from '../components/Styles';
+import styles from '../components/constants/Styles';
 import { ParamList } from '../../App';
 import {
     Button,

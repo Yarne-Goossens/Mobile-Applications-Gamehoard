@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, FlatList, Image, Button } from "react-native";
 import { Card } from '@rneui/themed';
 
-import styles from "../Styles";
+import styles from "../constants/Styles";
 import { Game } from "../../types/types";
 import Icon from "react-native-vector-icons/FontAwesome";
 import gameService from "../../services/game.service";
@@ -32,7 +32,7 @@ const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => 
             <Image
                 style={{ width: "35%", height: 180 }}
                 resizeMode="contain"
-                source={{uri: game.picture}}
+                source={{ uri: game.picture }}
             />
             <View style={{ width: "65%" }}>
                 <Text style={styles.textGame}>Id: {game.game_id}</Text>

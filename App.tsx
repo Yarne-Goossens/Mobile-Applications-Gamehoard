@@ -5,7 +5,7 @@ import gameService from './src/services/game.service';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SettingsScreen from './src/screens/settings';
 import GameDetailsScreen from './src/components/Game/GameDetails';
-import styles from './src/components/Styles';
+import styles from './src/components/constants/Styles';
 import HomeScreen from './src/screens/homescreen';
 import AddScreen from './src/screens/addscreen';
 

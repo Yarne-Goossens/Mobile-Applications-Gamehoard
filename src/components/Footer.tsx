@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Button } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import styles from "./Styles";
+import styles from "./constants/Styles";
 
 const Footer: React.FC = () => {
     return (
