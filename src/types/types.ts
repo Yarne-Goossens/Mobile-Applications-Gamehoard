@@ -7,7 +7,6 @@ export type Game = {
   msrp?: number;
   rating?: number;
   platforms?: string[];
-  singleplayer?: boolean;
   multiplayer?: boolean;
   coop?: string;
   playtime?: number;

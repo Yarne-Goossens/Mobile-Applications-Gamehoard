@@ -7,7 +7,6 @@ export class Game {
   msrp?: number;
   rating?: number;
   platforms?: string[];
-  singleplayer?: boolean;
   multiplayer?: boolean;
   coop?: string;
   playtime?: number;
@@ -24,7 +23,6 @@ export class Game {
     msrp?: number;
     rating?: number;
     platforms?: string[];
-    singleplayer?: boolean;
     multiplayer?: boolean;
     coop?: string;
     playtime?: number;
@@ -40,7 +38,6 @@ export class Game {
     this.msrp = game.msrp;
     this.rating = game.rating;
     this.platforms = game.platforms;
-    this.singleplayer = game.singleplayer;
     this.multiplayer = game.multiplayer;
     this.coop = game.coop;
     this.playtime = game.playtime;
