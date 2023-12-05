@@ -40,6 +40,7 @@ const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => 
                 <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text>
                 <Text style={styles.textGame}>Added On: {game.added_on}</Text>
                 <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {game.playtime ? game.playtime : 'NA'}</Text>
+                <Icon style={{ alignSelf: 'flex-end', flexDirection: 'row' }} name="edit" size={20} color="firebrick" onPress={() => navigation.navigate('Edit', { gameId: game.game_id })} />
                 <Icon style={{ alignSelf: 'flex-end', flexDirection: 'row' }} name="remove" size={20} color="firebrick" onPress={() => deleteItem(game.game_id)} />
                 <Button
                     title="Go to Details"

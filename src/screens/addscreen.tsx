@@ -29,8 +29,6 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
 
   const onSubmit = async() => {
     console.log('onSubmit');
-    console.log(game_id);
-    console.log(added_on);
     await gameService.addGame({game_id ,name, genre, added_on, price, msrp, rating, platforms, multiplayer, coop, playtime, completiontime, favorite, picture});
     navigation.navigate('Home');
   }

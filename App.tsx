@@ -1,19 +1,20 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Header, HeaderButtons } from './src/components/Header';
-import gameService from './src/services/game.service';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SettingsScreen from './src/screens/settings';
 import GameDetailsScreen from './src/components/Game/GameDetails';
 import styles from './src/components/constants/Styles';
 import HomeScreen from './src/screens/homescreen';
 import AddScreen from './src/screens/addscreen';
+import EditScreen from './src/screens/editscreen';
 
 export type ParamList = {
   Home: undefined;
-  Details: { gameId: number };
+  Details: { gameId: string };
   Settings: undefined;
   Add: undefined;
+  Edit: { gameId: string };
 };
 
 const Stack = createNativeStackNavigator<ParamList>();
@@ -32,6 +33,7 @@ function App() {
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Details" component={GameDetailsScreen} />
         <Stack.Screen name="Add" component={AddScreen} />
+        <Stack.Screen name="Edit" component={EditScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

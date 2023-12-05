@@ -16,12 +16,13 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
     const [details, setDetails] = useState<Game | null>(null);
 
     const fetchData = async () => {
-        setDetails(await gameService.getGameById(route.params.gameId.toString()));
+        setDetails(await gameService.getGameById(route.params.gameId));
     }
 
     useEffect(() => {
         console.log("details-useEffect")
         fetchData();
+        console.log(details?.name);
     }, [route.params.gameId])
 
     const isDarkMode = useColorScheme() === 'dark';
