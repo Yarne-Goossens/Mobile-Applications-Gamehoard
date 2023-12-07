@@ -41,7 +41,7 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
   const onSubmit = async() => {
     console.log('onSubmit');
     await gameService.updateGame(game?.game_id!,{game_id ,name, genre, added_on, price, msrp, rating, platforms, multiplayer, coop, playtime, completiontime, favorite, picture});
-    navigation.navigate('Home');
+    navigation.navigate('Home', {update: true});
   }
 
   return (

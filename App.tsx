@@ -10,7 +10,7 @@ import AddScreen from './src/screens/addscreen';
 import EditScreen from './src/screens/editscreen';
 
 export type ParamList = {
-  Home: undefined;
+  Home: { update: boolean };
   Details: { gameId: string };
   Settings: undefined;
   Add: undefined;

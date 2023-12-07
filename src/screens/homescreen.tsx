@@ -82,6 +82,15 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         fetchData();
     }, [update])
 
+    useEffect(() => {
+        console.log("home-useEffect")
+        if (route.params?.update) {
+            updateScreen();
+        }
+        const updatedParams = { ...route.params, update: false };
+        navigation.setParams(updatedParams);
+    }, [route.params?.update])
+
     const deleteItem = async (id: string) => {
         gameService.removeGameById(id);
         updateScreen();
