@@ -72,6 +72,11 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         setCollection(await gameService.getAllGames())
     }
 
+    const randomGame = () => {
+        let random = Math.floor(Math.random() * collection!.length);
+        return collection![random].game_id;
+    }
+
     useEffect(() => {
         console.log("home-useEffect")
         fetchData();
@@ -110,6 +115,10 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                     <Button
                         title="Add A Game"
                         onPress={() => navigation.navigate('Add')}
+                    />
+                    <Button
+                        title="Random Game"
+                        onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
                     />
                     <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
                     {/* <Section title="Step One">

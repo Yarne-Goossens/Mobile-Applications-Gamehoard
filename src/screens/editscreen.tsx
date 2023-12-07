@@ -38,8 +38,6 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
   const [favorite, setFavorite] = useState<boolean>(game?.favorite!);
   const [picture, setPicture] = useState<string>(game?.picture!);
 
-  console.log(name);
-
   const onSubmit = async() => {
     console.log('onSubmit');
     await gameService.updateGame(game?.game_id!,{game_id ,name, genre, added_on, price, msrp, rating, platforms, multiplayer, coop, playtime, completiontime, favorite, picture});
