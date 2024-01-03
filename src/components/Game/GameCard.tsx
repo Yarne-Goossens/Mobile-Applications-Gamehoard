@@ -29,15 +29,15 @@ const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => 
         </View>
         <Card.Divider />
         <View style={styles.gamecardInternal}>
-            <View style={{ width: "35%" }}>
+            <View style={{ width: "35%", flexDirection: 'column' }}>
                 <Image
                     style={{ height: 180 }}
                     resizeMode="contain"
                     source={{ uri: game.picture }}
                 />
-                <View>
-                    <Icon style={{ alignSelf: 'center', flexDirection: 'row' }} name="edit" size={30} color="firebrick" onPress={() => navigation.navigate('Edit', { gameId: game.game_id })} />
-                    <Icon style={{ alignSelf: 'center', flexDirection: 'row' }} name="remove" size={30} color="firebrick" onPress={() => deleteItem(game.game_id)} />
+                <View style={{ alignItems: 'flex-end', flexDirection: 'row', flex: 1 }}>
+                    <Icon style={{ textAlign: 'center', marginHorizontal: 'auto', width: "50%", flex: 1, paddingBottom: 3 }} name="edit" size={30} color="firebrick" onPress={() => navigation.navigate('Edit', { gameId: game.game_id })} />
+                    <Icon style={{ textAlign: 'center', marginHorizontal: "auto", width: "50%", flex: 1, paddingBottom: 3 }} name="remove" size={30} color="firebrick" onPress={() => deleteItem(game.game_id)} />
                 </View>
             </View>
             <View style={{ width: "65%" }}>
@@ -46,7 +46,6 @@ const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => 
                 <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text>
                 <Text style={styles.textGame}>Added On: {game.added_on}</Text>
                 <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {game.playtime ? game.playtime : 'NA'}</Text>
-
                 <Button
                     title="Go to Details"
                     onPress={() => navigation.navigate('Details', { gameId: game.game_id })}

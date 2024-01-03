@@ -1,6 +1,7 @@
 import {Dimensions} from 'react-native';
 
 const {width, height} = Dimensions.get('window');
+//borderColor: 'red', borderWidth: 2
 
 export const colors = {
   bannerColor: '#FF2800',

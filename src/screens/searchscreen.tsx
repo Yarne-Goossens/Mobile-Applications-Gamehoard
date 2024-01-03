@@ -20,7 +20,6 @@ const SearchScreen = ({ route, navigation }: ScreenProps) => {
   }
 
   const searchGames = async (value: string) => {
-    console.log('searched:', await gameService.searchGame(value));
     setGames(await gameService.searchGame(value));
   }
 
@@ -30,25 +29,20 @@ const SearchScreen = ({ route, navigation }: ScreenProps) => {
   }, [searchValue])
 
   return (
-    <View style={styles.root}>
+    <View style={styles.container}>
       <SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />
       <SearchResults games={games} navigation={navigation} deleteItem={deleteItem} updateScreen={() => { }} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home', { update: false })} />
+      {/* <Button title="Go back" onPress={() => navigation.goBack()} />
+      <Button title="Go to Home" onPress={() => navigation.navigate('Home', { update: false })} /> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    backgroundColor: 'black'
-  },
   container: {
     flex: 1,
-    backgroundColor: colors.lightGray,
+    backgroundColor: colors.black,
+    paddingBottom: 80,
   }
 });
 

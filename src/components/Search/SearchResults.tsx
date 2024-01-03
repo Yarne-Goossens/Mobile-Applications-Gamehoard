@@ -15,10 +15,8 @@ type Props = {
 }
 
 const SearchResults = ({ games, deleteItem, updateScreen, navigation }: Props) => {
-    console.log('result', games)
     return (
         <View>
-            {/* <Text style={{ color: 'white' }}>{games[0]?.name}</Text> */}
             <GameCard games={games} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
         </View >
     )
