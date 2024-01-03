@@ -38,6 +38,19 @@ const favoriteGame = async (id: string) => {
   return await gameAsync.updateGame(id, game);
 };
 
+const searchGame = async (searchterm: string) => {
+  console.log('service-Search');
+  let games = await getAllGames();
+  console.log(
+    await games.filter(game =>
+      game.name.toLowerCase().includes(searchterm.toLowerCase()),
+    ),
+  );
+  return await games.filter(game =>
+    game.name.toLowerCase().includes(searchterm.toLowerCase()),
+  );
+};
+
 const sampleData = async () => {
   await addGame({
     game_id: '1',
@@ -72,5 +85,6 @@ export default {
   updateGame,
   removeGameById,
   favoriteGame,
+  searchGame,
   sampleData,
 };

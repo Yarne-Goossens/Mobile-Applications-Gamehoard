@@ -1,0 +1,55 @@
+import React, { useEffect, useState } from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ParamList } from '../../App';
+import { colors } from '../components/constants/constants';
+import SearchInput from '../components/Search/SearchInput';
+import SearchResults from '../components/Search/SearchResults';
+import gameService from '../services/game.service';
+import { Game } from '../types/types';
+
+
+type ScreenProps = NativeStackScreenProps<ParamList, 'Search'>;
+
+const SearchScreen = ({ route, navigation }: ScreenProps) => {
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [games, setGames] = useState<Array<Game>>([]);
+
+  const deleteItem = async (id: string) => {
+    await gameService.removeGameById(id);
+  }
+
+  const searchGames = async (value: string) => {
+    console.log('searched:', await gameService.searchGame(value));
+    setGames(await gameService.searchGame(value));
+  }
+
+  useEffect(() => {
+    console.log("search-useEffect")
+    searchGames(searchValue);
+  }, [searchValue])
+
+  return (
+    <View style={styles.root}>
+      <SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />
+      <SearchResults games={games} navigation={navigation} deleteItem={deleteItem} updateScreen={() => { }} />
+      <Button title="Go back" onPress={() => navigation.goBack()} />
+      <Button title="Go to Home" onPress={() => navigation.navigate('Home', { update: false })} />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    backgroundColor: 'black'
+  },
+  container: {
+    flex: 1,
+    backgroundColor: colors.lightGray,
+  }
+});
+
+export default SearchScreen;

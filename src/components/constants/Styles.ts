@@ -1,7 +1,13 @@
 import {StyleSheet} from 'react-native';
-import constants from './constants';
+import {colors, sizes} from './constants';
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'black',
+  },
   title: {
     fontSize: 25,
     fontWeight: '600',
@@ -9,22 +15,22 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     margin: 'auto',
     paddingLeft: 15,
-    color: constants.textColor,
+    color: colors.textColor,
   },
   header: {
     justifyContent: 'space-evenly',
     flexDirection: 'row',
-    backgroundColor: constants.bannerColor,
+    backgroundColor: colors.bannerColor,
     paddingVertical: 15,
   },
   footer: {
     justifyContent: 'space-evenly',
     flexDirection: 'row',
-    backgroundColor: constants.bannerColor,
+    backgroundColor: colors.bannerColor,
     padding: 15,
   },
   text: {
-    color: constants.textColor,
+    color: colors.textColor,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -42,7 +48,7 @@ const styles = StyleSheet.create({
   icon: {
     verticalAlign: 'middle',
     padding: 5,
-    color: constants.textColor,
+    color: colors.textColor,
   },
   gamecard: {},
   gamecardContainer: {marginBottom: 10, borderRadius: 10},
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
   },
   gameTitle: {fontSize: 30},
   textGame: {
-    color: constants.textColor,
+    color: colors.textColor,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   textGenre: {
-    color: constants.textColor,
+    color: colors.textColor,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',

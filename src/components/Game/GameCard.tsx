@@ -29,7 +29,7 @@ const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => 
         </View>
         <Card.Divider />
         <View style={styles.gamecardInternal}>
-            <View style={{ width: "35%", borderColor: 'red', borderWidth: 2 }}>
+            <View style={{ width: "35%" }}>
                 <Image
                     style={{ height: 180 }}
                     resizeMode="contain"
@@ -57,14 +57,12 @@ const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => 
 );
 
 const GameCard: React.FC<Props> = ({ games, deleteItem, navigation, updateScreen }: Props) => {
-    const [name, setName] = useState("");
-
     return (
         <FlatList
             style={styles.gamecard}
             data={games}
             renderItem={({ item }) => <GameView game={item} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />}
-        // keyExtractor={item => item.game_id}
+            keyExtractor={item => item.game_id}
         />
     )
 }

@@ -8,6 +8,7 @@ import styles from './src/components/constants/Styles';
 import HomeScreen from './src/screens/homescreen';
 import AddScreen from './src/screens/addscreen';
 import EditScreen from './src/screens/editscreen';
+import SearchScreen from './src/screens/searchscreen';
 
 export type ParamList = {
   Home: { update: boolean };
@@ -15,6 +16,7 @@ export type ParamList = {
   Settings: undefined;
   Add: undefined;
   Edit: { gameId: string };
+  Search: undefined;
 };
 
 const Stack = createNativeStackNavigator<ParamList>();
@@ -34,6 +36,7 @@ function App() {
         <Stack.Screen name="Details" component={GameDetailsScreen} />
         <Stack.Screen name="Add" component={AddScreen} />
         <Stack.Screen name="Edit" component={EditScreen} />
+        <Stack.Screen name="Search" component={SearchScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
