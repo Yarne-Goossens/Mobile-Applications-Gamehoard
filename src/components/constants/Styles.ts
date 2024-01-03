@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     color: constants.textColor,
   },
   gamecard: {},
-  gamecardContainer: {marginBottom: 10},
+  gamecardContainer: {marginBottom: 10, borderRadius: 10},
   gamecardInternal: {
     flexDirection: 'row',
   },

@@ -29,19 +29,24 @@ const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => 
         </View>
         <Card.Divider />
         <View style={styles.gamecardInternal}>
-            <Image
-                style={{ width: "35%", height: 180 }}
-                resizeMode="contain"
-                source={{ uri: game.picture }}
-            />
+            <View style={{ width: "35%", borderColor: 'red', borderWidth: 2 }}>
+                <Image
+                    style={{ height: 180 }}
+                    resizeMode="contain"
+                    source={{ uri: game.picture }}
+                />
+                <View>
+                    <Icon style={{ alignSelf: 'center', flexDirection: 'row' }} name="edit" size={30} color="firebrick" onPress={() => navigation.navigate('Edit', { gameId: game.game_id })} />
+                    <Icon style={{ alignSelf: 'center', flexDirection: 'row' }} name="remove" size={30} color="firebrick" onPress={() => deleteItem(game.game_id)} />
+                </View>
+            </View>
             <View style={{ width: "65%" }}>
                 <Text style={styles.textGame}>Id: {game.game_id}</Text>
                 <Text style={styles.textGenre}>Genre(s): {game.genre.toString()}</Text>
                 <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text>
                 <Text style={styles.textGame}>Added On: {game.added_on}</Text>
                 <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {game.playtime ? game.playtime : 'NA'}</Text>
-                <Icon style={{ alignSelf: 'flex-end', flexDirection: 'row' }} name="edit" size={20} color="firebrick" onPress={() => navigation.navigate('Edit', { gameId: game.game_id })} />
-                <Icon style={{ alignSelf: 'flex-end', flexDirection: 'row' }} name="remove" size={20} color="firebrick" onPress={() => deleteItem(game.game_id)} />
+
                 <Button
                     title="Go to Details"
                     onPress={() => navigation.navigate('Details', { gameId: game.game_id })}
