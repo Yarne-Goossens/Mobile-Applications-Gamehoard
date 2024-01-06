@@ -46,6 +46,8 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
                             <Text style={styles.textGame}>Added On: {details.added_on}</Text>
                             <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {details.playtime ? details.playtime : 'NA'}</Text>
                             <Text style={styles.textGame}>Rating: {details.rating ? details.rating : 'NA'}</Text>
+                            <Text style={styles.textGame}>Critic Rating: {details.critic_rating ? details.critic_rating : 'NA'}</Text>
+                            <Text style={styles.textGame}>User Rating: {details.user_rating ? details.user_rating : 'NA'}</Text>
                             <Text style={styles.textGame}>Platforms: {details.platforms ? details.platforms : 'NA'}</Text>
                             <Text style={styles.textGame}>Multiplayer: {details.multiplayer ? <MIcon name="people" size={20} color={styles.icon.color}/> : 'NA'}</Text>
                             <Text style={styles.textGame}>Coop: {details.coop ? <MIcon name="cruelty-free" size={20} color={styles.icon.color}/> : 'NA'}</Text>

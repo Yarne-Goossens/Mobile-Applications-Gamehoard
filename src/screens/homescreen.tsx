@@ -126,6 +126,10 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         onPress={() => navigation.navigate('Add')}
                     />
                     <Button
+                        title="Add A Game From IGDB"
+                        onPress={() => navigation.navigate('Igdb')}
+                    />
+                    <Button
                         title="Random Game"
                         onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
                     />

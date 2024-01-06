@@ -42,7 +42,7 @@ const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => 
             </View>
             <View style={{ width: "65%" }}>
                 <Text style={styles.textGame}>Id: {game.game_id}</Text>
-                <Text style={styles.textGenre}>Genre(s): {game.genre.toString()}</Text>
+                {/*<Text style={styles.textGenre}>Genre(s): {game.genre.toString()}</Text>*/}
                 <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text>
                 <Text style={styles.textGame}>Added On: {game.added_on}</Text>
                 <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {game.playtime ? game.playtime : 'NA'}</Text>

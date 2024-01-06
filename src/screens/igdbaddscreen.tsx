@@ -7,10 +7,11 @@ import SearchInput from '../components/Search/SearchInput';
 import SearchResults from '../components/Search/SearchResults';
 import gameService from '../services/game.service';
 import { Game } from '../types/types';
+import igdb from '../services/igdb.service';
 
-type ScreenProps = NativeStackScreenProps<ParamList, 'Search'>;
+type ScreenProps = NativeStackScreenProps<ParamList, 'Igdb'>;
 
-const SearchScreen = ({ route, navigation }: ScreenProps) => {
+const IgdbAddScreen = ({ route, navigation }: ScreenProps) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [games, setGames] = useState<Array<Game>>([]);
 
@@ -22,6 +23,12 @@ const SearchScreen = ({ route, navigation }: ScreenProps) => {
     setGames(await gameService.searchGame(value));
   }
 
+  const getGames = async (searchValue: string) => {
+    const response = await igdb.getGamesIgdb(searchValue);
+    console.log("getIgdbGames")
+    setGames(response);
+  }
+
   useEffect(() => {
     console.log("search-useEffect")
     searchGames(searchValue);
@@ -31,6 +38,7 @@ const SearchScreen = ({ route, navigation }: ScreenProps) => {
     <View style={styles.container}>
       <SearchInput searchValue={searchValue} setSearchValue={setSearchValue} />
       <SearchResults games={games} navigation={navigation} deleteItem={deleteItem} updateScreen={() => { }} />
+      <Button title="Get" onPress={() => getGames(searchValue)} />
     </View>
   );
 }
@@ -43,4 +51,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SearchScreen;
+export default IgdbAddScreen;

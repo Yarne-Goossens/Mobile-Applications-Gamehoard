@@ -9,6 +9,7 @@ import HomeScreen from './src/screens/homescreen';
 import AddScreen from './src/screens/addscreen';
 import EditScreen from './src/screens/editscreen';
 import SearchScreen from './src/screens/searchscreen';
+import IgdbAddScreen from './src/screens/igdbaddscreen';
 
 export type ParamList = {
   Home: { update: boolean };
@@ -17,6 +18,7 @@ export type ParamList = {
   Add: undefined;
   Edit: { gameId: string };
   Search: undefined;
+  Igdb: undefined;
 };
 
 const Stack = createNativeStackNavigator<ParamList>();
@@ -37,6 +39,7 @@ function App() {
         <Stack.Screen name="Add" component={AddScreen} />
         <Stack.Screen name="Edit" component={EditScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="Igdb" component={IgdbAddScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
