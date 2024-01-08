@@ -54,24 +54,32 @@ const styles = StyleSheet.create({
   gamecardContainer: {marginBottom: 10, borderRadius: 10},
   gamecardInternal: {
     flexDirection: 'row',
+    height: sizes.cardHeight,
   },
-  gameTitle: {fontSize: 30},
+  gameTitle: {fontSize: 30, fontWeight: 'bold'},
+  textLabel: {
+    color: colors.textColor,
+    fontSize: 18,
+    fontWeight: '900',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    padding: 6,
+  },
   textGame: {
     color: colors.textColor,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '500',
     textAlign: 'center',
     textAlignVertical: 'center',
-    padding: 10,
+    padding: 6,
   },
   textGenre: {
     color: colors.textColor,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '500',
     textAlign: 'center',
     textAlignVertical: 'center',
-    padding: 10,
-    // flexWrap: 'wrap',
+    padding: 6,
   },
 });
 

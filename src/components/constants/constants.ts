@@ -7,6 +7,7 @@ export const colors = {
   bannerColor: '#FF2800',
   textColor: 'darkslateblue',
   iconColor: 'darkslateblue',
+  iconFavorite: 'red',
   lightGray: '#b2b2b2',
   light: '#fbfbfb',
   white: '#fff',
@@ -16,6 +17,7 @@ export const colors = {
 export const sizes = {
   width,
   height,
+  cardHeight: 250,
   radius: 18,
   textSize: 18,
 };

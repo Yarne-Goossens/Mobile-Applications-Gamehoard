@@ -23,7 +23,7 @@ export type ParamList = {
 
 const Stack = createNativeStackNavigator<ParamList>();
 
-function App() {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" screenOptions={({ navigation, route }) => ({

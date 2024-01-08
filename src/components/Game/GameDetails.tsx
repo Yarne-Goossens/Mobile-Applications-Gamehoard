@@ -9,6 +9,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { Card } from "@rneui/themed";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import MIcon from "react-native-vector-icons/MaterialIcons";
+import { colors, sizes } from "../constants/Constants";
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'Details'>;
 
@@ -19,11 +20,18 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
         setDetails(await gameService.getGameById(route.params.gameId));
     }
 
+    const [update, setUpdate] = useState<Boolean>(false)
+
+    const updateScreen = () => {
+        console.log("update-screen");
+        update ? setUpdate(false) : setUpdate(true);
+    }
+
     useEffect(() => {
         console.log("details-useEffect")
         fetchData();
         console.log(details?.name);
-    }, [route.params.gameId])
+    }, [route.params.gameId, update])
 
     const isDarkMode = useColorScheme() === 'dark';
     const backgroundStyle = {
@@ -37,23 +45,39 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
                 <ScrollView>
                     {details ? (<>
                         <View>
-                            <Image style={{ width: "35%", height: 180 }} resizeMode="contain" source={{ uri: details.picture }} />
+                            <Image style={{ width: '80%', height: (sizes.width * 0.9), marginTop: 15, borderRadius: sizes.radius, alignSelf: 'center' }} resizeMode="contain" source={{ uri: details.picture }} />
+                            {details.favorite ? <Icon style={{ position: 'absolute', top: 22, right: 45 }} name='heart' size={50} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(details.game_id); updateScreen() }} /> : <Icon style={{ position: 'absolute', top: 22, right: 45 }} name='heart-o' size={50} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(details.game_id); updateScreen() }} />}
                         </View>
-                        <View>
-                            <Text style={styles.textGame}>Id: {details.game_id}</Text>
-                            <Text style={styles.textGenre}>Genre(s): {details.genre.toString()}</Text>
-                            <Text style={styles.textGame}>Price: {details.price} / {details.msrp ? details.msrp : 'NA'} €</Text>
-                            <Text style={styles.textGame}>Added On: {details.added_on}</Text>
-                            <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {details.playtime ? details.playtime : 'NA'}</Text>
-                            <Text style={styles.textGame}>Rating: {details.rating ? details.rating : 'NA'}</Text>
-                            <Text style={styles.textGame}>Critic Rating: {details.critic_rating ? details.critic_rating : 'NA'}</Text>
-                            <Text style={styles.textGame}>User Rating: {details.user_rating ? details.user_rating : 'NA'}</Text>
-                            <Text style={styles.textGame}>Platforms: {details.platforms ? details.platforms : 'NA'}</Text>
-                            <Text style={styles.textGame}>Multiplayer: {details.multiplayer ? <MIcon name="people" size={20} color={styles.icon.color}/> : 'NA'}</Text>
-                            <Text style={styles.textGame}>Coop: {details.coop ? <MIcon name="cruelty-free" size={20} color={styles.icon.color}/> : 'NA'}</Text>
-                            <Text style={styles.textGame}>Completiontime: {details.completiontime ? details.completiontime : 'NA'}</Text>
-                            <Text style={styles.textGame}>Favorite: {details.favorite ? details.favorite : 'NA'}</Text>
-                            <Text style={styles.textGame}>Picture: {details.picture ? details.picture : 'NA'}</Text>
+
+                        <View style={{ flex: 1, flexDirection: 'row' }}>
+                            <View style={{ width: '60%', alignSelf: 'center', marginTop: 20 }}>
+                                <Text style={styles.textLabel}>Id:</Text>
+                                <Text style={styles.textLabel}>Genre(s):</Text>
+                                <Text style={styles.textLabel}>Price (Bought/Full):</Text>
+                                <Text style={styles.textLabel}>Added On:</Text>
+                                <Text style={styles.textLabel}><Icon name="clock-o" size={20} /></Text>
+                                <Text style={styles.textLabel}>Completiontime:</Text>
+                                <Text style={styles.textLabel}>Rating:</Text>
+                                <Text style={styles.textLabel}>Critic Rating:</Text>
+                                <Text style={styles.textLabel}>User Rating: </Text>
+                                <Text style={styles.textLabel}>Platforms:</Text>
+                                <Text style={styles.textLabel}>Multiplayer: </Text>
+                                <Text style={styles.textLabel}>Coop:</Text>
+                            </View>
+                            <View style={{ width: '40%', alignSelf: 'center', marginTop: 20 }}>
+                                <Text style={styles.textGame}>{details.game_id}</Text>
+                                <Text style={styles.textGenre}>{details.genre.toString()}</Text>
+                                <Text style={styles.textGame}>{details.price} / {details.msrp ? details.msrp : 'NA'} €</Text>
+                                <Text style={styles.textGame}>{details.added_on}</Text>
+                                <Text style={styles.textGame}>{details.playtime ? details.playtime : 'NA'}</Text>
+                                <Text style={styles.textGame}>{details.completiontime ? details.completiontime : 'NA'}</Text>
+                                <Text style={styles.textGame}>{details.rating ? details.rating : 'NA'}</Text>
+                                <Text style={styles.textGame}>{details.critic_rating ? details.critic_rating : 'NA'}</Text>
+                                <Text style={styles.textGame}>{details.user_rating ? details.user_rating : 'NA'}</Text>
+                                <Text style={styles.textGame}>{details.platforms ? details.platforms : 'NA'}</Text>
+                                <Text style={styles.textGame}>{details.multiplayer ? <MIcon name="people" size={20} color={styles.icon.color} /> : 'NA'}</Text>
+                                <Text style={styles.textGame}>{details.coop ? <MIcon name="cruelty-free" size={20} color={styles.icon.color} /> : 'NA'}</Text>
+                            </View>
                         </View>
                     </>) : (
                         <Text>Loading...</Text>
