@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import styles from "../constants/Styles";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { colors, padding, sizes } from "../constants/constants";
+import { colors, padding, sizes } from "../constants/Constants";
 import { color } from "@rneui/themed/dist/config";
 
 type Props = {

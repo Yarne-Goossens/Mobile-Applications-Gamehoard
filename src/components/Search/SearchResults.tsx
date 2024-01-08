@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "../constants/Styles";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { colors, padding, sizes } from "../constants/constants";
+import { colors, padding, sizes } from "../constants/Constants";
 import { color } from "@rneui/themed/dist/config";
 import { Game } from "../../types/types";
-import GameCard from "../Game/GameCard";
+import GameCardList from "../Game/GameCardList";
 
 type Props = {
     games: Array<Game> | undefined;
@@ -17,7 +17,7 @@ type Props = {
 const SearchResults = ({ games, deleteItem, updateScreen, navigation }: Props) => {
     return (
         <View>
-            <GameCard games={games} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
+            <GameCardList games={games} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
         </View >
     )
 }

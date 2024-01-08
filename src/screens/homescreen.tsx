@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import Footer from '../components/Footer';
-import GameCard from '../components/Game/GameCard';
+import GameCardList from '../components/Game/GameCardList';
 import gameService from '../services/game.service';
 import { Game } from '../types/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -133,7 +133,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         title="Random Game"
                         onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
                     />
-                    <GameCard games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
+                    <GameCardList games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
                     {/* <Section title="Step One">
                         Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
                         screen and then come back to see your edits.

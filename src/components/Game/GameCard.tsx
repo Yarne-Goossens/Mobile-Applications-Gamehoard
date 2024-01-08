@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, FlatList, Image, Button } from "react-native";
+import { View, Text, Image, Button } from "react-native";
 import { Card } from '@rneui/themed';
 
 import styles from "../constants/Styles";
@@ -8,20 +8,13 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import gameService from "../../services/game.service";
 
 type Props = {
-    games: Array<Game> | undefined;
-    deleteItem: (id: string) => void;
-    updateScreen: () => void;
-    navigation: any;
-}
-
-type GameProps = {
     game: Game;
     deleteItem: (id: string) => void;
     updateScreen: () => void;
     navigation: any
 };
 
-const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => (
+const GameCard = ({ game, deleteItem, navigation, updateScreen }: Props) => (
     <Card wrapperStyle={styles.gamecard} containerStyle={styles.gamecardContainer}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
             <Card.Title style={styles.gameTitle}>{game.name}</Card.Title>
@@ -54,16 +47,5 @@ const GameView = ({ game, deleteItem, navigation, updateScreen }: GameProps) => 
         </View>
     </Card >
 );
-
-const GameCard: React.FC<Props> = ({ games, deleteItem, navigation, updateScreen }: Props) => {
-    return (
-        <FlatList
-            style={styles.gamecard}
-            data={games}
-            renderItem={({ item }) => <GameView game={item} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />}
-            keyExtractor={item => item.game_id}
-        />
-    )
-}
 
 export default GameCard;

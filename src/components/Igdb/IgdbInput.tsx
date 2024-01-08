@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import styles from "../constants/Styles";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { colors, padding, sizes } from "../constants/constants";
+import { colors, padding, sizes } from "../constants/Constants";
 import { color } from "@rneui/themed/dist/config";
 import { Input } from "@rneui/themed";
 
@@ -22,7 +22,7 @@ const IgdbInput = ({ searchValue, setSearchValue, input }: Props) => {
                 <View style={styleslocal.search}>
                     <Icon style={styles.icon} name='search' size={30} color={colors.iconColor} />
                 </View>
-                <TextInput style={styleslocal.textfield} placeholder="Search" value={searchValue} onChangeText={setSearchValue} onSubmitEditing={() => { input(searchValue) }}/>
+                <TextInput style={styleslocal.textfield} placeholder="Search" value={searchValue} onChangeText={setSearchValue} onSubmitEditing={() => { input(searchValue) }} />
                 <View style={styleslocal.filter}>
                     <Icon style={styles.icon} name='filter' size={30} color={colors.iconColor} onPress={() => { }} />
                 </View>

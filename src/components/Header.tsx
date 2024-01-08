@@ -4,7 +4,7 @@ import { View, Text, Image } from "react-native";
 import styles from "./constants/Styles";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Button from "react-native-vector-icons/FontAwesome";
-import { colors } from "./constants/constants";
+import { colors } from "./constants/Constants";
 
 
 const Header = () => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ParamList } from '../../App';
-import { colors } from '../components/constants/constants';
+import { colors } from '../components/constants/Constants';
 import SearchInput from '../components/Search/SearchInput';
 import SearchResults from '../components/Search/SearchResults';
 import gameService from '../services/game.service';
@@ -33,7 +33,7 @@ const IgdbAddScreen = ({ route, navigation }: ScreenProps) => {
 
   return (
     <View style={styles.container}>
-      <IgdbInput searchValue={searchValue} setSearchValue={setSearchValue} input={getGames}/>
+      <IgdbInput searchValue={searchValue} setSearchValue={setSearchValue} input={getGames} />
       <IgdbResults games={games} navigation={navigation} updateScreen={() => { }} />
     </View>
   );
