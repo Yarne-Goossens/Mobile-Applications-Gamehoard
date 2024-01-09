@@ -8,7 +8,7 @@ const getItem = async (key: string): Promise<Game> => {
     // console.log(jsonValue);
     return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch (error) {
-    console.log('error: ', error);
+    console.error('error: ', error);
   }
 };
 
@@ -18,12 +18,12 @@ const getAll = async (): Promise<Game[]> => {
     const result = await AsyncStorage.multiGet(keys);
 
     let list: Game[] = [];
-    console.log(list);
+    // console.log(list);
     result.map(req => list.push(JSON.parse(req[1])));
     console.log(list);
     return list;
   } catch (error) {
-    console.log('error: ', error);
+    console.error('error: ', error);
   }
 };
 
@@ -33,7 +33,7 @@ const addItem = async (key: string, valueObject: Object) => {
     // console.log(jsonValue);
     await AsyncStorage.setItem(key, jsonValue);
   } catch (error) {
-    console.log('error: ', error);
+    console.error('error: ', error);
   }
 };
 
@@ -41,7 +41,7 @@ const updateItem = async (key: string, valueObject: Object) => {
   try {
     await AsyncStorage.mergeItem(key, JSON.stringify(valueObject));
   } catch (error) {
-    console.log('error: ', error);
+    console.error('error: ', error);
   }
 };
 
@@ -50,10 +50,8 @@ const removeItem = async (key: string) => {
     console.log('remove ', key);
     await AsyncStorage.removeItem(key);
   } catch (error) {
-    console.log('error: ', error);
+    console.error('error: ', error);
   }
 };
-
-
 
 export default {getItem, getAll, addItem, updateItem, removeItem};

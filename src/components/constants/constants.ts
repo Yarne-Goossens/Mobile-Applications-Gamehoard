@@ -52,6 +52,7 @@ const colorPalette = {
 //   white: '#fff',
 //   black: '#000',
 // };
+
 export const colors = {
   bannerColor: colorPalette.primary,
   titleColor: colorPalette.text,
@@ -59,8 +60,8 @@ export const colors = {
   labelColor: colorPalette.secondary,
   iconColor: colorPalette.text,
   highlightColor: colorPalette.highlight,
-  iconFavorite: 'red',
-  iconCards: 'firebrick',
+  iconFavorite: '#e62400',
+  iconCards: '#e62400',
   lightGray: '#b2b2b2',
   light: '#fbfbfb',
   white: '#fff',

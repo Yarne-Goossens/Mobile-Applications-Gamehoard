@@ -34,27 +34,41 @@ const favoriteGame = async (id: string) => {
   console.log('service-Favorite');
   let game = await getGameById(id);
   game.favorite ? (game.favorite = false) : (game.favorite = true);
-  console.log(game);
+  // console.log(game);
   return await gameAsync.updateGame(id, game);
 };
 
 const searchGame = async (searchterm: string) => {
   console.log('service-Search');
   let games = await getAllGames();
-  console.log(
-    await games.filter(game =>
-      game.name.toLowerCase().includes(searchterm.toLowerCase()),
-    ),
-  );
+  // console.log(
+  //   await games.filter(game =>
+  //     game.name.toLowerCase().includes(searchterm.toLowerCase()),
+  //   ),
+  // );
   return await games.filter(game =>
     game.name.toLowerCase().includes(searchterm.toLowerCase()),
   );
 };
 
+const searchGenre = async (searchGenre: string) => {
+  console.log('service-SearchGenre');
+  let games = await getAllGames();
+  console.log(await games.filter(game => game.genre.includes(searchGenre)));
+  return await games.filter(game => game.genre.includes(searchGenre));
+};
+
+const getAllOfPlatform = async (platform: string): Promise<Game[]> => {
+  console.log('service-GetAllOfPlatform');
+  let games = await getAllGames();
+  console.log(await games.filter(game => game.platforms?.includes(platform)));
+  return await games.filter(game => game.platforms?.includes(platform));
+};
+
 const getAllFavorites = async (): Promise<Game[]> => {
   console.log('service-GetAllFavorites');
   let games = await getAllGames();
-  console.log(await games.filter(game => game.favorite));
+  // console.log(await games.filter(game => game.favorite));
   return await games.filter(game => game.favorite);
 };
 
@@ -66,19 +80,26 @@ const sampleData = async () => {
     price: 10,
     added_on: getDate(),
     platforms: ['Steam'],
-    rating: 9,
     playtime: 120,
+    rating: 9,
+    user_rating: 9.3,
+    critic_rating: 96,
+    multiplayer: false,
     picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.png',
   });
   await addGame({
     game_id: '2',
     name: 'Among Us',
-    genre: ['Comedy'],
+    genre: ['Indie', 'Strategy'],
     price: 5,
     added_on: getDate(),
     platforms: ['Steam'],
-    rating: 5,
     playtime: 30,
+    rating: 5,
+    user_rating: 7.3,
+    critic_rating: 82,
+    multiplayer: true,
+    coop: '4-15',
     picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co6kqt.png',
   });
   await addGame({
@@ -87,9 +108,13 @@ const sampleData = async () => {
     genre: ['Rogue-Like', 'Action'],
     price: 20,
     added_on: getDate(),
-    platforms: ['Steam'],
-    rating: 8,
+    platforms: ['Steam', 'Playstation'],
     playtime: 70,
+    rating: 8,
+    user_rating: 7.7,
+    critic_rating: 85,
+    multiplayer: true,
+    coop: '1-4',
     picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2k2z.png',
   });
 };
@@ -102,6 +127,8 @@ export default {
   removeGameById,
   favoriteGame,
   getAllFavorites,
+  getAllOfPlatform,
   searchGame,
+  searchGenre,
   sampleData,
 };

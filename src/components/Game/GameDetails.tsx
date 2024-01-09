@@ -1,14 +1,14 @@
 import { Image, SafeAreaView, ScrollView, Text, View, useColorScheme } from "react-native";
-import styles from "../constants/Styles";
+import { useEffect, useState } from "react";
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import styles from "../constants/Styles";
 import { ParamList } from "../../../App";
 import gameService from "../../services/game.service";
-import { useEffect, useState } from "react";
 import { Game } from "../../types/types";
 import Icon from "react-native-vector-icons/FontAwesome";
+import MIcon from "react-native-vector-icons/MaterialIcons";
 import { Card } from "@rneui/themed";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import MIcon from "react-native-vector-icons/MaterialIcons";
 import { colors, sizes } from "../constants/Constants";
 import DropdownList from "../Elements/DropdownList";
 
@@ -68,16 +68,19 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
                             <View style={{ width: '40%', alignSelf: 'center', marginTop: 20 }}>
                                 <Text style={styles.textGame}>{details.game_id}</Text>
                                 <DropdownList genres={details.genre} />
-                                <Text style={styles.textGame}>{details.price} / {details.msrp ? details.msrp : 'NA'} €</Text>
+                                <Text style={styles.textGame}>{details.price} / {details.msrp ? details.msrp : <Icon name="eye-slash" size={20} />} €</Text>
                                 <Text style={styles.textGame}>{details.added_on}</Text>
-                                <Text style={styles.textGame}>{details.playtime ? details.playtime : 'NA'}</Text>
-                                <Text style={styles.textGame}>{details.completiontime ? details.completiontime : 'NA'}</Text>
-                                <Text style={styles.textGame}>{details.rating ? details.rating : 'NA'}</Text>
-                                <Text style={styles.textGame}>{details.critic_rating ? details.critic_rating : 'NA'}</Text>
-                                <Text style={styles.textGame}>{details.user_rating ? details.user_rating : 'NA'}</Text>
-                                <Text style={styles.textGame}>{details.platforms ? details.platforms : 'NA'}</Text>
-                                <Text style={styles.textGame}>{details.multiplayer ? <MIcon name="people" size={20} color={styles.icon.color} /> : 'NA'}</Text>
-                                <Text style={styles.textGame}>{details.coop ? <MIcon name="cruelty-free" size={20} color={styles.icon.color} /> : 'NA'}</Text>
+                                <Text style={styles.textGame}>{details.playtime ? details.playtime : <Icon name="eye-slash" size={20} />} min.</Text>
+                                <Text style={styles.textGame}>{details.completiontime ? details.completiontime : <Icon name="eye-slash" size={20} />}</Text>
+                                <Text style={styles.textGame}>{details.rating ? details.rating : <Icon name="eye-slash" size={20} />}/10</Text>
+                                <Text style={styles.textGame}>{details.critic_rating ? details.critic_rating : <Icon name="eye-slash" size={20} />}</Text>
+                                <Text style={styles.textGame}>{details.user_rating ? details.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
+                                {(details.platforms?.length != undefined && details.platforms?.length >= 2) ?
+                                    <DropdownList genres={details.platforms} />
+                                    : <Text style={styles.textGame}>{details.platforms ? details.platforms : <Icon name="eye-slash" size={20} />}</Text>
+                                }
+                                <Text style={styles.textGame}>{details.multiplayer ? <MIcon name="people" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
+                                <Text style={styles.textGame}>{details.coop ? details.coop + ' players' : <Icon name="eye-slash" size={20} />}</Text>
                             </View>
                         </View>
                     </>) : (
