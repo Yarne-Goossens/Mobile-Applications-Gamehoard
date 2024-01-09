@@ -10,6 +10,7 @@ import AddScreen from './src/screens/addscreen';
 import EditScreen from './src/screens/editscreen';
 import SearchScreen from './src/screens/searchscreen';
 import IgdbAddScreen from './src/screens/igdbaddscreen';
+import { colors } from './src/components/constants/Constants';
 
 export type ParamList = {
   Home: { update: boolean };
@@ -29,11 +30,20 @@ const App = () => {
       <Stack.Navigator initialRouteName="Home" screenOptions={({ navigation, route }) => ({
         headerStyle: {
           backgroundColor: styles.header.backgroundColor,
+          // titleColor: colors.titleColor,
         },
-        headerTitle: (props) => <Header />,
+        // headerTitleStyle: { color: colors.titleColor },
+        headerTintColor: colors.titleColor,
         headerRight: (props) => <HeaderButtons navigation={navigation} />
       })}>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} options={({ navigation, route }) => ({
+          headerStyle: {
+            backgroundColor: styles.header.backgroundColor,
+          },
+          headerTitle: (props) => <Header />,
+          // headerRight: (props) => <HeaderButtons navigation={navigation} />
+          title: 'Hello',
+        })} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Details" component={GameDetailsScreen} />
         <Stack.Screen name="Add" component={AddScreen} />

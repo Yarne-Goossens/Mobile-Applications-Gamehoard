@@ -18,6 +18,8 @@ import {
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { getDate } from '../services/util.service';
+import ButtonThemed from '../components/ButtonThemed';
+import { colors } from '../components/constants/Constants';
 
 
 type SectionProps = PropsWithChildren<{
@@ -110,10 +112,47 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                 style={backgroundStyle}> */}
                 <View
                     style={{
-                        backgroundColor: isDarkMode ? Colors.black : Colors.white,
+                        backgroundColor: isDarkMode ? colors.black : colors.white,
                         flex: 1,
                     }}>
-                    <Button
+                    <ButtonThemed
+                        title="Add Sample Data"
+                        color={colors.highlightColor}
+                        textcolor='white'
+                        width='95%'
+                        borderRadius={8}
+                        marginTop={5}
+                        onPress={async () => { await gameService.sampleData(); updateScreen(); }}
+                    />
+                    <ButtonThemed
+                        title="Add A Game"
+                        color={colors.highlightColor}
+                        textcolor='white'
+                        width='95%'
+                        borderRadius={8}
+                        marginTop={5}
+                        onPress={() => navigation.navigate('Add')}
+                    />
+                    <ButtonThemed
+                        title="Add A Game From IGDB"
+                        color={colors.highlightColor}
+                        textcolor='white'
+                        width='95%'
+                        borderRadius={8}
+                        marginTop={5}
+                        onPress={() => navigation.navigate('Igdb')}
+                    />
+                    <ButtonThemed
+                        title="Random Game"
+                        color={colors.highlightColor}
+                        textcolor='white'
+                        width='95%'
+                        borderRadius={8}
+                        marginTop={5}
+                        marginBottom={5}
+                        onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
+                    />
+                    {/* <Button
                         title="Add Sample Data"
                         onPress={async () => { await gameService.sampleData(); updateScreen(); }}
                     />
@@ -132,7 +171,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                     <Button
                         title="Random Game"
                         onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
-                    />
+                    /> */}
                     <GameCardList games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
                     {/* <Section title="Step One">
                         Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this

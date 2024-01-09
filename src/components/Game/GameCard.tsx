@@ -8,6 +8,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import MIcon from "react-native-vector-icons/MaterialIcons";
 import gameService from "../../services/game.service";
 import { colors, sizes } from "../constants/Constants";
+import ButtonThemed from "../ButtonThemed";
 
 type Props = {
     game: Game;
@@ -32,10 +33,10 @@ const GameCard = ({ game, deleteItem, navigation, updateScreen }: Props) => (
                         source={{ uri: game.picture }}
                     />
                 </View>
-                <View style={{ height: (sizes.cardHeight * .2), borderColor: 'red', borderWidth: 1 }}>
+                <View style={{ height: (sizes.cardHeight * .2) }}>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
-                        <MIcon style={{ textAlign: 'center', marginHorizontal: 'auto', width: "50%", flex: 1, paddingTop: 3 }} name="edit" size={30} color="firebrick" onPress={() => navigation.navigate('Edit', { gameId: game.game_id })} />
-                        <Icon style={{ textAlign: 'center', marginHorizontal: "auto", width: "50%", flex: 1, paddingTop: 3 }} name="trash" size={30} color="firebrick" onPress={() => deleteItem(game.game_id)} />
+                        <MIcon style={{ textAlign: 'center', marginHorizontal: 'auto', width: "50%", flex: 1, paddingTop: 3 }} name="edit" size={30} color={colors.iconCards} onPress={() => navigation.navigate('Edit', { gameId: game.game_id })} />
+                        <Icon style={{ textAlign: 'center', marginHorizontal: "auto", width: "50%", flex: 1, paddingTop: 3 }} name="trash" size={30} color={colors.iconCards} onPress={() => deleteItem(game.game_id)} />
                     </View>
                 </View>
             </View>
@@ -65,9 +66,19 @@ const GameCard = ({ game, deleteItem, navigation, updateScreen }: Props) => (
                         <Text style={styles.textGame}>{game.added_on}</Text>
                     </View>
                 </View>
-                <View style={{ height: (sizes.cardHeight * .2), paddingHorizontal: 5, borderColor: 'red', borderWidth: 1 }}>
-                    <Button
+                <View style={{ height: (sizes.cardHeight * .2), paddingHorizontal: 5 }}>
+                    {/* <Button
                         title="Go to Details"
+                        onPress={() => navigation.navigate('Details', { gameId: game.game_id })}
+                    /> */}
+                    <ButtonThemed
+                        title="Go to Details"
+                        color={colors.highlightColor}
+                        textcolor='white'
+                        width='90%'
+                        borderRadius={16}
+                        marginBottom={2}
+                        marginTop={2}
                         onPress={() => navigation.navigate('Details', { gameId: game.game_id })}
                     />
                 </View>
