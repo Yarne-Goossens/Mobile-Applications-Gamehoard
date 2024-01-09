@@ -61,12 +61,12 @@ const styles = StyleSheet.create({
   gamecardContainer: {
     marginBottom: 10,
     borderRadius: 10,
-    // backgroundColor: colors.highlightColor,
+    backgroundColor: colors.iconColor,
   },
   gamecardInternal: {
     flexDirection: 'row',
     height: sizes.cardHeight,
-    // backgroundColor: colors.highlightColor,
+    backgroundColor: colors.iconColor,
   },
   gameTitle: {fontSize: 30, fontWeight: 'bold'},
   textLabel: {

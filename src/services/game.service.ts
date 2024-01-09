@@ -51,6 +51,13 @@ const searchGame = async (searchterm: string) => {
   );
 };
 
+const getAllFavorites = async (): Promise<Game[]> => {
+  console.log('service-GetAllFavorites');
+  let games = await getAllGames();
+  console.log(await games.filter(game => game.favorite));
+  return await games.filter(game => game.favorite);
+};
+
 const sampleData = async () => {
   await addGame({
     game_id: '1',
@@ -94,6 +101,7 @@ export default {
   updateGame,
   removeGameById,
   favoriteGame,
+  getAllFavorites,
   searchGame,
   sampleData,
 };

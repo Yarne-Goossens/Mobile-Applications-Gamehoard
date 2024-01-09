@@ -11,11 +11,13 @@ import EditScreen from './src/screens/editscreen';
 import SearchScreen from './src/screens/searchscreen';
 import IgdbAddScreen from './src/screens/igdbaddscreen';
 import { colors } from './src/components/constants/Constants';
+import FavoriteScreen from './src/screens/favoritescreen';
 
 export type ParamList = {
   Home: { update: boolean };
   Details: { gameId: string };
   Settings: undefined;
+  Favorites: undefined;
   Add: undefined;
   Edit: { gameId: string };
   Search: undefined;
@@ -28,11 +30,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" screenOptions={({ navigation, route }) => ({
-        headerStyle: {
-          backgroundColor: styles.header.backgroundColor,
-          // titleColor: colors.titleColor,
-        },
-        // headerTitleStyle: { color: colors.titleColor },
+        headerStyle: { backgroundColor: styles.header.backgroundColor, },
         headerTintColor: colors.titleColor,
         headerRight: (props) => <HeaderButtons navigation={navigation} />
       })}>
@@ -41,14 +39,13 @@ const App = () => {
             backgroundColor: styles.header.backgroundColor,
           },
           headerTitle: (props) => <Header />,
-          // headerRight: (props) => <HeaderButtons navigation={navigation} />
-          title: 'Hello',
         })} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Details" component={GameDetailsScreen} />
+        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="Favorites" component={FavoriteScreen} />
         <Stack.Screen name="Add" component={AddScreen} />
         <Stack.Screen name="Edit" component={EditScreen} />
-        <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="Igdb" component={IgdbAddScreen} />
       </Stack.Navigator>
     </NavigationContainer>
