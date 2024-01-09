@@ -13,16 +13,15 @@ type Props = {
 const SearchInput = ({ searchValue, setSearchValue }: Props) => {
     const [search, setSearch] = useState('');
 
-
     return (
         <View style={styleslocal.container}>
             <View style={styleslocal.inner}>
                 <View style={styleslocal.search}>
-                    <Icon style={styles.icon} name='search' size={30} color={colors.iconColor} />
+                    <Icon style={styles.icon} name='search' size={30} color={colors.labelColor} />
                 </View>
                 <TextInput style={styleslocal.textfield} placeholder="Search" value={searchValue} onChangeText={setSearchValue} />
                 <View style={styleslocal.filter}>
-                    <Icon style={styles.icon} name='filter' size={30} color={colors.iconColor} onPress={() => { }} />
+                    <Icon style={styles.icon} name='filter' size={30} color={colors.labelColor} onPress={() => { }} />
                 </View>
             </View>
         </View>

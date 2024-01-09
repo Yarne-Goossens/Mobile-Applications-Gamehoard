@@ -6,6 +6,34 @@ const {width, height} = Dimensions.get('window');
 console.log(width, height);
 //borderColor: 'red', borderWidth: 2
 
+export const genreList = [
+  'Point-and-Click',
+  'Fighting',
+  'Shooter',
+  'Music',
+  'Platform',
+  'Puzzle',
+  'Racing',
+  'Real Time Strategy (RTS)',
+  'Turn-based Strategy (TBS)',
+  'Strategy',
+  'Rogue-Like',
+  'Action',
+  'Comedy',
+  'Simulator',
+  'Sport',
+  'Tactical',
+  'Quiz/Trivia',
+  "Beat 'em Up",
+  'Pinball',
+  'Adventure',
+  'Arcade',
+  'Visual Novel',
+  'Indie',
+  'MOBA',
+  'Card & Board Game',
+];
+
 const colorPalette = {
   primary: '#042940',
   secondary: '#395670', //'#005C53',

@@ -8,7 +8,8 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import MIcon from "react-native-vector-icons/MaterialIcons";
 import gameService from "../../services/game.service";
 import { colors, sizes } from "../constants/Constants";
-import ButtonThemed from "../ButtonThemed";
+import ButtonThemed from "../Elements/ButtonThemed";
+import DropdownList from "../Elements/DropdownList";
 
 type Props = {
     game: Game;
@@ -28,7 +29,7 @@ const GameCard = ({ game, deleteItem, navigation, updateScreen }: Props) => (
             <View style={{ width: "35%", flexDirection: 'column', flex: 1 }}>
                 <View style={{ height: (sizes.cardHeight * .8) }}>
                     <Image
-                        style={{ height: (sizes.cardHeight * .7) }}
+                        style={{ height: (sizes.cardHeight * .7), borderRadius: sizes.radius / 2 }}
                         resizeMode="contain"
                         source={{ uri: game.picture }}
                     />
@@ -41,28 +42,20 @@ const GameCard = ({ game, deleteItem, navigation, updateScreen }: Props) => (
                 </View>
             </View>
             <View style={{ width: "65%", height: (sizes.cardHeight * .2) }}>
-                {/* <View style={{ height: (sizes.cardHeight * .8) }}>
-                    <Text style={styles.textGame}>Id: {game.game_id}</Text>
-                    <Text style={styles.textGenre}>Genre(s): {game.genre.toString()}</Text>
-                    <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text>
-                    <Text style={styles.textGame}>Added On: {game.added_on}</Text>
-                    <Text style={styles.textGame}><Icon name="clock-o" size={20} /> {game.playtime ? game.playtime : 'NA'}</Text>
-                </View> */}
                 <View style={{ flexDirection: 'row', height: (sizes.cardHeight * .8) }}>
-                    <View style={{ width: '60%', alignSelf: 'stretch' }}>
-                        {/* <Text style={styles.textLabel}>Id:</Text> */}
+                    <View style={{ width: '55%', alignSelf: 'stretch' }}>
                         <Text style={styles.textLabel}>Genre(s):</Text>
                         <Text style={styles.textLabel}><Icon name="clock-o" size={20} /></Text>
                         <Text style={styles.textLabel}>Rating:</Text>
-                        <Text style={styles.textLabel}>Platforms:</Text>
+                        <Text style={styles.textLabel}>Price:</Text>
                         <Text style={styles.textLabel}>Added On:</Text>
                     </View>
-                    <View style={{ width: '40%', alignSelf: 'stretch' }}>
-                        {/* <Text style={styles.textGame}>{game.game_id}</Text> */}
-                        <Text style={styles.textGenre}>{game.genre.toString()}</Text>
-                        <Text style={styles.textGame}>{game.playtime ? game.playtime : 'NA'}</Text>
-                        <Text style={styles.textGame}>{game.rating ? game.rating : 'NA'}</Text>
-                        <Text style={styles.textGame}>{game.platforms ? game.platforms : 'NA'}</Text>
+                    <View style={{ width: '45%', alignSelf: 'stretch' }}>
+                        <DropdownList genres={game.genre} />
+                        {/* <Text style={styles.textGenre}>{game.genre.toString()}</Text> */}
+                        <Text style={styles.textGame}>{game.playtime ? game.playtime : 'NA'} min.</Text>
+                        <Text style={styles.textGame}>{game.rating ? game.rating : 'NA'}/10</Text>
+                        <Text style={styles.textGame}>{game.price} / {game.msrp ? game.msrp : 'NA'} €</Text>
                         <Text style={styles.textGame}>{game.added_on}</Text>
                     </View>
                 </View>

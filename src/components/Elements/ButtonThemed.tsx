@@ -1,6 +1,6 @@
 import React from "react";
 import { DimensionValue, GestureResponderEvent, Pressable, StyleSheet, Text } from "react-native";
-import { sizes } from "./constants/Constants";
+import { sizes } from "../constants/Constants";
 
 type Props = {
     color?: string;

@@ -8,9 +8,9 @@ const Footer: React.FC = () => {
     return (
         <View style={styles.footer}>
             <Text style={styles.tabtext}>All</Text>
+            <Text style={styles.tabtext}>Steam</Text>
             <Text style={styles.tabtext}>Nintendo</Text>
             <Text style={styles.tabtext}>Playstation</Text>
-            <Text style={styles.tabtext}>Steam</Text>
             <Text style={styles.tabtext}>...</Text>
         </View>
     )

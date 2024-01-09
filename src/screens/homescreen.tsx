@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { getDate } from '../services/util.service';
-import ButtonThemed from '../components/ButtonThemed';
+import ButtonThemed from '../components/Elements/ButtonThemed';
 import { colors } from '../components/constants/Constants';
 
 

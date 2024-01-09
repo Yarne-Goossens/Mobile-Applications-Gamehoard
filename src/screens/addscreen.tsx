@@ -32,18 +32,20 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
   }
 
   return (
-    <View style={styles.root}>
-      <TextInput placeholder="Name" onChangeText={(val) => setName(val)} />
-      <TextInput placeholder="Genre" onChangeText={(val) => setGenre(val)} />
-      <TextInput placeholder="Price" onChangeText={(val) => setPrice(Number(val))} />
-      <TextInput placeholder="MSRP" onChangeText={(val) => setMsrp(Number(val))} />
-      <TextInput placeholder="Rating" onChangeText={(val) => setRating(Number(val))} />
-      <TextInput placeholder="Platforms" onChangeText={(val) => setPlatform(val)} />
-      <CheckBox value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
-      <TextInput placeholder="Coop" onChangeText={(val) => setCoop(val)} />
-      <TextInput placeholder="Picture" onChangeText={(val) => setPicture(val)} />
-      <Button title="Add Game" onPress={() => onSubmit()} />
-    </View>
+    <>
+      <View style={styles.root}>
+        <TextInput placeholder="Name" onChangeText={(val) => setName(val)} />
+        <TextInput placeholder="Genre" onChangeText={(val) => setGenre(val)} />
+        <TextInput placeholder="Price" onChangeText={(val) => setPrice(Number(val))} />
+        <TextInput placeholder="MSRP" onChangeText={(val) => setMsrp(Number(val))} />
+        <TextInput placeholder="Rating" onChangeText={(val) => setRating(Number(val))} />
+        <TextInput placeholder="Platforms" onChangeText={(val) => setPlatform(val)} />
+        <CheckBox value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
+        <TextInput placeholder="Coop" onChangeText={(val) => setCoop(val)} />
+        <TextInput placeholder="Picture" onChangeText={(val) => setPicture(val)} />
+        <Button title="Add Game" onPress={() => onSubmit()} />
+      </View>
+    </>
   );
 }
 

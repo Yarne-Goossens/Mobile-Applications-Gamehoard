@@ -10,6 +10,7 @@ import { Card } from "@rneui/themed";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import MIcon from "react-native-vector-icons/MaterialIcons";
 import { colors, sizes } from "../constants/Constants";
+import DropdownList from "../Elements/DropdownList";
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'Details'>;
 
@@ -66,7 +67,7 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
                             </View>
                             <View style={{ width: '40%', alignSelf: 'center', marginTop: 20 }}>
                                 <Text style={styles.textGame}>{details.game_id}</Text>
-                                <Text style={styles.textGenre}>{details.genre.toString()}</Text>
+                                <DropdownList genres={details.genre} />
                                 <Text style={styles.textGame}>{details.price} / {details.msrp ? details.msrp : 'NA'} €</Text>
                                 <Text style={styles.textGame}>{details.added_on}</Text>
                                 <Text style={styles.textGame}>{details.playtime ? details.playtime : 'NA'}</Text>
