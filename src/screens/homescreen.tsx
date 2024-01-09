@@ -179,9 +179,9 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                     </Section> */}
                 </View>
             </View>
-            <View style={{ flexShrink: .1 }}>
+            {/* <View style={{ flexShrink: .1 }}>
                 <Footer />
-            </View>
+            </View> */}
             {/* </ScrollView> */}
         </SafeAreaView>
     );
