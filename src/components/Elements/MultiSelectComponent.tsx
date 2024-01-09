@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Dropdown } from 'react-native-element-dropdown';
-import { colors } from '../constants/Constants';
+import { Dropdown, MultiSelect } from 'react-native-element-dropdown';
+import { colors, genreList } from '../constants/Constants';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 type Props = {
-    genres: string[];
+    kind: string
+    // genres: string[];
 }
 
 let data = [
@@ -13,17 +15,23 @@ let data = [
     { label: 'Genre 3', value: '3' },
 ];
 
-const DropdownList = ({ genres }: Props) => {
-    const [value, setValue] = useState(null);
+const MultiSelectComponent = ({ kind }: Props) => {
+    const [selected, setSelected] = useState([]);
+    const placeholder = 'Select ' + kind;
     const [dataList, setDataList] = useState<{
         label: string;
         value: string;
     }[]>([])
 
     useEffect(() => {
-        const newData = genres.map((item) => ({ label: item, value: item }));
+        const newData = genreList.map((item) => ({ label: item, value: item }));
+        console.log(newData);
         setDataList(newData);
-    }, [genres]);
+    }, []);
+
+    useEffect(() => {
+        console.log(selected);
+    }, [selected]);
 
     const renderItem = (item) => {
         return (
@@ -34,26 +42,36 @@ const DropdownList = ({ genres }: Props) => {
     };
 
     return (
-        <Dropdown
+        <MultiSelect
             style={styles.dropdown}
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
+            // iconStyle={styles.iconStyle}
             data={dataList}
             search={false}
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Show"
-            value={value}
+            placeholder={placeholder}
+            searchPlaceholder="Search..."
+            value={selected}
             onChange={(item) => {
-                //setValue(item.value);
+                setSelected(item);
             }}
+            // renderLeftIcon={() => (
+            //     <Icon
+            //         style={styles.icon}
+            //         color="black"
+            //         name="star"
+            //         size={20}
+            //     />
+            // )}
             renderItem={renderItem}
         />
     );
 };
 
-export default DropdownList;
+export default MultiSelectComponent;
 
 const styles = StyleSheet.create({
     dropdown: {
@@ -70,6 +88,13 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 1.41,
         elevation: 2,
+    },
+    iconStyle: {
+        width: 20,
+        height: 20,
+    },
+    icon: {
+        marginRight: 5,
     },
     item: {
         padding: 2,
@@ -92,6 +117,6 @@ const styles = StyleSheet.create({
     },
     selectedTextStyle: {
         fontSize: 16,
-        color: colors.textColor,
+        color: colors.highlightColor,
     },
 });
