@@ -17,11 +17,8 @@ import {
     View,
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { getDate } from '../services/util.service';
 import ButtonThemed from '../components/Elements/ButtonThemed';
 import { colors } from '../components/constants/Constants';
-import MultiSelectComponent from '../components/Elements/MultiSelectComponent';
-
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -99,8 +96,6 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         updateScreen();
     }
 
-    getDate();
-
     return (
         <SafeAreaView style={backgroundStyle}>
             <View style={{ flex: 1 }}>
@@ -153,31 +148,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         marginBottom={5}
                         onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
                     />
-                    {/* <Button
-                        title="Add Sample Data"
-                        onPress={async () => { await gameService.sampleData(); updateScreen(); }}
-                    />
-                    <Button
-                        title="Refresh"
-                        onPress={() => updateScreen()}
-                    />
-                    <Button
-                        title="Add A Game"
-                        onPress={() => navigation.navigate('Add')}
-                    />
-                    <Button
-                        title="Add A Game From IGDB"
-                        onPress={() => navigation.navigate('Igdb')}
-                    />
-                    <Button
-                        title="Random Game"
-                        onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
-                    /> */}
                     <GameCardList games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
-                    {/* <Section title="Step One">
-                        Edit <Text style={stylesApp.highlight}>App.tsx</Text> to change this
-                        screen and then come back to see your edits.
-                    </Section> */}
                 </View>
             </View>
             {/* <View style={{ flexShrink: .1 }}>
