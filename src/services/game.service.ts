@@ -58,6 +58,9 @@ const sampleData = async () => {
     genre: ['Action'],
     price: 10,
     added_on: getDate(),
+    platforms: ['Steam'],
+    rating: 9,
+    playtime: 120,
     picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.png',
   });
   await addGame({
@@ -66,6 +69,9 @@ const sampleData = async () => {
     genre: ['Comedy'],
     price: 5,
     added_on: getDate(),
+    platforms: ['Steam'],
+    rating: 5,
+    playtime: 30,
     picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co6kqt.png',
   });
   await addGame({
@@ -74,6 +80,9 @@ const sampleData = async () => {
     genre: ['Rogue-Like', 'Action'],
     price: 20,
     added_on: getDate(),
+    platforms: ['Steam'],
+    rating: 8,
+    playtime: 70,
     picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2k2z.png',
   });
 };
