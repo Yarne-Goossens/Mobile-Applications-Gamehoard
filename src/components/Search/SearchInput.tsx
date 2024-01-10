@@ -17,11 +17,11 @@ const SearchInput = ({ searchValue, setSearchValue }: Props) => {
         <View style={styleslocal.container}>
             <View style={styleslocal.inner}>
                 <View style={styleslocal.search}>
-                    <Icon style={styles.icon} name='search' size={30} color={colors.labelColor} />
+                    <Icon style={styles.iconSearch} name='search' size={30} />
                 </View>
                 <TextInput style={styleslocal.textfield} placeholder="Search" value={searchValue} onChangeText={setSearchValue} />
                 <View style={styleslocal.filter}>
-                    <Icon style={styles.icon} name='filter' size={30} color={colors.labelColor} onPress={() => { }} />
+                    <Icon style={styles.iconSearch} name='filter' size={30} onPress={() => { }} />
                 </View>
             </View>
         </View>

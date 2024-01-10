@@ -57,6 +57,11 @@ const styles = StyleSheet.create({
     padding: 5,
     color: colors.titleColor,
   },
+  iconSearch: {
+    verticalAlign: 'middle',
+    padding: 5,
+    color: colors.labelColor,
+  },
   gamecard: {},
   gamecardContainer: {
     marginBottom: 10,
