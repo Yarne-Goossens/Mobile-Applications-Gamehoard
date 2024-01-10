@@ -19,6 +19,7 @@ import {
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import ButtonThemed from '../components/Elements/ButtonThemed';
 import { colors } from '../components/constants/Constants';
+import { useData } from '../components/constants/DataContext';
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -60,12 +61,14 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         flex: 1
     };
 
+    const { updateData, setUpdateData } = useData();
+
     const [collection, setCollection] = useState<Array<Game>>();
     const [update, setUpdate] = useState<Boolean>(false)
 
     const updateScreen = () => {
         console.log("update-screen");
-        update ? setUpdate(false) : setUpdate(true);
+        updateData ? setUpdateData(false) : setUpdateData(true);
     }
 
     const fetchData = async () => {
@@ -79,8 +82,9 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
 
     useEffect(() => {
         console.log("home-useEffect")
+        console.log('UpdateData-Home:', updateData)
         fetchData();
-    }, [update])
+    }, [updateData])
 
     useEffect(() => {
         console.log("home-useEffect")
@@ -111,7 +115,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         backgroundColor: isDarkMode ? colors.black : colors.white,
                         flex: 1,
                     }}>
-                    <ButtonThemed
+                    {/* <ButtonThemed
                         title="Add Sample Data"
                         color={colors.highlightColor}
                         textcolor='white'
@@ -119,7 +123,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         borderRadius={8}
                         marginTop={5}
                         onPress={async () => { await gameService.sampleData(); updateScreen(); }}
-                    />
+                    /> */}
                     <ButtonThemed
                         title="Add A Game"
                         color={colors.highlightColor}

@@ -12,6 +12,7 @@ import SearchScreen from './src/screens/searchscreen';
 import IgdbAddScreen from './src/screens/igdbaddscreen';
 import { colors } from './src/components/constants/Constants';
 import FavoriteScreen from './src/screens/favoritescreen';
+import { DataProvider } from './src/components/constants/DataContext';
 
 export type ParamList = {
   Home: { update: boolean };
@@ -28,27 +29,29 @@ const Stack = createNativeStackNavigator<ParamList>();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={({ navigation, route }) => ({
-        headerStyle: { backgroundColor: styles.header.backgroundColor, },
-        headerTintColor: colors.titleColor,
-        headerRight: (props) => <HeaderButtons navigation={navigation} />
-      })}>
-        <Stack.Screen name="Home" component={HomeScreen} options={({ navigation, route }) => ({
-          headerStyle: {
-            backgroundColor: styles.header.backgroundColor,
-          },
-          headerTitle: (props) => <Header />,
-        })} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-        <Stack.Screen name="Details" component={GameDetailsScreen} />
-        <Stack.Screen name="Search" component={SearchScreen} />
-        <Stack.Screen name="Favorites" component={FavoriteScreen} />
-        <Stack.Screen name="Add" component={AddScreen} />
-        <Stack.Screen name="Edit" component={EditScreen} />
-        <Stack.Screen name="Igdb" component={IgdbAddScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <DataProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home" screenOptions={({ navigation, route }) => ({
+          headerStyle: { backgroundColor: styles.header.backgroundColor, },
+          headerTintColor: colors.titleColor,
+          headerRight: (props) => <HeaderButtons navigation={navigation} />
+        })}>
+          <Stack.Screen name="Home" component={HomeScreen} options={({ navigation, route }) => ({
+            headerStyle: {
+              backgroundColor: styles.header.backgroundColor,
+            },
+            headerTitle: (props) => <Header />,
+          })} />
+          <Stack.Screen name="Settings" component={SettingsScreen} />
+          <Stack.Screen name="Details" component={GameDetailsScreen} />
+          <Stack.Screen name="Search" component={SearchScreen} />
+          <Stack.Screen name="Favorites" component={FavoriteScreen} />
+          <Stack.Screen name="Add" component={AddScreen} />
+          <Stack.Screen name="Edit" component={EditScreen} />
+          <Stack.Screen name="Igdb" component={IgdbAddScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </DataProvider>
   );
 }
 
