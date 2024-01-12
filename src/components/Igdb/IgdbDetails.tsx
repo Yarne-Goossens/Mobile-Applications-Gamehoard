@@ -55,7 +55,6 @@ const IgdbDetailsScreen = ({ route, navigation }: ScreenProps) => {
                                 <Text style={styles.textLabel}>IgdbId:</Text>
                                 <Text style={styles.textLabel}>Genre(s):</Text>
                                 <Text style={styles.textLabel}>Price (Bought/Full):</Text>
-                                <Text style={styles.textLabel}><Icon name="clock-o" size={20} /></Text>
                                 <Text style={styles.textLabel}>Critic Rating:</Text>
                                 <Text style={styles.textLabel}>User Rating: </Text>
                                 <Text style={styles.textLabel}>Platforms:</Text>
@@ -66,8 +65,7 @@ const IgdbDetailsScreen = ({ route, navigation }: ScreenProps) => {
                                 <Text style={styles.textGame}>{details.game_id}</Text>
                                 <DropdownList genres={details.genre} />
                                 <Text style={styles.textGame}>{details.price} / {details.msrp ? details.msrp : <Icon name="eye-slash" size={20} />} €</Text>
-                                <Text style={styles.textGame}>{details.rating ? details.rating : <Icon name="eye-slash" size={20} />}/10</Text>
-                                <Text style={styles.textGame}>{details.critic_rating ? (details.critic_rating / 10).toFixed(2) : <Icon name="eye-slash" size={20} />}</Text>
+                                <Text style={styles.textGame}>{details.critic_rating ? (details.critic_rating / 10).toFixed(2) : <Icon name="eye-slash" size={20} />}/10</Text>
                                 <Text style={styles.textGame}>{details.user_rating ? (details.user_rating / 10).toFixed(2) : <Icon name="eye-slash" size={20} />}/10</Text>
                                 {(details.platforms?.length != undefined && details.platforms?.length >= 2) ?
                                     <DropdownList genres={details.platforms} />
