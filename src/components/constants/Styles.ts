@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     margin: 'auto',
     paddingLeft: 15,
-    paddingRight: 20,
+    paddingRight: 12,
     color: colors.titleColor,
   },
   logo: {

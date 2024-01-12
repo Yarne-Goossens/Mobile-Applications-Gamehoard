@@ -20,11 +20,11 @@ const IgdbInput = ({ searchValue, setSearchValue, input }: Props) => {
         <View style={styleslocal.container}>
             <View style={styleslocal.inner}>
                 <View style={styleslocal.search}>
-                    <Icon style={styles.icon} name='search' size={30} color={colors.iconColor} />
+                    <Icon style={styles.iconSearch} name='search' size={30} />
                 </View>
                 <TextInput style={styleslocal.textfield} placeholder="Search" value={searchValue} onChangeText={setSearchValue} onSubmitEditing={() => { input(searchValue) }} />
                 <View style={styleslocal.filter}>
-                    <Icon style={styles.icon} name='filter' size={30} color={colors.iconColor} onPress={() => { }} />
+                    <Icon style={styles.iconSearch} name='filter' size={30} onPress={() => { }} />
                 </View>
             </View>
         </View>
