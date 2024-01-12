@@ -11,6 +11,9 @@ import { Card } from "@rneui/themed";
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { colors, sizes } from "../constants/Constants";
 import DropdownList from "../Elements/DropdownList";
+import ButtonThemed from "../Elements/ButtonThemed";
+import igdbService from "../../services/igdb.service";
+import { getDate } from "../../services/util.service";
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'IgdbDetails'>;
 
@@ -28,10 +31,16 @@ const IgdbDetailsScreen = ({ route, navigation }: ScreenProps) => {
         update ? setUpdate(false) : setUpdate(true);
     }
 
+    const onSubmit = async () => {
+        console.log('onSubmit');
+        route.params.gameObject.added_on = getDate();
+        await gameService.addGame(route.params.gameObject);
+        navigation.navigate('Home', { update: true });
+    }
+
     useEffect(() => {
         console.log("details-useEffect")
         fetchData();
-        console.log(details?.name);
     }, [route.params.gameObject, update])
 
     const isDarkMode = useColorScheme() === 'dark';
@@ -48,6 +57,16 @@ const IgdbDetailsScreen = ({ route, navigation }: ScreenProps) => {
                         <View>
                             <Image style={{ width: '80%', height: (sizes.width * 0.9), marginTop: 15, borderRadius: sizes.radius, alignSelf: 'center' }} resizeMode="contain" source={{ uri: details.picture }} />
                             {details.favorite ? <Icon style={{ position: 'absolute', top: 22, right: 45 }} name='heart' size={50} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(details.game_id); updateScreen() }} /> : <Icon style={{ position: 'absolute', top: 22, right: 45 }} name='heart-o' size={50} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(details.game_id); updateScreen() }} />}
+                            <ButtonThemed
+                                title="Add to Library"
+                                color={colors.highlightColor}
+                                textcolor='white'
+                                width='90%'
+                                borderRadius={16}
+                                marginBottom={2}
+                                marginTop={2}
+                                onPress={() => onSubmit()}
+                            />
                         </View>
 
                         <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -64,7 +83,7 @@ const IgdbDetailsScreen = ({ route, navigation }: ScreenProps) => {
                             <View style={{ width: '40%', alignSelf: 'center', marginTop: 20 }}>
                                 <Text style={styles.textGame}>{details.game_id}</Text>
                                 <DropdownList genres={details.genre} />
-                                <Text style={styles.textGame}>{details.price} / {details.msrp ? details.msrp : <Icon name="eye-slash" size={20} />} €</Text>
+                                <Text style={styles.textGame}>{details.price ? details.price: <Icon name="eye-slash" size={20} />} / {details.msrp ? details.msrp : <Icon name="eye-slash" size={20} />} €</Text>
                                 <Text style={styles.textGame}>{details.critic_rating ? (details.critic_rating / 10).toFixed(2) : <Icon name="eye-slash" size={20} />}/10</Text>
                                 <Text style={styles.textGame}>{details.user_rating ? (details.user_rating / 10).toFixed(2) : <Icon name="eye-slash" size={20} />}/10</Text>
                                 {(details.platforms?.length != undefined && details.platforms?.length >= 2) ?

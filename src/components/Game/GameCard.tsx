@@ -55,7 +55,7 @@ const GameCard = ({ game, deleteItem, navigation, updateScreen }: Props) => (
                         {/* <Text style={styles.textGenre}>{game.genre.toString()}</Text> */}
                         <Text style={styles.textGame}>{game.playtime ? game.playtime : <Icon name="eye-slash" size={20} />} min.</Text>
                         <Text style={styles.textGame}>{game.rating ? game.rating : <Icon name="eye-slash" size={20} />}/10</Text>
-                        <Text style={styles.textGame}>{game.price} / {game.msrp ? game.msrp : <Icon name="eye-slash" size={20} />} €</Text>
+                        <Text style={styles.textGame}>{game.price ? game.price : <Icon name="eye-slash" size={20} />} / {game.msrp ? game.msrp : <Icon name="eye-slash" size={20} />} €</Text>
                         <Text style={styles.textGame}>{game.added_on}</Text>
                     </View>
                 </View>
