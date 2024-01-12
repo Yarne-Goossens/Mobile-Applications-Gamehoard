@@ -24,6 +24,7 @@ const getGamesIgdb = async (searchValue: string) => {
         .fields('url')
         .where(`id = ${response.data[i].cover}`)
         .request('/covers');
+      console.log(response.data[i].genres);
       igdbList.push({
         game_id: response.data[i].id.toString(),
         name: response.data[i].name,
