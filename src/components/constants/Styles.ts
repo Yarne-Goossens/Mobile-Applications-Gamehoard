@@ -9,25 +9,26 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   title: {
-    fontSize: Platform.OS === 'android' ? 25 : 23,
+    fontSize: Platform.OS === 'android' ? 30 : 30,
     fontWeight: '600',
     textAlign: 'center',
     textAlignVertical: 'center',
     margin: 'auto',
     paddingLeft: 15,
+    paddingRight: 20,
     color: colors.titleColor,
   },
   logo: {
-    height: Platform.OS === 'android' ? 50 : 35,
-    width: Platform.OS === 'android' ? 50 : 35,
-    borderRadius: Platform.OS === 'android' ? 15 : 10,
+    height: Platform.OS === 'android' ? 50 : 38,
+    width: Platform.OS === 'android' ? 50 : 38,
+    borderRadius: Platform.OS === 'android' ? 15 : 8,
     resizeMode: 'contain',
   },
   header: {
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     flexDirection: 'row',
     backgroundColor: colors.bannerColor,
-    paddingVertical: 10,
+    paddingVertical: Platform.OS === 'android' ? 5 : 0,
   },
   footer: {
     justifyContent: 'space-evenly',
@@ -55,6 +56,12 @@ const styles = StyleSheet.create({
   icon: {
     verticalAlign: 'middle',
     padding: 5,
+    color: colors.titleColor,
+  },
+  iconHeader: {
+    verticalAlign: 'middle',
+    paddingVertical: Platform.OS === 'android' ? 5 : 0,
+    paddingHorizontal: Platform.OS === 'android' ? 5 : 5,
     color: colors.titleColor,
   },
   iconSearch: {
