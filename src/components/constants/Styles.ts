@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {colors, sizes} from './Constants';
 
 const styles = StyleSheet.create({
@@ -9,13 +9,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   title: {
-    fontSize: 25,
+    fontSize: Platform.OS === 'android' ? 25 : 23,
     fontWeight: '600',
     textAlign: 'center',
     textAlignVertical: 'center',
     margin: 'auto',
     paddingLeft: 15,
     color: colors.titleColor,
+  },
+  logo: {
+    height: Platform.OS === 'android' ? 50 : 35,
+    width: Platform.OS === 'android' ? 50 : 35,
+    borderRadius: Platform.OS === 'android' ? 15 : 10,
+    resizeMode: 'contain',
   },
   header: {
     justifyContent: 'space-evenly',
@@ -45,12 +51,6 @@ const styles = StyleSheet.create({
   },
   view: {
     backgroundColor: 'black',
-  },
-  logo: {
-    width: 50,
-    height: 50,
-    borderRadius: 15,
-    resizeMode: 'contain',
   },
   icon: {
     verticalAlign: 'middle',

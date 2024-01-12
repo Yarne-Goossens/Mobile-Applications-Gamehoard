@@ -32,7 +32,9 @@ const App = () => {
     <DataProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home" screenOptions={({ navigation, route }) => ({
-          headerStyle: { backgroundColor: styles.header.backgroundColor, },
+          headerStyle: {
+            backgroundColor: styles.header.backgroundColor,
+          },
           headerTintColor: colors.titleColor,
           headerRight: (props) => <HeaderButtons navigation={navigation} />
         })}>
