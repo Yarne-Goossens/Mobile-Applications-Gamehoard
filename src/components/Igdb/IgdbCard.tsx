@@ -46,14 +46,14 @@ const GameView = ({ game, navigation, updateScreen }: GameProps) => (
                 <Text style={styles.textGame}>Critic Rating: {game.critic_rating ? (game.critic_rating).toFixed(2) : <Icon name="eye-slash" size={20} />}</Text>
                 <Text style={styles.textGame}>Multiplayer: {game.multiplayer ? <MIcon name="people" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
                 <ButtonThemed
-                    title="Add to Library"
+                    title="Show Details"
                     color={colors.highlightColor}
                     textcolor='white'
                     width='90%'
                     borderRadius={16}
                     marginBottom={2}
                     marginTop={2}
-                    onPress={() => navigation.navigate('Details', { gameId: game.game_id })}
+                    onPress={() => navigation.navigate('IgdbDetails', { gameObject: game })}
                 />
             </View>
         </View>
