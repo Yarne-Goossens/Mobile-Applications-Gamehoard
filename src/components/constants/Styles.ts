@@ -105,6 +105,11 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     padding: 6,
   },
+  checkbox: {
+    alignSelf: 'center',
+    marginBottom: -5,
+    marginTop: -5,
+  },
 });
 
 export default styles;
