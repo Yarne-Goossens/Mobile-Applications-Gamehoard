@@ -41,7 +41,6 @@ const GameView = ({ game, navigation, updateScreen }: GameProps) => (
             <View style={{ width: "65%" }}>
                 <Text style={styles.textGame}>IGDB ID: {game.game_id}</Text>
                 <DropdownList genres={game.genre}/>
-                {/* {game.genre.toString()} */}
                 {/* <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text> */}
                 <Text style={styles.textGame}>User Rating: {game.user_rating ? game.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
                 <Text style={styles.textGame}>Critic Rating: {game.critic_rating ? game.critic_rating : <Icon name="eye-slash" size={20} />}</Text>
