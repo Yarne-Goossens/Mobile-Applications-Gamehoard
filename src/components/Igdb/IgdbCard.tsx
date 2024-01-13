@@ -9,6 +9,7 @@ import MIcon from "react-native-vector-icons/MaterialIcons";
 import gameService from "../../services/game.service";
 import { colors } from "../constants/Constants";
 import ButtonThemed from "../Elements/ButtonThemed";
+import DropdownList from "../Elements/DropdownList";
 
 type Props = {
     games: Array<Game> | undefined;
@@ -39,7 +40,7 @@ const GameView = ({ game, navigation, updateScreen }: GameProps) => (
             </View>
             <View style={{ width: "65%" }}>
                 <Text style={styles.textGame}>IGDB ID: {game.game_id}</Text>
-                <Text style={styles.textGenre}>Genre(s): Adventure, RPG </Text>
+                <DropdownList genres={game.genre}/>
                 {/* {game.genre.toString()} */}
                 {/* <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text> */}
                 <Text style={styles.textGame}>User Rating: {game.user_rating ? game.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>

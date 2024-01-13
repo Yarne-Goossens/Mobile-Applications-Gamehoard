@@ -24,11 +24,21 @@ const getGamesIgdb = async (searchValue: string) => {
         .fields('url')
         .where(`id = ${response.data[i].cover}`)
         .request('/covers');
-      console.log(response.data[i].genres);
-      igdbList.push({
+        console.log(response.data[i].genres[0]);
+
+      const genreIds = response.data[i].genres.join(',');
+      const genresFromIgdb = await igdb(
+        '6jxtr870r4ia49qbd8b7bmj7z3nm53',
+        '3z0amkcuwxn8tttopdm6zc8fqnuc95',
+      )
+        .fields('name')
+        .where(`id = (${genreIds})`)
+        .request('/genres');
+        const genreList = genresFromIgdb.data.map((genre: any) => genre.name);
+        igdbList.push({
         game_id: response.data[i].id.toString(),
         name: response.data[i].name,
-        genre: response.data[i].genres,
+        genre: genreList,
         user_rating: response.data[i].rating
           ? (response.data[i].rating / 10)?.toFixed(1)
           : '',
