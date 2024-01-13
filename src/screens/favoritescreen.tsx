@@ -21,6 +21,7 @@ import { getDate } from '../services/util.service';
 import ButtonThemed from '../components/Elements/ButtonThemed';
 import { colors } from '../components/constants/Constants';
 import MultiSelectComponent from '../components/Elements/MultiSelectComponent';
+import { useData } from '../components/constants/DataContext';
 
 
 type SectionProps = PropsWithChildren<{
@@ -62,6 +63,8 @@ function FavoriteScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
         flex: 1
     };
+
+    const { updateData, setUpdateData } = useData();
 
     const [collection, setCollection] = useState<Array<Game>>();
     const [update, setUpdate] = useState<Boolean>(false)

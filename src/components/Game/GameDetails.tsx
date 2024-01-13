@@ -73,8 +73,8 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
                                 <Text style={styles.textGame}>{details.playtime ? details.playtime : <Icon name="eye-slash" size={20} />} min.</Text>
                                 <Text style={styles.textGame}>{details.completiontime ? details.completiontime : <Icon name="eye-slash" size={20} />}</Text>
                                 <Text style={styles.textGame}>{details.rating ? details.rating : <Icon name="eye-slash" size={20} />}/10</Text>
-                                <Text style={styles.textGame}>{details.critic_rating ? (details.critic_rating / 10).toFixed(2) : <Icon name="eye-slash" size={20} />}/10</Text>
-                                <Text style={styles.textGame}>{details.user_rating ? (details.user_rating / 10).toFixed(2) : <Icon name="eye-slash" size={20} />}/10</Text>
+                                <Text style={styles.textGame}>{details.user_rating ? details.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
+                                <Text style={styles.textGame}>{details.critic_rating ? details.critic_rating : <Icon name="eye-slash" size={20} />}</Text>
                                 {(details.platforms?.length != undefined && details.platforms?.length >= 2) ?
                                     <DropdownList genres={details.platforms} />
                                     : <Text style={styles.textGame}>{details.platforms ? details.platforms : <Icon name="eye-slash" size={20} />}</Text>

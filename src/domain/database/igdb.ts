@@ -29,8 +29,12 @@ const getGamesIgdb = async (searchValue: string) => {
         game_id: response.data[i].id.toString(),
         name: response.data[i].name,
         genre: response.data[i].genres,
-        user_rating: response.data[i].rating,
-        critic_rating: response.data[i].aggregated_rating,
+        user_rating: response.data[i].rating
+          ? (response.data[i].rating / 10)?.toFixed(1)
+          : '',
+        critic_rating: response.data[i].aggregated_rating
+          ? response.data[i].aggregated_rating?.toFixed(1)
+          : '',
         platforms: response.data[i].platforms,
         multiplayer: response.data[i].multiplayer_modes,
         picture: 'https:' + cover.data[0].url.replace('t_thumb', 't_cover_big'),

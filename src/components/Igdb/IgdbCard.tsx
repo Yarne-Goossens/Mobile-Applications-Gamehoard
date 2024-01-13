@@ -42,8 +42,8 @@ const GameView = ({ game, navigation, updateScreen }: GameProps) => (
                 <Text style={styles.textGenre}>Genre(s): Adventure, RPG </Text>
                 {/* {game.genre.toString()} */}
                 {/* <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text> */}
-                <Text style={styles.textGame}>User Rating: {game.user_rating ? (game.user_rating / 10).toFixed(2) : <Icon name="eye-slash" size={20} />}/10</Text>
-                <Text style={styles.textGame}>Critic Rating: {game.critic_rating ? (game.critic_rating / 10).toFixed(2) : <Icon name="eye-slash" size={20} />}/10</Text>
+                <Text style={styles.textGame}>User Rating: {game.user_rating ? game.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
+                <Text style={styles.textGame}>Critic Rating: {game.critic_rating ? game.critic_rating : <Icon name="eye-slash" size={20} />}</Text>
                 <Text style={styles.textGame}>Multiplayer: {game.multiplayer ? <MIcon name="people" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
                 <ButtonThemed
                     title="Show Details"
