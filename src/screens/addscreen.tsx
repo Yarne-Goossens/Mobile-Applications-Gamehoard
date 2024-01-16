@@ -55,7 +55,7 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
           <ScrollView>
             <Text style={styles.textLabel}>Add Game</Text>
             <View style={{ flex: 1, flexDirection: 'row' }}>
-              <View style={{ width: '50%', alignSelf: 'center'}}>
+              <View style={{ width: '50%', justifyContent:'space-evenly'}}>
                 <Text style={styles.textLabel}>Name:</Text>
                 <Text style={styles.textLabel}>Genre(s):</Text>
                 <Text style={styles.textLabel}>Price Bought:</Text>
@@ -63,27 +63,27 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
                 <Text style={styles.textLabel}><Icon name="clock-o" size={20} /></Text>
                 <Text style={styles.textLabel}>Completiontime:</Text>
                 <Text style={styles.textLabel}>Rating:</Text>
-                <Text style={styles.textLabel}>Critic Rating:</Text>
-                <Text style={styles.textLabel}>User Rating: </Text>
+                <Text style={styles.textLabel}>User Rating:</Text>
+                <Text style={styles.textLabel}>Critic Rating: </Text>
                 <Text style={styles.textLabel}>Platforms:</Text>
                 <Text style={styles.textLabel}>Multiplayer: </Text>
                 <Text style={styles.textLabel}>Coop:</Text>
                 <Text style={styles.textLabel}>Picture:</Text>
               </View>
-              <View style={{ width: '50%', alignSelf: 'center'}}>
-                <TextInput style={styles.textGame} placeholder="Name" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setName(val)} />
-                <TextInput style={styles.textGame} placeholder="Genre" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setGenre(val)} />
-                <TextInput style={styles.textGame} placeholder="Price" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPrice(Number(val))} />
-                <TextInput style={styles.textGame} placeholder="MSRP" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setMsrp(Number(val))} />
-                <TextInput style={styles.textGame} placeholder="Playtime" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlaytime(Number(val))} />
-                <TextInput style={styles.textGame} placeholder="Completiontime" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCompletiontime(Number(val))} />
-                <TextInput style={styles.textGame} placeholder="Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setRating(Number(val))} />
-                <TextInput style={styles.textGame} placeholder="User Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setUserRating(Number(val))} />
-                <TextInput style={styles.textGame} placeholder="Critic Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCriticRating(Number(val))} />
-                <TextInput style={styles.textGame} placeholder="Platforms" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlatform(val)} />
-                <CheckBox style={styles.checkbox} value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
-                <TextInput style={styles.textGame} placeholder="Coop" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCoop(val)} />
-                <TextInput style={styles.textGame} placeholder="Picture" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPicture(val)} />
+              <View style={{ width: '50%', justifyContent:'space-evenly' }}>
+                <TextInput style={styles.textInput} placeholder="Name" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setName(val)} />
+                <TextInput style={styles.textInput} placeholder="Genre" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setGenre(val)} />
+                <TextInput style={styles.textInput} placeholder="Price" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPrice(Number(val))} />
+                <TextInput style={styles.textInput} placeholder="MSRP" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setMsrp(Number(val))} />
+                <TextInput style={styles.textInput} placeholder="Playtime" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlaytime(Number(val))} />
+                <TextInput style={styles.textInput} placeholder="Completiontime" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCompletiontime(Number(val))} />
+                <TextInput style={styles.textInput} placeholder="Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setRating(Number(val))} />
+                <TextInput style={styles.textInput} placeholder="User Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setUserRating(Number(val))} />
+                <TextInput style={styles.textInput} placeholder="Critic Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCriticRating(Number(val))} />
+                <TextInput style={styles.textInput} placeholder="Platforms" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlatform(val)} />
+                <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
+                <TextInput style={styles.textInput} placeholder="Coop" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCoop(val)} />
+                <TextInput style={styles.textInput} placeholder="Picture" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPicture(val)} />
               </View>
             </View>
             <Button title="Add Game" onPress={() => onSubmit()} />
@@ -93,14 +93,5 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
     </>
   );
 }
-
-/*const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'black'
-  }
-});*/
 
 export default AddScreen;

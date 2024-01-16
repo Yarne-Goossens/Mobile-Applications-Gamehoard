@@ -105,10 +105,18 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     padding: 6,
   },
+  textInput: {
+    color: colors.textColor,
+    fontSize: 18,
+    fontWeight: '500',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    padding: 6,
+    paddingVertical: 7,
+    marginVertical: 5,
+  },
   checkbox: {
     alignSelf: 'center',
-    marginBottom: -5,
-    marginTop: -5,
   },
 });
 
