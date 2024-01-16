@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput, SafeAreaView, ScrollView, useColorScheme } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ParamList } from '../../App';
 import gameService from '../services/game.service';
@@ -8,6 +8,11 @@ import { v4 as uuid } from 'uuid';
 import CheckBox from '@react-native-community/checkbox';
 import { Game } from '../types/types';
 import { get } from 'http';
+import { Card } from '@rneui/themed';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import styles from '../components/constants/Styles';
+import { colors } from '../components/constants/Constants';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'Edit'>;
 
@@ -61,6 +66,8 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
   const [price, setPrice] = useState<number>(game?.price!);
   const [msrp, setMsrp] = useState<number>(game?.msrp!);
   const [rating, setRating] = useState<number>(game?.rating!);
+  const [user_rating, setUserRating] = useState<number>(0);
+  const [critic_rating, setCriticRating] = useState<number>(0);
   const [platforms, setPlatform] = useState<string[]>(game?.platforms!);
   const [multiplayer, setMultiplayer] = useState<boolean>(game?.multiplayer!);
   const [coop, setCoop] = useState<string>(game?.coop!);
@@ -71,33 +78,69 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
 
   const onSubmit = async () => {
     console.log('onSubmit');
-    await gameService.updateGame(game?.game_id!, { game_id, name, genre, added_on, price, msrp, rating, platforms, multiplayer, coop, playtime, completiontime, favorite, picture });
+    await gameService.updateGame(game?.game_id!, { game_id, name, genre, added_on, price, msrp, rating, user_rating, critic_rating, platforms, multiplayer, coop, playtime, completiontime, favorite, picture });
     navigation.navigate('Home', { update: true });
   }
 
+  const isDarkMode = useColorScheme() === 'dark';
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    flex: 1
+  };
+
   return (
-    <View style={styles.root}>
-      <TextInput placeholder="Name" onChangeText={(val) => setName(val)} value={name} />
-      <TextInput placeholder="Genre" onChangeText={(val) => setGenre(val)} value={genre?.toString()} />
-      <TextInput placeholder="Price" onChangeText={(val) => setPrice(Number(val))} value={price?.toString()} />
-      <TextInput placeholder="MSRP" onChangeText={(val) => setMsrp(Number(val))} value={msrp?.toString()} />
-      <TextInput placeholder="Rating" onChangeText={(val) => setRating(Number(val))} value={rating?.toString()} />
-      <TextInput placeholder="Platforms" onChangeText={(val) => setPlatform(val)} value={platforms?.toString()} />
-      <CheckBox value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
-      <TextInput placeholder="Coop" onChangeText={(val) => setCoop(val)} value={coop?.toString()} />
-      <TextInput placeholder="Picture" onChangeText={(val) => setPicture(val)} value={picture?.toString()} />
-      <Button title="Add Game" onPress={() => onSubmit()} />
-    </View>
+    <>
+      <SafeAreaView style={backgroundStyle}>
+        <Card wrapperStyle={styles.gamecard} containerStyle={styles.gamecardContainer}>
+          <ScrollView>
+            <Text style={styles.text}>Edit Game</Text>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <View style={{ width: '50%', alignSelf: 'center'}}>
+              <Text style={styles.textLabel}>Name:</Text>
+                <Text style={styles.textLabel}>Genre(s):</Text>
+                <Text style={styles.textLabel}>Price Bought:</Text>
+                <Text style={styles.textLabel}>Price Full:</Text>
+                <Text style={styles.textLabel}><Icon name="clock-o" size={20} /></Text>
+                <Text style={styles.textLabel}>Completiontime:</Text>
+                <Text style={styles.textLabel}>Rating:</Text>
+                <Text style={styles.textLabel}>Critic Rating:</Text>
+                <Text style={styles.textLabel}>User Rating: </Text>
+                <Text style={styles.textLabel}>Platforms:</Text>
+                <Text style={styles.textLabel}>Multiplayer: </Text>
+                <Text style={styles.textLabel}>Coop:</Text>
+                <Text style={styles.textLabel}>Picture:</Text>
+              </View>
+              <View style={{ width: '50%', alignSelf: 'center'}}>
+                <TextInput style={styles.textGame} placeholder="Name" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setName(val)} value={name} />
+                <TextInput style={styles.textGame} placeholder="Genre" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setGenre(val)} value={genre?.toString()} />
+                <TextInput style={styles.textGame} placeholder="Price" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPrice(Number(val))} value={price?.toString()} />
+                <TextInput style={styles.textGame} placeholder="MSRP" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setMsrp(Number(val))} value={msrp?.toString()} />
+                <TextInput style={styles.textGame} placeholder="Playtime" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlaytime(Number(val))} value={playtime?.toString()} />
+                <TextInput style={styles.textGame} placeholder="Completiontime" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCompletiontime(Number(val))} value={completiontime?.toString()} />
+                <TextInput style={styles.textGame} placeholder="Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setRating(Number(val))} value={rating?.toString()} />
+                <TextInput style={styles.textGame} placeholder="User Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setUserRating(Number(val))} value={user_rating?.toString()} />
+                <TextInput style={styles.textGame} placeholder="Critic Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCriticRating(Number(val))} value={critic_rating?.toString()} />
+                <TextInput style={styles.textGame} placeholder="Platforms" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlatform(val)} value={platforms?.toString()} />
+                <CheckBox style={styles.checkbox} value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
+                <TextInput style={styles.textGame} placeholder="Coop" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCoop(val)} value={coop?.toString()} />
+                <TextInput style={styles.textGame} placeholder="Picture" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPicture(val)} value={picture?.toString()} />
+              </View>
+            </View>
+            <Button title="Edit Game" onPress={() => onSubmit()} />
+          </ScrollView>
+        </Card >
+      </SafeAreaView>
+    </>
   );
 }
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
   root: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'black'
   }
-});
+});*/
 
 export default EditScreen;
