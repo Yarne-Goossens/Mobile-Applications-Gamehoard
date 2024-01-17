@@ -61,8 +61,12 @@ const searchGenre = async (searchGenre: string) => {
 const getAllOfPlatform = async (platform: string): Promise<Game[]> => {
   console.log('service-GetAllOfPlatform');
   let games = await getAllGames();
-  console.log(await games.filter(game => game.platforms?.some(p => p.includes(platform))));
-  return await games.filter(game => game.platforms?.some(p => p.includes(platform)));
+  console.log(
+    await games.filter(game => game.platforms?.some(p => p.includes(platform))),
+  );
+  return await games.filter(game =>
+    game.platforms?.some(p => p.includes(platform)),
+  );
 };
 
 const getAllFavorites = async (): Promise<Game[]> => {
@@ -79,7 +83,7 @@ const sampleData = async () => {
     genre: ['Action'],
     price: 10,
     added_on: getDate(),
-    platforms: ['Steam'],
+    platforms: ['Steam', 'XBox'],
     playtime: 120,
     rating: 9,
     user_rating: 9.3,
@@ -108,7 +112,7 @@ const sampleData = async () => {
     genre: ['Rogue-Like', 'Action'],
     price: 20,
     added_on: getDate(),
-    platforms: ['Steam', 'Playstation'],
+    platforms: ['Steam', 'PlayStation'],
     playtime: 70,
     rating: 8,
     user_rating: 7.7,

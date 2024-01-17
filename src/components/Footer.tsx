@@ -21,7 +21,7 @@ const Footer: React.FC<Props> = ({ navigation }: Props) => {
                 <IIcon style={styles.iconTab} name="nuclear" onPress={() => navigation.navigate('Platforms', { platform: "Epic" })} />
                 <MCIcon style={styles.iconTab} name="gog" onPress={() => navigation.navigate('Platforms', { platform: "GOG" })} />
                 <MCIcon style={styles.iconTab} name="nintendo-switch" onPress={() => navigation.navigate('Platforms', { platform: "Nintendo" })} />
-                <IIcon style={styles.iconTab} name="logo-playstation" onPress={() => navigation.navigate('Platforms', { platform: "Playstation" })} />
+                <IIcon style={styles.iconTab} name="logo-playstation" onPress={() => navigation.navigate('Platforms', { platform: "PlayStation" })} />
                 <IIcon style={styles.iconTab} name="logo-xbox" onPress={() => navigation.navigate('Platforms', { platform: "XBox" })} />
                 <IIcon style={styles.iconTab} name="logo-apple" onPress={() => navigation.navigate('Platforms', { platform: "macOS" })} />
                 <IIcon style={styles.iconTab} name="logo-windows" onPress={() => navigation.navigate('Platforms', { platform: "Windows" })} />

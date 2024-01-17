@@ -41,7 +41,7 @@ export const platformList = [
   'Xbox One',
   'Nintendo Switch',
   'PC (Microsoft Windows)',
-  'macOS',
+  'Mac',
   'Linux',
   'Xbox 360',
   'PlayStation 3',
