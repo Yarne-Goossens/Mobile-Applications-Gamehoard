@@ -75,11 +75,12 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
   const [playtime, setPlaytime] = useState<number>(game?.playtime!);
   const [completiontime, setCompletiontime] = useState<number>(game?.completiontime!);
   const [favorite, setFavorite] = useState<boolean>(game?.favorite!);
+  const [physical, setPhysical] = useState<boolean>(game?.physical!);
   const [picture, setPicture] = useState<string>(game?.picture!);
 
   const onSubmit = async () => {
     console.log('onSubmit');
-    await gameService.updateGame(game?.game_id!, { game_id, name, genre, added_on, price, msrp, rating, user_rating, critic_rating, platforms, multiplayer, coop, playtime, completiontime, favorite, picture });
+    await gameService.updateGame(game?.game_id!, { game_id, name, genre, added_on, price, msrp, rating, user_rating, critic_rating, platforms, multiplayer, coop, playtime, completiontime, favorite, physical, picture });
     navigation.navigate('Home', { update: true });
   }
 
@@ -96,8 +97,8 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
           <ScrollView>
             <Text style={styles.text}>Edit Game</Text>
             <View style={{ flex: 1, flexDirection: 'row' }}>
-              <View style={{ width: '50%', justifyContent: 'space-evenly'}}>
-              <Text style={styles.textLabel}>Name:</Text>
+              <View style={{ width: '50%', justifyContent: 'space-evenly' }}>
+                <Text style={styles.textLabel}>Name:</Text>
                 <Text style={styles.textLabel}>Genre(s):</Text>
                 <Text style={styles.textLabel}>Price Bought:</Text>
                 <Text style={styles.textLabel}>Price Full:</Text>
@@ -110,8 +111,9 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
                 <Text style={styles.textLabel}>Multiplayer: </Text>
                 <Text style={styles.textLabel}>Coop:</Text>
                 <Text style={styles.textLabel}>Picture:</Text>
+                <Text style={styles.textLabel}>Physical:</Text>
               </View>
-              <View style={{ width: '50%', justifyContent: 'space-evenly'}}>
+              <View style={{ width: '50%', justifyContent: 'space-evenly' }}>
                 <TextInput style={styles.textInput} placeholder="Name" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setName(val)} value={name} />
                 <MultiSelectComponent onSelectionChange={setGenre} valueList={genreList}/>
                 <TextInput style={styles.textInput} placeholder="Price" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPrice(Number(val))} value={price?.toString()} />
@@ -125,6 +127,7 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
                 <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
                 <TextInput style={styles.textInput} placeholder="Coop" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCoop(val)} value={coop?.toString()} />
                 <TextInput style={styles.textInput} placeholder="Picture" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPicture(val)} value={picture?.toString()} />
+                <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={physical} onValueChange={(val: boolean) => setPhysical(val)} />
               </View>
             </View>
             <Button title="Edit Game" onPress={() => onSubmit()} />

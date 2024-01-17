@@ -64,6 +64,7 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
                                 <Text style={styles.textLabel}>Platforms:</Text>
                                 <Text style={styles.textLabel}>Multiplayer: </Text>
                                 <Text style={styles.textLabel}>Coop:</Text>
+                                <Text style={styles.textLabel}>Physical:</Text>
                             </View>
                             <View style={{ width: '40%', alignSelf: 'center', marginTop: 20 }}>
                                 <Text style={styles.textGame}>{details.game_id}</Text>
@@ -81,6 +82,7 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
                                 }
                                 <Text style={styles.textGame}>{details.multiplayer ? <MIcon name="people" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
                                 <Text style={styles.textGame}>{details.coop ? details.coop + ' players' : <Icon name="eye-slash" size={20} />}</Text>
+                                <Text style={styles.textGame}>{details.physical ? <Icon name="check" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
                             </View>
                         </View>
                     </>) : (

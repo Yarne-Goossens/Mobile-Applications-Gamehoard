@@ -14,6 +14,7 @@ export class Game {
   playtime?: number;
   completiontime?: number;
   favorite?: boolean;
+  physical?: boolean;
   picture?: string;
 
   constructor(game: {
@@ -32,6 +33,7 @@ export class Game {
     playtime?: number;
     completiontime?: number;
     favorite?: boolean;
+    physical?: boolean;
     picture?: string;
   }) {
     this.game_id = game.game_id;
@@ -49,6 +51,7 @@ export class Game {
     this.playtime = game.playtime;
     this.completiontime = game.completiontime;
     this.favorite = game.favorite;
+    this.physical = game.physical;
     this.picture = game.picture;
   }
 }
