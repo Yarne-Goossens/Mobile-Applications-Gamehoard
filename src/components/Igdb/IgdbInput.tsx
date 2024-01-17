@@ -3,8 +3,6 @@ import { StyleSheet, TextInput, View } from "react-native";
 import styles from "../constants/Styles";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { colors, padding, sizes } from "../constants/Constants";
-import { color } from "@rneui/themed/dist/config";
-import { Input } from "@rneui/themed";
 
 type Props = {
     searchValue: string,
@@ -15,16 +13,18 @@ type Props = {
 const IgdbInput = ({ searchValue, setSearchValue, input }: Props) => {
     const [search, setSearch] = useState('');
 
-
     return (
         <View style={styleslocal.container}>
             <View style={styleslocal.inner}>
                 <View style={styleslocal.search}>
-                    <Icon style={styles.iconSearch} name='search' size={30} />
+                    <Icon style={styles.iconSearch} name='search' size={sizes.icon} />
                 </View>
-                <TextInput style={styleslocal.textfield} placeholder="Search" value={searchValue} onChangeText={setSearchValue} onSubmitEditing={() => { input(searchValue) }} />
+                <TextInput style={styleslocal.textfield} value={searchValue} onChangeText={setSearchValue} onSubmitEditing={() => { input(searchValue) }} />
+                <View style={styleslocal.clear}>
+                    <Icon style={styles.iconSearch} name='remove' size={sizes.icon} onPress={() => { setSearchValue('') }} />
+                </View>
                 <View style={styleslocal.filter}>
-                    <Icon style={styles.iconSearch} name='filter' size={30} onPress={() => { }} />
+                    <Icon style={styles.iconSearch} name='filter' size={sizes.icon} onPress={() => { }} />
                 </View>
             </View>
         </View>
@@ -57,6 +57,12 @@ const styleslocal = StyleSheet.create({
         flexGrow: 1,
         color: colors.black,
         fontSize: sizes.textSize,
+    },
+    clear: {
+        position: 'absolute',
+        top: 10,
+        right: sizes.icon + 2 * 10,
+        zIndex: 1,
     },
     filter: {
         position: 'absolute',
