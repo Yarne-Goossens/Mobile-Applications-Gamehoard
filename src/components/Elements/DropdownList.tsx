@@ -21,6 +21,7 @@ const DropdownList = ({ genres }: Props) => {
     }[]>([])
 
     useEffect(() => {
+        console.log(genres);
         const newData = genres.map((item) => ({ label: item, value: item }));
         setDataList(newData);
     }, [genres]);

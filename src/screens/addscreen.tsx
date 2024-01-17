@@ -11,8 +11,9 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import styles from '../components/constants/Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { constants } from 'buffer';
-import { colors } from '../components/constants/Constants';
+import { colors, genreList, platformList } from '../components/constants/Constants';
 import { MultiSelect } from 'react-native-element-dropdown';
+import MultiSelectComponent from '../components/Elements/MultiSelectComponent';
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'Add'>;
 
@@ -39,8 +40,6 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
     await gameService.addGame({ game_id, name, genre, added_on, price, msrp, rating, user_rating, critic_rating, platforms, multiplayer, coop, playtime, completiontime, favorite, picture });
     navigation.navigate('Home', { update: true });
   }
-
-  const genres = ['Point-and-click', 'Fighting', 'Shooter', 'Music', 'Platform', 'Puzzle', 'Racing', 'Real Time Strategy', 'Role-playing', 'Simulator', 'Sport', 'Strategy', 'Turn-based strategy', 'Tactical', 'Trivia', 'Hack and slash', 'Pinball', 'Adventure', 'Arcade', 'Visual Novel', 'Indie', 'Card Game', 'MOBA'];
 
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
@@ -72,7 +71,7 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
               </View>
               <View style={{ width: '50%', justifyContent:'space-evenly' }}>
                 <TextInput style={styles.textInput} placeholder="Name" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setName(val)} />
-                <TextInput style={styles.textInput} placeholder="Genre" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setGenre(val)} />
+                <MultiSelectComponent onSelectionChange={setGenre} valueList={genreList} />
                 <TextInput style={styles.textInput} placeholder="Price" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPrice(Number(val))} />
                 <TextInput style={styles.textInput} placeholder="MSRP" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setMsrp(Number(val))} />
                 <TextInput style={styles.textInput} placeholder="Playtime" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlaytime(Number(val))} />
@@ -80,7 +79,7 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
                 <TextInput style={styles.textInput} placeholder="Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setRating(Number(val))} />
                 <TextInput style={styles.textInput} placeholder="User Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setUserRating(Number(val))} />
                 <TextInput style={styles.textInput} placeholder="Critic Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCriticRating(Number(val))} />
-                <TextInput style={styles.textInput} placeholder="Platforms" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlatform(val)} />
+                <MultiSelectComponent onSelectionChange={setPlatform} valueList={platformList}/>
                 <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
                 <TextInput style={styles.textInput} placeholder="Coop" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCoop(val)} />
                 <TextInput style={styles.textInput} placeholder="Picture" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPicture(val)} />

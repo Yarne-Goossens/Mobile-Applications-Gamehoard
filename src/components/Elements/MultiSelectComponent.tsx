@@ -5,32 +5,27 @@ import { colors, genreList } from '../constants/Constants';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 type Props = {
-    kind: string
-    // genres: string[];
+    onSelectionChange: (selectedGenres: string[]) => void;
+    valueList: string[];
 }
 
-let data = [
-    { label: 'Genre 1', value: '1' },
-    { label: 'Genre 2', value: '2' },
-    { label: 'Genre 3', value: '3' },
-];
-
-const MultiSelectComponent = ({ kind }: Props) => {
+const MultiSelectComponent = ({onSelectionChange, valueList}:Props) => {
     const [selected, setSelected] = useState([]);
-    const placeholder = 'Select ' + kind;
+    const placeholder = 'Select Values';
     const [dataList, setDataList] = useState<{
         label: string;
         value: string;
     }[]>([])
 
     useEffect(() => {
-        const newData = genreList.map((item) => ({ label: item, value: item }));
+        const newData = valueList.map((item) => ({ label: item, value: item }));
         console.log(newData);
         setDataList(newData);
     }, []);
 
     useEffect(() => {
         console.log(selected);
+        onSelectionChange(selected);
     }, [selected]);
 
     const renderItem = (item) => {

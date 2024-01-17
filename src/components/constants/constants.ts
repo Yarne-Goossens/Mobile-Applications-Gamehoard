@@ -34,6 +34,32 @@ export const genreList = [
   'Card & Board Game',
 ];
 
+export const platformList = [
+  'PC (Microsoft Windows)',
+  'Xbox One',
+  'PlayStation 4',
+  'iOS',
+  'Android',
+  'macOS',
+  'Linux',
+  'Nintendo Switch',
+  'Nintendo 3DS',
+  'Nintendo DS',
+  'Nintendo DSi',
+  'Xbox 360',
+  'PlayStation 3',
+  'PlayStation 2',
+  'PlayStation',
+  'PlayStation Vita',
+  'PSP',
+  'Wii U',
+  'Wii',
+  'GameCube',
+  'Steam',
+  'Epic',
+  'GOG'
+];
+
 const colorPalette = {
   primary: '#042940',
   secondary: '#395670', //'#005C53',
