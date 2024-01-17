@@ -19,7 +19,6 @@ const MultiSelectComponent = ({onSelectionChange, valueList}:Props) => {
 
     useEffect(() => {
         const newData = valueList.map((item) => ({ label: item, value: item }));
-        console.log(newData);
         setDataList(newData);
     }, []);
 

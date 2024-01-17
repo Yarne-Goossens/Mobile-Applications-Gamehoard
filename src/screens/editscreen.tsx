@@ -11,8 +11,9 @@ import { get } from 'http';
 import { Card } from '@rneui/themed';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import styles from '../components/constants/Styles';
-import { colors } from '../components/constants/Constants';
+import { colors, genreList, platformList } from '../components/constants/Constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import MultiSelectComponent from '../components/Elements/MultiSelectComponent';
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'Edit'>;
 
@@ -112,7 +113,7 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
               </View>
               <View style={{ width: '50%', justifyContent: 'space-evenly'}}>
                 <TextInput style={styles.textInput} placeholder="Name" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setName(val)} value={name} />
-                <TextInput style={styles.textInput} placeholder="Genre" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setGenre(val)} value={genre?.toString()} />
+                <MultiSelectComponent onSelectionChange={setGenre} valueList={genreList}/>
                 <TextInput style={styles.textInput} placeholder="Price" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPrice(Number(val))} value={price?.toString()} />
                 <TextInput style={styles.textInput} placeholder="MSRP" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setMsrp(Number(val))} value={msrp?.toString()} />
                 <TextInput style={styles.textInput} placeholder="Playtime" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlaytime(Number(val))} value={playtime?.toString()} />
@@ -120,7 +121,7 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
                 <TextInput style={styles.textInput} placeholder="Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setRating(Number(val))} value={rating?.toString()} />
                 <TextInput style={styles.textInput} placeholder="User Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setUserRating(Number(val))} value={user_rating?.toString()} />
                 <TextInput style={styles.textInput} placeholder="Critic Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCriticRating(Number(val))} value={critic_rating?.toString()} />
-                <TextInput style={styles.textInput} placeholder="Platforms" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlatform(val)} value={platforms?.toString()} />
+                <MultiSelectComponent onSelectionChange={setPlatform} valueList={platformList}/>
                 <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
                 <TextInput style={styles.textInput} placeholder="Coop" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCoop(val)} value={coop?.toString()} />
                 <TextInput style={styles.textInput} placeholder="Picture" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPicture(val)} value={picture?.toString()} />
