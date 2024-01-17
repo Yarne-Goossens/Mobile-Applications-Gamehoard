@@ -31,7 +31,7 @@ const MultiSelectComponent = ({onSelectionChange, valueList}:Props) => {
     const renderItem = (item) => {
         return (
             <View style={styles.item}>
-                <Text style={styles.textItem}>{item.label}</Text>
+                <Text style={[styles.textItem, selected.includes(item.label) && { color: 'green' }]}>{item.label}</Text>
             </View>
         );
     };
@@ -62,6 +62,7 @@ const MultiSelectComponent = ({onSelectionChange, valueList}:Props) => {
             //     />
             // )}
             renderItem={renderItem}
+            visibleSelectedItem = {false}
         />
     );
 };
