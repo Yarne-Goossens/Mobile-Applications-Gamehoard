@@ -33,11 +33,12 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
   const [playtime, setPlaytime] = useState<number>(0);
   const [completiontime, setCompletiontime] = useState<number>(0);
   const [favorite, setFavorite] = useState<boolean>(false);
+  const [physical, setPhysical] = useState<boolean>(false);
   const [picture, setPicture] = useState<string>('');
 
   const onSubmit = async () => {
     console.log('onSubmit');
-    await gameService.addGame({ game_id, name, genre, added_on, price, msrp, rating, user_rating, critic_rating, platforms, multiplayer, coop, playtime, completiontime, favorite, picture });
+    await gameService.addGame({ game_id, name, genre, added_on, price, msrp, rating, user_rating, critic_rating, platforms, multiplayer, coop, playtime, completiontime, favorite, physical, picture });
     navigation.navigate('Home', { update: true });
   }
 
@@ -54,7 +55,7 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
           <ScrollView>
             <Text style={styles.textLabel}>Add Game</Text>
             <View style={{ flex: 1, flexDirection: 'row' }}>
-              <View style={{ width: '50%', justifyContent:'space-evenly'}}>
+              <View style={{ width: '50%', justifyContent: 'space-evenly' }}>
                 <Text style={styles.textLabel}>Name:</Text>
                 <Text style={styles.textLabel}>Genre(s):</Text>
                 <Text style={styles.textLabel}>Price Bought:</Text>
@@ -67,9 +68,10 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
                 <Text style={styles.textLabel}>Platforms:</Text>
                 <Text style={styles.textLabel}>Multiplayer: </Text>
                 <Text style={styles.textLabel}>Coop:</Text>
+                <Text style={styles.textLabel}>Physical:</Text>
                 <Text style={styles.textLabel}>Picture:</Text>
               </View>
-              <View style={{ width: '50%', justifyContent:'space-evenly' }}>
+              <View style={{ width: '50%', justifyContent: 'space-evenly' }}>
                 <TextInput style={styles.textInput} placeholder="Name" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setName(val)} />
                 <MultiSelectComponent onSelectionChange={setGenre} valueList={genreList} />
                 <TextInput style={styles.textInput} placeholder="Price" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPrice(Number(val))} />
@@ -79,9 +81,10 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
                 <TextInput style={styles.textInput} placeholder="Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setRating(Number(val))} />
                 <TextInput style={styles.textInput} placeholder="User Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setUserRating(Number(val))} />
                 <TextInput style={styles.textInput} placeholder="Critic Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCriticRating(Number(val))} />
-                <MultiSelectComponent onSelectionChange={setPlatform} valueList={platformList}/>
+                <MultiSelectComponent onSelectionChange={setPlatform} valueList={platformList} />
                 <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
                 <TextInput style={styles.textInput} placeholder="Coop" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCoop(val)} />
+                <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={physical} onValueChange={(val: boolean) => setPhysical(val)} />
                 <TextInput style={styles.textInput} placeholder="Picture" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPicture(val)} />
               </View>
             </View>

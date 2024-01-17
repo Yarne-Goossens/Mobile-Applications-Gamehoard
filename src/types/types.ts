@@ -14,5 +14,6 @@ export type Game = {
   playtime?: number;
   completiontime?: number;
   favorite?: boolean;
+  physical?: boolean;
   picture?: string;
 };
