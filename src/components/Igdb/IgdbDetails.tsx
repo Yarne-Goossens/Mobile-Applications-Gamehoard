@@ -83,9 +83,9 @@ const IgdbDetailsScreen = ({ route, navigation }: ScreenProps) => {
                             <View style={{ width: '40%', alignSelf: 'center', marginTop: 20 }}>
                                 <Text style={styles.textGame}>{details.game_id}</Text>
                                 <DropdownList genres={details.genre} />
-                                <Text style={styles.textGame}>{details.price ? details.price: <Icon name="eye-slash" size={20} />} / {details.msrp ? details.msrp : <Icon name="eye-slash" size={20} />} €</Text>
-                                <Text style={styles.textGame}>{details.critic_rating ? (details.critic_rating / 10).toFixed(2) : <Icon name="eye-slash" size={20} />}/10</Text>
-                                <Text style={styles.textGame}>{details.user_rating ? (details.user_rating / 10).toFixed(2) : <Icon name="eye-slash" size={20} />}/10</Text>
+                                <Text style={styles.textGame}>{details.price ? details.price : <Icon name="eye-slash" size={20} />} / {details.msrp ? details.msrp : <Icon name="eye-slash" size={20} />} €</Text>
+                                <Text style={styles.textGame}>{details.critic_rating ? details.critic_rating : <Icon name="eye-slash" size={20} />}/10</Text>
+                                <Text style={styles.textGame}>{details.user_rating ? details.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
                                 {(details.platforms?.length != undefined && details.platforms?.length >= 2) ?
                                     <DropdownList genres={details.platforms} />
                                     : <Text style={styles.textGame}>{details.platforms ? details.platforms : <Icon name="eye-slash" size={20} />}</Text>
