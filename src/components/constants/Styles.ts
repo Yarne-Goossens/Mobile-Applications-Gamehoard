@@ -58,6 +58,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
   },
+  textHeader: {
+    color: colors.textColor,
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
   view: {
     backgroundColor: 'black',
   },

@@ -95,7 +95,7 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
       <SafeAreaView style={backgroundStyle}>
         <Card wrapperStyle={styles.gamecard} containerStyle={styles.gamecardContainer}>
           <ScrollView>
-            <Text style={styles.text}>Edit Game</Text>
+            <Text style={styles.textHeader}>Edit Game</Text>
             <View style={{ flex: 1, flexDirection: 'row' }}>
               <View style={{ width: '50%', justifyContent: 'space-evenly' }}>
                 <Text style={styles.textLabel}>Name:</Text>
@@ -110,12 +110,12 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
                 <Text style={styles.textLabel}>Platforms:</Text>
                 <Text style={styles.textLabel}>Multiplayer: </Text>
                 <Text style={styles.textLabel}>Coop:</Text>
-                <Text style={styles.textLabel}>Picture:</Text>
                 <Text style={styles.textLabel}>Physical:</Text>
+                <Text style={styles.textLabel}>Picture:</Text>
               </View>
               <View style={{ width: '50%', justifyContent: 'space-evenly' }}>
                 <TextInput style={styles.textInput} placeholder="Name" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setName(val)} value={name} />
-                <MultiSelectComponent onSelectionChange={setGenre} valueList={genreList}/>
+                <MultiSelectComponent onSelectionChange={setGenre} valueList={genreList} />
                 <TextInput style={styles.textInput} placeholder="Price" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPrice(Number(val))} value={price?.toString()} />
                 <TextInput style={styles.textInput} placeholder="MSRP" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setMsrp(Number(val))} value={msrp?.toString()} />
                 <TextInput style={styles.textInput} placeholder="Playtime" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlaytime(Number(val))} value={playtime?.toString()} />
@@ -123,11 +123,11 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
                 <TextInput style={styles.textInput} placeholder="Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setRating(Number(val))} value={rating?.toString()} />
                 <TextInput style={styles.textInput} placeholder="User Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setUserRating(Number(val))} value={user_rating?.toString()} />
                 <TextInput style={styles.textInput} placeholder="Critic Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCriticRating(Number(val))} value={critic_rating?.toString()} />
-                <MultiSelectComponent onSelectionChange={setPlatform} valueList={platformList}/>
+                <MultiSelectComponent onSelectionChange={setPlatform} valueList={platformList} />
                 <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
                 <TextInput style={styles.textInput} placeholder="Coop" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCoop(val)} value={coop?.toString()} />
-                <TextInput style={styles.textInput} placeholder="Picture" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPicture(val)} value={picture?.toString()} />
                 <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={physical} onValueChange={(val: boolean) => setPhysical(val)} />
+                <TextInput style={styles.textInput} placeholder="Picture" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPicture(val)} value={picture?.toString()} />
               </View>
             </View>
             <Button title="Edit Game" onPress={() => onSubmit()} />
