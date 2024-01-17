@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Dropdown, MultiSelect } from 'react-native-element-dropdown';
-import { colors, genreList } from '../constants/Constants';
+import { MultiSelect } from 'react-native-element-dropdown';
+import { colors } from '../constants/Constants';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
     valueList: string[];
 }
 
-const MultiSelectComponent = ({onSelectionChange, valueList}:Props) => {
+const MultiSelectComponent = ({ onSelectionChange, valueList }: Props) => {
     const [selected, setSelected] = useState([]);
     const placeholder = 'Select Values';
     const [dataList, setDataList] = useState<{
@@ -61,7 +61,7 @@ const MultiSelectComponent = ({onSelectionChange, valueList}:Props) => {
             //     />
             // )}
             renderItem={renderItem}
-            visibleSelectedItem = {false}
+            visibleSelectedItem={false}
         />
     );
 };

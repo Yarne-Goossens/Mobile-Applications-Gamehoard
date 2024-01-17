@@ -21,7 +21,7 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
   const [game, setGame] = useState<Game | null>(null);
 
   const fetchData = async () => {
-    console.log(route.params.gameId)
+    console.log('editID', route.params.gameId)
     const gameserv = await gameService.getGameById(route.params.gameId)
     setGame(await gameService.getGameById(route.params.gameId));
     fillInData();
@@ -53,11 +53,11 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
 
   useEffect(() => {
     console.log("editData-useEffect");
-    console.log('name', name)
-    console.log('game', game)
+    // console.log('name', name)
+    // console.log('game', game)
     fillInData();
-    console.log('name', name)
-    console.log('game', game)
+    // console.log('name', name)
+    // console.log('game', game)
   }, [game])
 
   const [game_id, setGame_id] = useState<string>(game?.game_id!);
@@ -89,6 +89,8 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     flex: 1
   };
+
+  console.log('platform:', platforms)
 
   return (
     <>
@@ -123,7 +125,7 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
                 <TextInput style={styles.textInput} placeholder="Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setRating(Number(val))} value={rating?.toString()} />
                 <TextInput style={styles.textInput} placeholder="User Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setUserRating(Number(val))} value={user_rating?.toString()} />
                 <TextInput style={styles.textInput} placeholder="Critic Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCriticRating(Number(val))} value={critic_rating?.toString()} />
-                <MultiSelectComponent onSelectionChange={setPlatform} valueList={platformList} />
+                <MultiSelectComponent onSelectionChange={setPlatform} valueList={platformList} previousValues={platforms} />
                 <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
                 <TextInput style={styles.textInput} placeholder="Coop" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCoop(val)} value={coop?.toString()} />
                 <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={physical} onValueChange={(val: boolean) => setPhysical(val)} />
