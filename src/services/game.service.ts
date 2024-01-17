@@ -61,8 +61,8 @@ const searchGenre = async (searchGenre: string) => {
 const getAllOfPlatform = async (platform: string): Promise<Game[]> => {
   console.log('service-GetAllOfPlatform');
   let games = await getAllGames();
-  console.log(await games.filter(game => game.platforms?.includes(platform)));
-  return await games.filter(game => game.platforms?.includes(platform));
+  console.log(await games.filter(game => game.platforms?.some(p => p.includes(platform))));
+  return await games.filter(game => game.platforms?.some(p => p.includes(platform)));
 };
 
 const getAllFavorites = async (): Promise<Game[]> => {
