@@ -32,11 +32,18 @@ const GameCard = ({ game, deleteItem, navigation, updateScreen }: Props) => {
             <View style={styles.gamecardInternal}>
                 <View style={{ width: "35%", flexDirection: 'column', flex: 1 }}>
                     <View style={{ height: (sizes.cardHeight * .8) }}>
-                        <Image
-                            style={{ height: (sizes.cardHeight * .7), borderRadius: sizes.radius / 2 }}
-                            resizeMode="contain"
-                            source={{ uri: game.picture }}
-                        />
+                        {game.picture ?
+                            <Image
+                                style={{ height: (sizes.cardHeight * .7), width: 'auto', borderRadius: sizes.radius / 2 }}
+                                resizeMode="contain"
+                                source={{ uri: game.picture }}
+                            /> :
+                            <Image
+                                style={{ height: (sizes.cardHeight * .7), width: 'auto', borderRadius: sizes.radius / 2 }}
+                                resizeMode="contain"
+                                source={require('../../assets/placeholder.webp')}
+                            />
+                        }
                     </View>
                     <View style={{ height: (sizes.cardHeight * .2) }}>
                         <View style={{ flexDirection: 'row', flex: 1 }}>

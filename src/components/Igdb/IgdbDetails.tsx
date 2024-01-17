@@ -55,8 +55,18 @@ const IgdbDetailsScreen = ({ route, navigation }: ScreenProps) => {
                 <ScrollView>
                     {details ? (<>
                         <View>
-                            <Image style={{ width: '80%', height: (sizes.width * 0.9), marginTop: 15, borderRadius: sizes.radius, alignSelf: 'center' }} resizeMode="contain" source={{ uri: details.picture }} />
-                            {details.favorite ? <Icon style={{ position: 'absolute', top: 22, right: 45 }} name='heart' size={50} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(details.game_id); updateScreen() }} /> : <Icon style={{ position: 'absolute', top: 22, right: 45 }} name='heart-o' size={50} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(details.game_id); updateScreen() }} />}
+                            {details.picture ?
+                                <Image
+                                    style={{ width: '80%', height: (sizes.width * 0.9), marginTop: 15, borderRadius: sizes.radius, alignSelf: 'center' }}
+                                    resizeMode="contain"
+                                    source={{ uri: details.picture }}
+                                /> :
+                                <Image
+                                    style={{ width: '80%', height: (sizes.width * 0.9), marginTop: 15, borderRadius: sizes.radius, alignSelf: 'center' }}
+                                    resizeMode="contain"
+                                    source={require('../../assets/placeholder.webp')}
+                                />
+                            }
                             <ButtonThemed
                                 title="Add to Library"
                                 color={colors.highlightColor}
@@ -64,11 +74,10 @@ const IgdbDetailsScreen = ({ route, navigation }: ScreenProps) => {
                                 width='90%'
                                 borderRadius={16}
                                 marginBottom={2}
-                                marginTop={2}
+                                marginTop={5}
                                 onPress={() => onSubmit()}
                             />
                         </View>
-
                         <View style={{ flex: 1, flexDirection: 'row' }}>
                             <View style={{ width: '60%', alignSelf: 'center', marginTop: 20 }}>
                                 <Text style={styles.textLabel}>IgdbId:</Text>

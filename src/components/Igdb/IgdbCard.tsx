@@ -7,7 +7,7 @@ import { Game } from "../../types/types";
 import Icon from "react-native-vector-icons/FontAwesome";
 import MIcon from "react-native-vector-icons/MaterialIcons";
 import gameService from "../../services/game.service";
-import { colors } from "../constants/Constants";
+import { colors, sizes } from "../constants/Constants";
 import ButtonThemed from "../Elements/ButtonThemed";
 import DropdownList from "../Elements/DropdownList";
 
@@ -31,16 +31,23 @@ const GameView = ({ game, navigation, updateScreen }: GameProps) => (
         </View>
         <Card.Divider />
         <View style={styles.gamecardInternal}>
-            <View style={{ width: "35%", flexDirection: 'column' }}>
-                <Image
-                    style={{ height: 150 }}
-                    resizeMode="contain"
-                    source={{ uri: game.picture }}
-                />
+            <View style={{ width: "35%", flexDirection: 'column', flex: 1 }}>
+                {game.picture ?
+                    <Image
+                        style={{ height: (sizes.cardHeight * .7), width: 'auto', borderRadius: sizes.radius / 2 }}
+                        resizeMode="contain"
+                        source={{ uri: game.picture }}
+                    /> :
+                    <Image
+                        style={{ height: (sizes.cardHeight * .7), width: 'auto', borderRadius: sizes.radius / 2 }}
+                        resizeMode="contain"
+                        source={require('../../assets/placeholder.webp')}
+                    />
+                }
             </View>
-            <View style={{ width: "65%" }}>
+            <View style={{ width: "65%", paddingHorizontal: 5 }}>
                 <Text style={styles.textGame}>IGDB ID: {game.game_id}</Text>
-                <DropdownList genres={game.genre}/>
+                <DropdownList genres={game.genre} />
                 {/* <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text> */}
                 <Text style={styles.textGame}>User Rating: {game.user_rating ? game.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
                 <Text style={styles.textGame}>Critic Rating: {game.critic_rating ? game.critic_rating : <Icon name="eye-slash" size={20} />}</Text>
