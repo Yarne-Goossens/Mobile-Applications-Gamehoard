@@ -15,6 +15,7 @@ import FavoriteScreen from './src/screens/favoritescreen';
 import { DataProvider } from './src/components/constants/DataContext';
 import { Game } from './src/types/types';
 import IgdbDetailsScreen from './src/components/Igdb/IgdbDetails';
+import PlatformScreen from './src/screens/platformscreen';
 
 export type ParamList = {
   Home: { update: boolean };
@@ -25,7 +26,8 @@ export type ParamList = {
   Edit: { gameId: string };
   Search: undefined;
   Igdb: undefined;
-  IgdbDetails: {gameObject: Game};
+  IgdbDetails: { gameObject: Game };
+  Platforms: { platform: string };
 };
 
 const Stack = createNativeStackNavigator<ParamList>();
@@ -55,6 +57,7 @@ const App = () => {
           <Stack.Screen name="Edit" component={EditScreen} />
           <Stack.Screen name="Igdb" component={IgdbAddScreen} />
           <Stack.Screen name="IgdbDetails" component={IgdbDetailsScreen} />
+          <Stack.Screen name="Platforms" component={PlatformScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </DataProvider>

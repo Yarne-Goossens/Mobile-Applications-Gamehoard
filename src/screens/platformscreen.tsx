@@ -7,9 +7,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styles from '../components/constants/Styles';
 import { ParamList } from '../../App';
 import {
-    Button,
     SafeAreaView,
-    ScrollView,
     StatusBar,
     StyleSheet,
     Text,
@@ -20,40 +18,11 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import ButtonThemed from '../components/Elements/ButtonThemed';
 import { colors } from '../components/constants/Constants';
 import { useData } from '../components/constants/DataContext';
+import { platform } from 'os';
 
-type SectionProps = PropsWithChildren<{
-    title: string;
-}>;
+type ScreenProps = NativeStackScreenProps<ParamList, 'Platforms'>;
 
-function Section({ children, title }: SectionProps): JSX.Element {
-    const isDarkMode = useColorScheme() === 'dark';
-    return (
-        <View style={stylesApp.sectionContainer}>
-            <Text
-                style={[
-                    stylesApp.sectionTitle,
-                    {
-                        color: isDarkMode ? Colors.white : Colors.black,
-                    },
-                ]}>
-                {title}
-            </Text>
-            <Text
-                style={[
-                    stylesApp.sectionDescription,
-                    {
-                        color: isDarkMode ? Colors.light : Colors.dark,
-                    },
-                ]}>
-                {children}
-            </Text>
-        </View>
-    );
-}
-
-type ScreenProps = NativeStackScreenProps<ParamList, 'Home'>;
-
-function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
+function PlatformScreen({ route, navigation }: ScreenProps): React.JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
@@ -71,8 +40,8 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         updateData ? setUpdateData(false) : setUpdateData(true);
     }
 
-    const fetchData = async () => {
-        setCollection(await gameService.getAllGames())
+    const fetchData = async (platform: string) => {
+        setCollection(await gameService.getAllOfPlatform(platform))
     }
 
     const randomGame = () => {
@@ -83,17 +52,17 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
     useEffect(() => {
         console.log("home-useEffect")
         console.log('UpdateData-Home:', updateData)
-        fetchData();
+        fetchData(route.params?.platform);
     }, [updateData])
 
     useEffect(() => {
         console.log("home-useEffect")
-        if (route.params?.update) {
+        if (route.params?.platform) {
             updateScreen();
         }
         const updatedParams = { ...route.params, update: false };
         navigation.setParams(updatedParams);
-    }, [route.params?.update])
+    }, [route.params?.platform])
 
     const deleteItem = async (id: string) => {
         gameService.removeGameById(id);
@@ -107,23 +76,11 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                     barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                     backgroundColor={backgroundStyle.backgroundColor}
                 />
-                {/* <ScrollView
-                contentInsetAdjustmentBehavior="automatic"
-                style={backgroundStyle}> */}
                 <View
                     style={{
                         backgroundColor: isDarkMode ? colors.black : colors.white,
                         flex: 1,
                     }}>
-                    {/* <ButtonThemed
-                        title="Add Sample Data"
-                        color={colors.highlightColor}
-                        textcolor='white'
-                        width='95%'
-                        borderRadius={8}
-                        marginTop={5}
-                        onPress={async () => { await gameService.sampleData(); updateScreen(); }}
-                    /> */}
                     <ButtonThemed
                         title="Add A Game"
                         color={colors.highlightColor}
@@ -152,44 +109,14 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         marginBottom={5}
                         onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
                     />
-                    <ButtonThemed
-                        title="Platform Steam"
-                        color={colors.highlightColor}
-                        textcolor='white'
-                        width='95%'
-                        borderRadius={8}
-                        marginTop={5}
-                        marginBottom={5}
-                        onPress={() => navigation.navigate('Platforms', { platform: "Playstation" })}
-                    />
                     <GameCardList games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
                 </View>
             </View>
-            {/* <View style={{ flexShrink: .1 }}>
+            <View style={{ flexShrink: .1 }}>
                 <Footer />
-            </View> */}
-            {/* </ScrollView> */}
+            </View>
         </SafeAreaView>
     );
 }
 
-const stylesApp = StyleSheet.create({
-    sectionContainer: {
-        marginTop: 32,
-        paddingHorizontal: 24,
-    },
-    sectionTitle: {
-        fontSize: 24,
-        fontWeight: '600',
-    },
-    sectionDescription: {
-        marginTop: 8,
-        fontSize: 18,
-        fontWeight: '400',
-    },
-    highlight: {
-        fontWeight: '700',
-    },
-});
-
-export default HomeScreen;
+export default PlatformScreen;
