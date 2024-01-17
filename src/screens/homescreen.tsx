@@ -7,9 +7,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styles from '../components/constants/Styles';
 import { ParamList } from '../../App';
 import {
-    Button,
     SafeAreaView,
-    ScrollView,
     StatusBar,
     StyleSheet,
     Text,
@@ -107,23 +105,11 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                     barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                     backgroundColor={backgroundStyle.backgroundColor}
                 />
-                {/* <ScrollView
-                contentInsetAdjustmentBehavior="automatic"
-                style={backgroundStyle}> */}
                 <View
                     style={{
                         backgroundColor: isDarkMode ? colors.black : colors.white,
                         flex: 1,
                     }}>
-                    {/* <ButtonThemed
-                        title="Add Sample Data"
-                        color={colors.highlightColor}
-                        textcolor='white'
-                        width='95%'
-                        borderRadius={8}
-                        marginTop={5}
-                        onPress={async () => { await gameService.sampleData(); updateScreen(); }}
-                    /> */}
                     <ButtonThemed
                         title="Add A Game"
                         color={colors.highlightColor}
@@ -152,23 +138,12 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         marginBottom={5}
                         onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
                     />
-                    <ButtonThemed
-                        title="Platform Steam"
-                        color={colors.highlightColor}
-                        textcolor='white'
-                        width='95%'
-                        borderRadius={8}
-                        marginTop={5}
-                        marginBottom={5}
-                        onPress={() => navigation.navigate('Platforms', { platform: "Playstation" })}
-                    />
                     <GameCardList games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
                 </View>
             </View>
-            {/* <View style={{ flexShrink: .1 }}>
-                <Footer />
-            </View> */}
-            {/* </ScrollView> */}
+            <View style={{ flexShrink: .1 }}>
+                <Footer navigation={navigation} />
+            </View>
         </SafeAreaView>
     );
 }

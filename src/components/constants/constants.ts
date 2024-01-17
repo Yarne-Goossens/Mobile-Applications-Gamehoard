@@ -1,4 +1,3 @@
-import {title} from 'process';
 import {Dimensions} from 'react-native';
 
 const {width, height} = Dimensions.get('window');
@@ -57,7 +56,7 @@ export const platformList = [
   'GameCube',
   'Steam',
   'Epic',
-  'GOG'
+  'GOG',
 ];
 
 const colorPalette = {
@@ -101,6 +100,8 @@ export const sizes = {
   cardHeight: 250,
   radius: 18,
   textSize: 18,
+  icon: 30,
+  tabIcon: 35,
 };
 
 export const padding = {

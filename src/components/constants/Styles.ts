@@ -38,10 +38,18 @@ const styles = StyleSheet.create({
   },
   tabtext: {
     color: colors.titleColor,
-    fontSize: 18,
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
     textAlignVertical: 'center',
+    paddingHorizontal: 5,
+  },
+  iconTab: {
+    verticalAlign: 'middle',
+    fontSize: 35,
+    paddingHorizontal: 10,
+    // paddingVertical: 5,
+    color: colors.titleColor,
   },
   text: {
     color: colors.textColor,

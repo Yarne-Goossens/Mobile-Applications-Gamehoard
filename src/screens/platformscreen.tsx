@@ -113,7 +113,7 @@ function PlatformScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                 </View>
             </View>
             <View style={{ flexShrink: .1 }}>
-                <Footer />
+                <Footer navigation={navigation} />
             </View>
         </SafeAreaView>
     );
