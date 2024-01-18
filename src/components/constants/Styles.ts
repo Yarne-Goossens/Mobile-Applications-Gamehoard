@@ -140,6 +140,22 @@ const styles = StyleSheet.create({
     padding: 6,
     width: '40%',
   },
+  titleAdd: {
+    color: colors.textColor,
+    fontSize: 28,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    padding: 6,
+  },
+  textAddLabel: {
+    color: colors.labelColor,
+    fontSize: 18,
+    fontWeight: '900',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    padding: 6,
+    minWidth: '50%',
+  },
   textInput: {
     color: colors.textColor,
     fontSize: 18,
@@ -147,11 +163,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
     padding: 6,
-    paddingVertical: 7,
-    marginVertical: 5,
+    paddingVertical: 8,
+    marginVertical: 1,
+    minWidth: '50%',
   },
   checkbox: {
     alignSelf: 'center',
+    marginHorizontal: '20%',
   },
   stylingaid: {
     borderColor: 'red',

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, DimensionValue } from 'react-native';
 import { MultiSelect } from 'react-native-element-dropdown';
 import { colors } from '../constants/Constants';
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -7,9 +7,10 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 type Props = {
     onSelectionChange: (selectedGenres: string[]) => void;
     valueList: string[];
+    width?: DimensionValue | undefined;
 }
 
-const MultiSelectComponent = ({ onSelectionChange, valueList }: Props) => {
+const MultiSelectComponent = ({ onSelectionChange, valueList, width }: Props) => {
     const [selected, setSelected] = useState([]);
     const placeholder = 'Select Values';
     const [dataList, setDataList] = useState<{
@@ -37,7 +38,7 @@ const MultiSelectComponent = ({ onSelectionChange, valueList }: Props) => {
 
     return (
         <MultiSelect
-            style={styles.dropdown}
+            style={[styles.dropdown, { width: (width ? width : '50%'), }]}
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
             // iconStyle={styles.iconStyle}
