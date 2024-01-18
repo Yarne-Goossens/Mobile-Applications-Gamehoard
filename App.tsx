@@ -1,21 +1,21 @@
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Header, HeaderButtons } from './src/components/Header';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SettingsScreen from './src/screens/settings';
+import React from 'react';
 import GameDetailsScreen from './src/components/Game/GameDetails';
+import { Header, HeaderButtons } from './src/components/Header';
+import IgdbDetailsScreen from './src/components/Igdb/IgdbDetails';
+import { colors } from './src/components/constants/Constants';
+import { DataProvider } from './src/components/constants/DataContext';
 import styles from './src/components/constants/Styles';
-import HomeScreen from './src/screens/homescreen';
 import AddScreen from './src/screens/addscreen';
 import EditScreen from './src/screens/editscreen';
-import SearchScreen from './src/screens/searchscreen';
-import IgdbAddScreen from './src/screens/igdbaddscreen';
-import { colors } from './src/components/constants/Constants';
 import FavoriteScreen from './src/screens/favoritescreen';
-import { DataProvider } from './src/components/constants/DataContext';
-import { Game } from './src/types/types';
-import IgdbDetailsScreen from './src/components/Igdb/IgdbDetails';
+import HomeScreen from './src/screens/homescreen';
+import IgdbAddScreen from './src/screens/igdbaddscreen';
 import PlatformScreen from './src/screens/platformscreen';
+import SearchScreen from './src/screens/searchscreen';
+import SettingsScreen from './src/screens/settings';
+import { Game } from './src/types/types';
 
 export type ParamList = {
   Home: { update: boolean };

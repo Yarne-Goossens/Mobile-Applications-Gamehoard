@@ -96,6 +96,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.iconColor,
   },
   gameTitle: {fontSize: 30, fontWeight: 'bold'},
+  textContainer: {
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+  },
   textLabel: {
     color: colors.labelColor,
     fontSize: 18,
@@ -103,6 +107,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
     padding: 6,
+    minWidth: '50%',
   },
   textGame: {
     color: colors.textColor,
@@ -111,14 +116,29 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
     padding: 6,
+    width: '50%',
   },
-  textGenre: {
+  textDetailContainer: {
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+  },
+  textDetailLabel: {
+    color: colors.labelColor,
+    fontSize: 18,
+    fontWeight: '900',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    padding: 6,
+    minWidth: '60%',
+  },
+  textDetailGame: {
     color: colors.textColor,
     fontSize: 18,
     fontWeight: '500',
     textAlign: 'center',
     textAlignVertical: 'center',
     padding: 6,
+    width: '40%',
   },
   textInput: {
     color: colors.textColor,
@@ -132,6 +152,10 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     alignSelf: 'center',
+  },
+  stylingaid: {
+    borderColor: 'red',
+    borderWidth: 1,
   },
 });
 

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, DimensionValue } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { colors } from '../constants/Constants';
 
 type Props = {
     genres: string[];
+    width?: DimensionValue | undefined;
 }
 
 let data = [
@@ -13,7 +14,7 @@ let data = [
     { label: 'Genre 3', value: '3' },
 ];
 
-const DropdownList = ({ genres }: Props) => {
+const DropdownList = ({ genres, width }: Props) => {
     const [value, setValue] = useState(null);
     const [dataList, setDataList] = useState<{
         label: string;
@@ -21,7 +22,7 @@ const DropdownList = ({ genres }: Props) => {
     }[]>([])
 
     useEffect(() => {
-        console.log(genres);
+        // console.log(genres);
         const newData = genres.map((item) => ({ label: item, value: item }));
         setDataList(newData);
     }, [genres]);
@@ -36,7 +37,7 @@ const DropdownList = ({ genres }: Props) => {
 
     return (
         <Dropdown
-            style={styles.dropdown}
+            style={[styles.dropdown, { width: (width ? width : '50%'), }]}
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
             data={dataList}

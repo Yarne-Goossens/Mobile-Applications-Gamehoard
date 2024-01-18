@@ -52,29 +52,30 @@ const GameCard = ({ game, deleteItem, navigation, updateScreen }: Props) => {
                         </View>
                     </View>
                 </View>
-                <View style={{ width: "65%", height: (sizes.cardHeight * .2) }}>
-                    <View style={{ flexDirection: 'row', height: (sizes.cardHeight * .8) }}>
-                        <View style={{ width: '55%', alignSelf: 'stretch' }}>
+                <View style={{ width: "65%", height: (sizes.cardHeight * .8) }}>
+                    <View style={{ flexDirection: 'column', height: (sizes.cardHeight * .8), alignItems: 'center' }}>
+                        <View style={styles.textContainer}>
                             <Text style={styles.textLabel}>Genre(s):</Text>
-                            <Text style={styles.textLabel}><Icon name="clock-o" size={20} /></Text>
-                            <Text style={styles.textLabel}>Rating:</Text>
-                            <Text style={styles.textLabel}>Price:</Text>
-                            <Text style={styles.textLabel}>Added On:</Text>
-                        </View>
-                        <View style={{ width: '45%', alignSelf: 'stretch' }}>
                             <DropdownList genres={game.genre} />
-                            {/* <Text style={styles.textGenre}>{game.genre.toString()}</Text> */}
+                        </View>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.textLabel}><Icon name="clock-o" size={25} /></Text>
                             <Text style={styles.textGame}>{game.playtime ? game.playtime : <Icon name="eye-slash" size={20} />} min.</Text>
+                        </View>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.textLabel}>Rating:</Text>
                             <Text style={styles.textGame}>{game.rating ? game.rating : <Icon name="eye-slash" size={20} />}/10</Text>
+                        </View>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.textLabel}>Price:</Text>
                             <Text style={styles.textGame}>{game.price ? game.price : <Icon name="eye-slash" size={20} />} / {game.msrp ? game.msrp : <Icon name="eye-slash" size={20} />} €</Text>
+                        </View>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.textLabel}>Added On:</Text>
                             <Text style={styles.textGame}>{game.added_on}</Text>
                         </View>
                     </View>
                     <View style={{ height: (sizes.cardHeight * .2), paddingHorizontal: 5 }}>
-                        {/* <Button
-                        title="Go to Details"
-                        onPress={() => navigation.navigate('Details', { gameId: game.game_id })}
-                    /> */}
                         <ButtonThemed
                             title="Go to Details"
                             color={colors.highlightColor}

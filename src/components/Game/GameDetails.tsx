@@ -60,39 +60,61 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
                             }
                             {details.favorite ? <Icon style={{ position: 'absolute', top: 22, right: 45 }} name='heart' size={50} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(details.game_id); updateScreen() }} /> : <Icon style={{ position: 'absolute', top: 22, right: 45 }} name='heart-o' size={50} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(details.game_id); updateScreen() }} />}
                         </View>
-                        <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <View style={{ width: '60%', alignSelf: 'center', marginTop: 20 }}>
-                                <Text style={styles.textLabel}>Id:</Text>
-                                <Text style={styles.textLabel}>Genre(s):</Text>
-                                <Text style={styles.textLabel}>Price (Bought/Full):</Text>
-                                <Text style={styles.textLabel}>Added On:</Text>
-                                <Text style={styles.textLabel}><Icon name="clock-o" size={20} /></Text>
-                                <Text style={styles.textLabel}>Completiontime:</Text>
-                                <Text style={styles.textLabel}>Rating:</Text>
-                                <Text style={styles.textLabel}>Critic Rating:</Text>
-                                <Text style={styles.textLabel}>User Rating: </Text>
-                                <Text style={styles.textLabel}>Platforms:</Text>
-                                <Text style={styles.textLabel}>Multiplayer: </Text>
-                                <Text style={styles.textLabel}>Coop:</Text>
-                                <Text style={styles.textLabel}>Physical:</Text>
+                        <View style={{ flex: 1, flexDirection: 'column', marginTop: 20 }}>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Id:</Text>
+                                <Text style={styles.textDetailGame}>{details.game_id}</Text>
                             </View>
-                            <View style={{ width: '40%', alignSelf: 'center', marginTop: 20 }}>
-                                <Text style={styles.textGame}>{details.game_id}</Text>
-                                <DropdownList genres={details.genre} />
-                                <Text style={styles.textGame}>{details.price ? details.price : <Icon name="eye-slash" size={20} />} / {details.msrp ? details.msrp : <Icon name="eye-slash" size={20} />} €</Text>
-                                <Text style={styles.textGame}>{details.added_on}</Text>
-                                <Text style={styles.textGame}>{details.playtime ? details.playtime : <Icon name="eye-slash" size={20} />} min.</Text>
-                                <Text style={styles.textGame}>{details.completiontime ? details.completiontime : <Icon name="eye-slash" size={20} />}</Text>
-                                <Text style={styles.textGame}>{details.rating ? details.rating : <Icon name="eye-slash" size={20} />}/10</Text>
-                                <Text style={styles.textGame}>{details.user_rating ? details.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
-                                <Text style={styles.textGame}>{details.critic_rating ? details.critic_rating : <Icon name="eye-slash" size={20} />}</Text>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Genre(s):</Text>
+                                <DropdownList genres={details.genre} width={'40%'} />
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Price (Bought/Full):</Text>
+                                <Text style={styles.textDetailGame}>{details.price ? details.price : <Icon name="eye-slash" size={20} />} / {details.msrp ? details.msrp : <Icon name="eye-slash" size={20} />} €</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Added On:</Text>
+                                <Text style={styles.textDetailGame}>{details.added_on}</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}><Icon name="clock-o" size={25} /></Text>
+                                <Text style={styles.textDetailGame}>{details.playtime ? details.playtime : <Icon name="eye-slash" size={20} />} min.</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Completiontime:</Text>
+                                <Text style={styles.textDetailGame}>{details.completiontime ? details.completiontime : <Icon name="eye-slash" size={20} />}</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Own Rating:</Text>
+                                <Text style={styles.textDetailGame}>{details.rating ? details.rating : <Icon name="eye-slash" size={20} />}/10</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>User Rating: </Text>
+                                <Text style={styles.textDetailGame}>{details.user_rating ? details.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Critic Rating:</Text>
+                                <Text style={styles.textDetailGame}>{details.critic_rating ? details.critic_rating : <Icon name="eye-slash" size={20} />}</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Platforms:</Text>
                                 {(details.platforms?.length != undefined && details.platforms?.length >= 2) ?
-                                    <DropdownList genres={details.platforms} />
-                                    : <Text style={styles.textGame}>{details.platforms ? details.platforms : <Icon name="eye-slash" size={20} />}</Text>
+                                    <DropdownList genres={details.platforms} width={'40%'} />
+                                    : <Text style={styles.textDetailGame}>{details.platforms ? details.platforms : <Icon name="eye-slash" size={20} />}</Text>
                                 }
-                                <Text style={styles.textGame}>{details.multiplayer ? <MIcon name="people" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
-                                <Text style={styles.textGame}>{details.coop ? details.coop + ' players' : <Icon name="eye-slash" size={20} />}</Text>
-                                <Text style={styles.textGame}>{details.physical ? <Icon name="check" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Multiplayer: </Text>
+                                <Text style={styles.textDetailGame}>{details.multiplayer ? <MIcon name="people" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Coop:</Text>
+                                <Text style={styles.textDetailGame}>{details.coop ? details.coop + ' players' : <Icon name="eye-slash" size={20} />}</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Physical:</Text>
+                                <Text style={styles.textDetailGame}>{details.physical ? <Icon name="check" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
                             </View>
                         </View>
                     </>) : (

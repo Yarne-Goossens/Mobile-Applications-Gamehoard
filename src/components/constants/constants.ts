@@ -1,9 +1,8 @@
-import {Dimensions} from 'react-native';
-
+import {Dimensions, useColorScheme} from 'react-native';
 const {width, height} = Dimensions.get('window');
-
 console.log(width, height);
-//borderColor: 'red', borderWidth: 2
+
+const isDarkMode = useColorScheme() === 'dark';
 
 export const genreList = [
   'Point-and-Click',
