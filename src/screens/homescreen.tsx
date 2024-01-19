@@ -128,16 +128,18 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         marginTop={5}
                         onPress={() => navigation.navigate('Igdb')}
                     />
-                    <ButtonThemed
-                        title="Random Game"
-                        color={colors.highlightColor}
-                        textcolor='white'
-                        width='95%'
-                        borderRadius={8}
-                        marginTop={5}
-                        marginBottom={5}
-                        onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
-                    />
+                    {collection && collection.length > 0 && (
+                        <ButtonThemed
+                            title="Random Game"
+                            color={colors.highlightColor}
+                            textcolor='white'
+                            width='95%'
+                            borderRadius={8}
+                            marginTop={5}
+                            marginBottom={5}
+                            onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
+                        />
+                    )}
                     <GameCardList games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
                 </View>
             </View>
