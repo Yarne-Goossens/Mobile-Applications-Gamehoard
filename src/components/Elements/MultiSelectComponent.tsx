@@ -8,10 +8,11 @@ type Props = {
     onSelectionChange: (selectedGenres: string[]) => void;
     valueList: string[];
     width?: DimensionValue | undefined;
+    previousValues?: string[];
 }
 
-const MultiSelectComponent = ({ onSelectionChange, valueList, width }: Props) => {
-    const [selected, setSelected] = useState([]);
+const MultiSelectComponent = ({ onSelectionChange, valueList, width, previousValues }: Props) => {
+    const [selected, setSelected] = useState<string[]>([]);
     const placeholder = 'Select Values';
     const [dataList, setDataList] = useState<{
         label: string;
@@ -27,6 +28,12 @@ const MultiSelectComponent = ({ onSelectionChange, valueList, width }: Props) =>
         console.log(selected);
         onSelectionChange(selected);
     }, [selected]);
+
+    useEffect(() => {
+        if (previousValues && previousValues.length > 0) {
+            setSelected(previousValues);
+        }
+    }, [previousValues]);
 
     const renderItem = (item) => {
         return (

@@ -44,6 +44,7 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
       setCompletiontime(game.completiontime!)
       setFavorite(game.favorite!)
       setPicture(game.picture!)
+      setPhysical(game.physical!)
     }
   }
 
@@ -107,7 +108,7 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
               </View>
               <View style={styles.textDetailContainer}>
                 <Text style={styles.textAddLabel}>Genre(s):</Text>
-                <MultiSelectComponent onSelectionChange={setGenre} valueList={genreList} previousValues={platforms} />
+                <MultiSelectComponent onSelectionChange={setGenre} valueList={genreList} previousValues={genre} />
               </View>
               <View style={styles.textDetailContainer}>
                 <Text style={styles.textAddLabel}>Price Bought:</Text>
