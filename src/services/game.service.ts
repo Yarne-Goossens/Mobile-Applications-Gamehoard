@@ -121,6 +121,45 @@ const sampleData = async () => {
     coop: '1-4',
     picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co2k2z.png',
   });
+  await addGame({
+    game_id: '4',
+    name: "Baldur's Gate 3",
+    added_on: getDate(),
+    price: 60,
+    user_rating: 9.6,
+    critic_rating: 94.5,
+    favorite: false,
+    multiplayer: true,
+    genre: [
+      'Role-playing (RPG)',
+      'Strategy',
+      'Turn-based strategy (TBS)',
+      'Tactical',
+      'Adventure',
+    ],
+    platforms: [
+      'PC (Microsoft Windows)',
+      'Mac',
+      'PlayStation 5',
+      'Google Stadia',
+      'Xbox Series X|S',
+    ],
+    picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co670h.jpg',
+  });
+  await addGame({
+    game_id: '5',
+    name: 'Super Mario Bros. Wonder',
+    added_on: getDate(),
+    price: 60,
+    user_rating: 8.9,
+    critic_rating: 95.0,
+    favorite: true,
+    multiplayer: true,
+    coop: '1-4',
+    genre: ['Platform'],
+    platforms: ['Nintendo Switch'],
+    picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co6nnl.jpg',
+  });
 };
 
 export default {
