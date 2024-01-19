@@ -100,6 +100,7 @@ function PlatformScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         marginTop={5}
                         onPress={() => navigation.navigate('Igdb')}
                     />
+                    {collection && collection.length > 0 && (
                     <ButtonThemed
                         title="Random Game"
                         color={colors.highlightColor}
@@ -110,6 +111,7 @@ function PlatformScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         marginBottom={5}
                         onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
                     />
+                    )}
                     {/* <Card containerStyle={{ marginBottom: 5, borderRadius: 10, backgroundColor: colors.iconColor, }}>
                         <Text style={{
                             color: colors.textColor, fontSize: 30, fontWeight: 'bold', textAlign: 'center', textAlignVertical: 'center', padding: 0,
