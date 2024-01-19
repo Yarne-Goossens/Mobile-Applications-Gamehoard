@@ -52,7 +52,7 @@ const AddScreen = ({ route, navigation }: ScreenProps) => {
       <SafeAreaView style={backgroundStyle}>
         <Card wrapperStyle={styles.gamecard} containerStyle={styles.gamecardContainer}>
           <ScrollView>
-            <Text style={styles.titleAdd}>Add Game</Text>
+            <Text style={styles.textHeader}>Add Game</Text>
             <Card.Divider />
             <View style={{ flex: 1, flexDirection: 'column' }}>
               <View style={styles.textDetailContainer}>

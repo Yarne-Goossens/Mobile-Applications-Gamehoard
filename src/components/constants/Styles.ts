@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     textAlignVertical: 'center',
+    padding: 6,
   },
   view: {
     backgroundColor: 'black',
@@ -157,13 +158,6 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     padding: 6,
     width: '43%',
-  },
-  titleAdd: {
-    color: colors.textColor,
-    fontSize: 28,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    padding: 6,
   },
   textAddLabel: {
     color: colors.labelColor,

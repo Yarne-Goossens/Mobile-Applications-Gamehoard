@@ -97,7 +97,7 @@ const sampleData = async () => {
     genre: ['Indie', 'Strategy'],
     price: 5,
     added_on: getDate(),
-    platforms: ['Steam'],
+    platforms: ['Steam', 'Mac', 'Nintendo Switch'],
     playtime: 30,
     rating: 5,
     user_rating: 7.3,

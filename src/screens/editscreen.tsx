@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet, TextInput, SafeAreaView, ScrollView, useColorScheme } from 'react-native';
+import { View, Text, StyleSheet, TextInput, SafeAreaView, ScrollView, useColorScheme } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ParamList } from '../../App';
 import gameService from '../services/game.service';
-import { getDate } from '../services/util.service';
 import { v4 as uuid } from 'uuid';
 import CheckBox from '@react-native-community/checkbox';
 import { Game } from '../types/types';
-import { get } from 'http';
 import { Card } from '@rneui/themed';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import styles from '../components/constants/Styles';
 import { colors, genreList, platformList } from '../components/constants/Constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MultiSelectComponent from '../components/Elements/MultiSelectComponent';
+import ButtonThemed from '../components/Elements/ButtonThemed';
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'Edit'>;
 
@@ -36,6 +35,8 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
       setPrice(game.price)
       setMsrp(game.msrp!)
       setRating(game.rating!)
+      setUserRating(game.user_rating!)
+      setCriticRating(game.critic_rating!)
       setPlatform(game.platforms!)
       setMultiplayer(game.multiplayer!)
       setCoop(game.coop!)
@@ -60,23 +61,23 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
     // console.log('game', game)
   }, [game])
 
-  const [game_id, setGame_id] = useState<string>(game?.game_id!);
-  const [name, setName] = useState<string>(game?.name!);
-  const [genre, setGenre] = useState<string[]>(game?.genre!);
-  const [added_on, setAdded_on] = useState<string>(game?.added_on!);
-  const [price, setPrice] = useState<number>(game?.price!);
-  const [msrp, setMsrp] = useState<number>(game?.msrp!);
-  const [rating, setRating] = useState<number>(game?.rating!);
+  const [game_id, setGame_id] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [genre, setGenre] = useState<string[]>([]);
+  const [added_on, setAdded_on] = useState<string>('');
+  const [price, setPrice] = useState<number>(0);
+  const [msrp, setMsrp] = useState<number>(0);
+  const [rating, setRating] = useState<number>(0);
   const [user_rating, setUserRating] = useState<number>(0);
   const [critic_rating, setCriticRating] = useState<number>(0);
-  const [platforms, setPlatform] = useState<string[]>(game?.platforms!);
-  const [multiplayer, setMultiplayer] = useState<boolean>(game?.multiplayer!);
-  const [coop, setCoop] = useState<string>(game?.coop!);
-  const [playtime, setPlaytime] = useState<number>(game?.playtime!);
-  const [completiontime, setCompletiontime] = useState<number>(game?.completiontime!);
-  const [favorite, setFavorite] = useState<boolean>(game?.favorite!);
-  const [physical, setPhysical] = useState<boolean>(game?.physical!);
-  const [picture, setPicture] = useState<string>(game?.picture!);
+  const [platforms, setPlatform] = useState<string[]>([]);
+  const [multiplayer, setMultiplayer] = useState<boolean>(false);
+  const [coop, setCoop] = useState<string>('');
+  const [playtime, setPlaytime] = useState<number>(0);
+  const [completiontime, setCompletiontime] = useState<number>(0);
+  const [favorite, setFavorite] = useState<boolean>(false);
+  const [physical, setPhysical] = useState<boolean>(false);
+  const [picture, setPicture] = useState<string>('');
 
   const onSubmit = async () => {
     console.log('onSubmit');
@@ -98,41 +99,75 @@ const EditScreen = ({ route, navigation }: ScreenProps) => {
         <Card wrapperStyle={styles.gamecard} containerStyle={styles.gamecardContainer}>
           <ScrollView>
             <Text style={styles.textHeader}>Edit Game</Text>
-            <View style={{ flex: 1, flexDirection: 'row' }}>
-              <View style={{ width: '50%', justifyContent: 'space-evenly' }}>
-                <Text style={styles.textLabel}>Name:</Text>
-                <Text style={styles.textLabel}>Genre(s):</Text>
-                <Text style={styles.textLabel}>Price Bought:</Text>
-                <Text style={styles.textLabel}>Price Full:</Text>
-                <Text style={styles.textLabel}><Icon name="clock-o" size={20} /></Text>
-                <Text style={styles.textLabel}>Completiontime:</Text>
-                <Text style={styles.textLabel}>Rating:</Text>
-                <Text style={styles.textLabel}>Critic Rating:</Text>
-                <Text style={styles.textLabel}>User Rating: </Text>
-                <Text style={styles.textLabel}>Platforms:</Text>
-                <Text style={styles.textLabel}>Multiplayer: </Text>
-                <Text style={styles.textLabel}>Coop:</Text>
-                <Text style={styles.textLabel}>Physical:</Text>
-                <Text style={styles.textLabel}>Picture:</Text>
-              </View>
-              <View style={{ width: '50%', justifyContent: 'space-evenly' }}>
+            <Card.Divider />
+            <View style={{ flex: 1, flexDirection: 'column' }}>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Name:</Text>
                 <TextInput style={styles.textInput} placeholder="Name" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setName(val)} value={name} />
-                <MultiSelectComponent onSelectionChange={setGenre} valueList={genreList} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Genre(s):</Text>
+                <MultiSelectComponent onSelectionChange={setGenre} valueList={genreList} previousValues={platforms} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Price Bought:</Text>
                 <TextInput style={styles.textInput} placeholder="Price" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPrice(Number(val))} value={price?.toString()} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Price Full:</Text>
                 <TextInput style={styles.textInput} placeholder="MSRP" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setMsrp(Number(val))} value={msrp?.toString()} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}><Icon name="clock-o" size={25} /></Text>
                 <TextInput style={styles.textInput} placeholder="Playtime" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPlaytime(Number(val))} value={playtime?.toString()} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Completiontime:</Text>
                 <TextInput style={styles.textInput} placeholder="Completiontime" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCompletiontime(Number(val))} value={completiontime?.toString()} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Own Rating:</Text>
                 <TextInput style={styles.textInput} placeholder="Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setRating(Number(val))} value={rating?.toString()} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>User Rating: </Text>
                 <TextInput style={styles.textInput} placeholder="User Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setUserRating(Number(val))} value={user_rating?.toString()} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Critic Rating:</Text>
                 <TextInput style={styles.textInput} placeholder="Critic Rating" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCriticRating(Number(val))} value={critic_rating?.toString()} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Platforms:</Text>
                 <MultiSelectComponent onSelectionChange={setPlatform} valueList={platformList} previousValues={platforms} />
-                <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={multiplayer} onValueChange={(val: boolean) => setMultiplayer(val)} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Multiplayer: </Text>
+                <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={multiplayer ? true : false} onValueChange={(val: boolean) => setMultiplayer(val)} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Coop:</Text>
                 <TextInput style={styles.textInput} placeholder="Coop" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setCoop(val)} value={coop?.toString()} />
-                <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={physical} onValueChange={(val: boolean) => setPhysical(val)} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Physical:</Text>
+                <CheckBox style={styles.checkbox} tintColors={{ true: colors.highlightColor, false: 'black' }} value={physical ? true : false} onValueChange={(val: boolean) => setPhysical(val)} />
+              </View>
+              <View style={styles.textDetailContainer}>
+                <Text style={styles.textAddLabel}>Picture:</Text>
                 <TextInput style={styles.textInput} placeholder="Picture" placeholderTextColor={colors.highlightColor} onChangeText={(val) => setPicture(val)} value={picture?.toString()} />
               </View>
+              <ButtonThemed
+                title="Edit Game"
+                color={colors.highlightColor}
+                textcolor='white'
+                width='95%'
+                borderRadius={16}
+                marginBottom={2}
+                marginTop={10}
+                onPress={() => onSubmit()}
+              />
             </View>
-            <Button title="Edit Game" onPress={() => onSubmit()} />
           </ScrollView>
         </Card >
       </SafeAreaView>

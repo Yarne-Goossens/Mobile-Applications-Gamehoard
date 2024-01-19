@@ -115,31 +115,6 @@ const IgdbDetailsScreen = ({ route, navigation }: ScreenProps) => {
                                 <Text style={styles.textDetailGame}>{details.coop ? details.coop + ' players' : <Icon name="eye-slash" size={20} />}</Text>
                             </View>
                         </View>
-                        <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <View style={{ width: '60%', alignSelf: 'center', marginTop: 20 }}>
-                                <Text style={styles.textLabel}>IgdbId:</Text>
-                                <Text style={styles.textLabel}>Genre(s):</Text>
-                                <Text style={styles.textLabel}>Price (Bought/Full):</Text>
-                                <Text style={styles.textLabel}>Critic Rating:</Text>
-                                <Text style={styles.textLabel}>User Rating: </Text>
-                                <Text style={styles.textLabel}>Platforms:</Text>
-                                <Text style={styles.textLabel}>Multiplayer: </Text>
-                                <Text style={styles.textLabel}>Coop:</Text>
-                            </View>
-                            <View style={{ width: '40%', alignSelf: 'center', marginTop: 20 }}>
-                                <Text style={styles.textGame}>{details.game_id}</Text>
-                                <DropdownList genres={details.genre} />
-                                <Text style={styles.textGame}>{details.price ? details.price : <Icon name="eye-slash" size={20} />} / {details.msrp ? details.msrp : <Icon name="eye-slash" size={20} />} €</Text>
-                                <Text style={styles.textGame}>{details.critic_rating ? details.critic_rating : <Icon name="eye-slash" size={20} />}/10</Text>
-                                <Text style={styles.textGame}>{details.user_rating ? details.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
-                                {(details.platforms?.length != undefined && details.platforms?.length >= 2) ?
-                                    <DropdownList genres={details.platforms} />
-                                    : <Text style={styles.textGame}>{details.platforms ? details.platforms : <Icon name="eye-slash" size={20} />}</Text>
-                                }
-                                <Text style={styles.textGame}>{details.multiplayer ? <MIcon name="people" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
-                                <Text style={styles.textGame}>{details.coop ? details.coop + ' players' : <Icon name="eye-slash" size={20} />}</Text>
-                            </View>
-                        </View>
                     </>) : (
                         <Text>Loading...</Text>
                     )}
