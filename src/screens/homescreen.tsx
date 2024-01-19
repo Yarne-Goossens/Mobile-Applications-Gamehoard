@@ -142,7 +142,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                 </View>
             </View>
             <View style={{ flexShrink: .1 }}>
-                <Footer navigation={navigation} />
+                <Footer navigation={navigation} route={route} platform={'All'} />
             </View>
         </SafeAreaView>
     );
