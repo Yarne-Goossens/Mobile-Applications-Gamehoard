@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     item: {
-        padding: 2,
+        padding: 1,
         flexDirection: 'row',
         // justifyContent: 'space-between',
         alignItems: 'center',

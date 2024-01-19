@@ -80,7 +80,7 @@ const GameCard = ({ game, deleteItem, navigation, updateScreen }: Props) => {
                             title="Go to Details"
                             color={colors.highlightColor}
                             textcolor='white'
-                            width='90%'
+                            width='95%'
                             borderRadius={16}
                             marginBottom={2}
                             marginTop={2}

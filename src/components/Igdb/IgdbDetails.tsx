@@ -78,6 +78,43 @@ const IgdbDetailsScreen = ({ route, navigation }: ScreenProps) => {
                                 onPress={() => onSubmit()}
                             />
                         </View>
+                        <View style={{ flex: 1, flexDirection: 'column', marginTop: 20 }}>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>IGDB Id:</Text>
+                                <Text style={styles.textDetailGame}>{details.game_id}</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Genre(s):</Text>
+                                <DropdownList genres={details.genre} width={'40%'} />
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Price (Bought/Full):</Text>
+                                <Text style={styles.textDetailGame}>{details.price ? details.price : <Icon name="eye-slash" size={20} />} / {details.msrp ? details.msrp : <Icon name="eye-slash" size={20} />} €</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>User Rating:</Text>
+                                <Text style={styles.textDetailGame}>{details.user_rating ? details.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Critic Rating:</Text>
+                                <Text style={styles.textDetailGame}>{details.critic_rating ? details.critic_rating : <Icon name="eye-slash" size={20} />}</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Platforms:</Text>
+                                {(details.platforms?.length != undefined && details.platforms?.length >= 2) ?
+                                    <DropdownList genres={details.platforms} width={'40%'} />
+                                    : <Text style={styles.textDetailGame}>{details.platforms ? details.platforms : <Icon name="eye-slash" size={20} />}</Text>
+                                }
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Multiplayer:</Text>
+                                <Text style={styles.textDetailGame}>{details.multiplayer ? <MIcon name="people" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
+                            </View>
+                            <View style={styles.textDetailContainer}>
+                                <Text style={styles.textDetailLabel}>Coop:</Text>
+                                <Text style={styles.textDetailGame}>{details.coop ? details.coop + ' players' : <Icon name="eye-slash" size={20} />}</Text>
+                            </View>
+                        </View>
                         <View style={{ flex: 1, flexDirection: 'row' }}>
                             <View style={{ width: '60%', alignSelf: 'center', marginTop: 20 }}>
                                 <Text style={styles.textLabel}>IgdbId:</Text>

@@ -45,23 +45,41 @@ const GameView = ({ game, navigation, updateScreen }: GameProps) => (
                     />
                 }
             </View>
-            <View style={{ width: "65%", paddingHorizontal: 5 }}>
-                <Text style={styles.textGame}>IGDB ID: {game.game_id}</Text>
-                <DropdownList genres={game.genre} />
-                {/* <Text style={styles.textGame}>Price: {game.price} / {game.msrp ? game.msrp : 'NA'} €</Text> */}
-                <Text style={styles.textGame}>User Rating: {game.user_rating ? game.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
-                <Text style={styles.textGame}>Critic Rating: {game.critic_rating ? game.critic_rating : <Icon name="eye-slash" size={20} />}</Text>
-                <Text style={styles.textGame}>Multiplayer: {game.multiplayer ? <MIcon name="people" size={20} /> : <Icon name="eye-slash" size={20} />}</Text>
-                <ButtonThemed
-                    title="Show Details"
-                    color={colors.highlightColor}
-                    textcolor='white'
-                    width='90%'
-                    borderRadius={16}
-                    marginBottom={2}
-                    marginTop={2}
-                    onPress={() => navigation.navigate('IgdbDetails', { gameObject: game })}
-                />
+            <View style={{ width: "65%", height: (sizes.cardHeight * .8) }}>
+                <View style={{ flexDirection: 'column', height: (sizes.cardHeight * .8), alignItems: 'center' }}>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.textIgdbLabel}>IGDB Id:</Text>
+                        <Text style={styles.textIgdbGame}>{game.game_id}</Text>
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.textIgdbLabel}>Genre(s):</Text>
+                        <DropdownList genres={game.genre} width={'45%'} />
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.textIgdbLabel}>User Rating:</Text>
+                        <Text style={styles.textIgdbGame}>{game.user_rating ? game.user_rating : <Icon name="eye-slash" size={20} />}/10</Text>
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.textIgdbLabel}>Critic Rating:</Text>
+                        <Text style={styles.textIgdbGame}>{game.critic_rating ? game.critic_rating : <Icon name="eye-slash" size={20} />}</Text>
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.textIgdbLabel}>Multiplayer:</Text>
+                        <Text style={styles.textIgdbGame}>{game.multiplayer ? <MIcon name="people" size={20} /> : <Icon name="remove" size={20} />}</Text>
+                    </View>
+                </View>
+                <View style={{ height: (sizes.cardHeight * .2), paddingHorizontal: 5 }}>
+                    <ButtonThemed
+                        title="Show Details"
+                        color={colors.highlightColor}
+                        textcolor='white'
+                        width='95%'
+                        borderRadius={16}
+                        marginBottom={2}
+                        marginTop={2}
+                        onPress={() => navigation.navigate('IgdbDetails', { gameObject: game })}
+                    />
+                </View>
             </View>
         </View>
     </Card >

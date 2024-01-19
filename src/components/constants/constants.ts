@@ -2,7 +2,7 @@ import {Dimensions, useColorScheme} from 'react-native';
 const {width, height} = Dimensions.get('window');
 console.log(width, height);
 
-const isDarkMode = useColorScheme() === 'dark';
+// const isDarkMode = useColorScheme() === 'dark';
 
 export const genreList = [
   'Point-and-Click',
