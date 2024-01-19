@@ -19,6 +19,7 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
 
     const fetchData = async () => {
         setDetails(await gameService.getGameById(route.params.gameId));
+        // deleteItem = route.params.deleteItem
     }
 
     const [update, setUpdate] = useState<Boolean>(false)
@@ -33,6 +34,11 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
         fetchData();
         console.log(details?.name);
     }, [route.params.gameId, update])
+
+    const deleteItem = async (id: string) => {
+        gameService.removeGameById(id);
+        navigation.navigate('Home', { update: true });
+    }
 
     const isDarkMode = useColorScheme() === 'dark';
     const backgroundStyle = {
@@ -61,6 +67,11 @@ const GameDetailsScreen = ({ route, navigation }: ScreenProps) => {
                             {details.favorite ? <Icon style={{ position: 'absolute', top: 22, right: 45 }} name='heart' size={50} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(details.game_id); updateScreen() }} /> : <Icon style={{ position: 'absolute', top: 22, right: 45 }} name='heart-o' size={50} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(details.game_id); updateScreen() }} />}
                         </View>
                         <View style={{ flex: 1, flexDirection: 'column', marginTop: 20 }}>
+                            <View style={styles.textDetailContainer}>
+                                <MIcon style={{ textAlign: 'center', marginHorizontal: 'auto', width: "60%", paddingBottom: 5 }} name="edit" size={30} color={colors.iconCards} onPress={() => navigation.navigate('Edit', { gameId: details.game_id })} />
+                                <Icon style={{ textAlign: 'center', marginHorizontal: "auto", width: "40%", paddingBottom: 5 }} name="trash" size={30} color={colors.iconCards} onPress={() => deleteItem(details.game_id)} />
+                            </View>
+                            <Card.Divider />
                             <View style={styles.textDetailContainer}>
                                 <Text style={styles.textDetailLabel}>Id:</Text>
                                 <Text style={styles.textDetailGame}>{details.game_id}</Text>

@@ -19,7 +19,6 @@ const SettingsScreen = ({ route, navigation }: ScreenProps) => {
         backgroundColor: isDarkMode ? colors.black : colors.white,
         flex: 1,
       }}>
-      {/* <Text>Settings Screen</Text> */}
       <View style={styles.root}>
         <ButtonThemed
           title="Add Sample Data"
