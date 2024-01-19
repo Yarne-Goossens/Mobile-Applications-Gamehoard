@@ -19,11 +19,13 @@ import ButtonThemed from '../components/Elements/ButtonThemed';
 import { colors } from '../components/constants/Constants';
 import { useData } from '../components/constants/DataContext';
 import { platform } from 'os';
+import { Card } from '@rneui/themed';
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'Platforms'>;
 
 function PlatformScreen({ route, navigation }: ScreenProps): React.JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
+    const [platform, setPlatform] = useState<string>('')
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -60,6 +62,7 @@ function PlatformScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         if (route.params?.platform) {
             updateScreen();
         }
+        setPlatform(route.params?.platform)
         const updatedParams = { ...route.params, update: false };
         navigation.setParams(updatedParams);
     }, [route.params?.platform])
@@ -113,7 +116,7 @@ function PlatformScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                 </View>
             </View>
             <View style={{ flexShrink: .1 }}>
-                <Footer navigation={navigation} />
+                <Footer navigation={navigation} route={route} platform={platform} />
             </View>
         </SafeAreaView>
     );
