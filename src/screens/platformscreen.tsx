@@ -112,6 +112,11 @@ function PlatformScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         marginBottom={5}
                         onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
                     />
+                    {/* <Card containerStyle={{ marginBottom: 5, borderRadius: 10, backgroundColor: colors.iconColor, }}>
+                        <Text style={{
+                            color: colors.textColor, fontSize: 30, fontWeight: 'bold', textAlign: 'center', textAlignVertical: 'center', padding: 0,
+                        }}>{route.params?.platform}</Text>
+                    </Card> */}
                     <GameCardList games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
                 </View>
             </View>
