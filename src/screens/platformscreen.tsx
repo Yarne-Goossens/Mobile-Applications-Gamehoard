@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import GameCardList from '../components/Game/GameCardList';
 import gameService from '../services/game.service';
@@ -9,7 +9,6 @@ import { ParamList } from '../../App';
 import {
     SafeAreaView,
     StatusBar,
-    StyleSheet,
     Text,
     useColorScheme,
     View,
@@ -18,7 +17,6 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import ButtonThemed from '../components/Elements/ButtonThemed';
 import { colors } from '../components/constants/Constants';
 import { useData } from '../components/constants/DataContext';
-import { platform } from 'os';
 import { Card } from '@rneui/themed';
 
 type ScreenProps = NativeStackScreenProps<ParamList, 'Platforms'>;
