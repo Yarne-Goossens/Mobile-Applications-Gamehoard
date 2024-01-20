@@ -57,12 +57,12 @@ const getAllGamesSorted = async (sort: string): Promise<Game[]> => {
         sortByFieldUndefined('msrp', 'desc'),
       );
     }
-    case 'added_asc': {
+    case 'added_on_asc': {
       return (await gameAsync.getAllGames()).sort(
         sortByField('added_on', 'asc'),
       );
     }
-    case 'added_desc': {
+    case 'added_on_desc': {
       return (await gameAsync.getAllGames()).sort(
         sortByField('added_on', 'desc'),
       );
@@ -148,8 +148,8 @@ const getAllGamesSorted = async (sort: string): Promise<Game[]> => {
       );
     }
     default: {
-      return (await gameAsync.getAllGames()).sort((a, b) =>
-        a.name > b.name ? 1 : -1,
+      return (await gameAsync.getAllGames()).sort(
+        sortByField('added_on', 'asc'),
       );
     }
   }
@@ -227,13 +227,14 @@ const sampleData = async () => {
     name: 'God of War',
     genre: ['Action'],
     price: 10,
-    added_on: getDate(),
+    added_on: '2024-10-02',
     platforms: ['Steam', 'XBox'],
     playtime: 120,
     rating: 9,
     user_rating: 9.3,
     critic_rating: 96,
     multiplayer: false,
+    favorite: true,
     picture: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.png',
   });
   await addGame({
@@ -241,7 +242,7 @@ const sampleData = async () => {
     name: 'Among Us',
     genre: ['Indie', 'Strategy'],
     price: 5,
-    added_on: getDate(),
+    added_on: '2023-10-02',
     platforms: ['Steam', 'Mac', 'Nintendo Switch'],
     playtime: 30,
     rating: 5,
@@ -273,7 +274,7 @@ const sampleData = async () => {
     price: 60,
     user_rating: 9.6,
     critic_rating: 94.5,
-    favorite: false,
+    favorite: true,
     multiplayer: true,
     genre: [
       'Role-playing (RPG)',
