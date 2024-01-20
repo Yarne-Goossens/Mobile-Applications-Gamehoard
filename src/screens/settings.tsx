@@ -38,7 +38,7 @@ const SettingsScreen = ({ route, navigation }: ScreenProps) => {
             width='95%'
             borderRadius={8}
             marginTop={5}
-            onPress={async () => { await gameService.sampleData(); setUpdateData(true); }}
+            onPress={async () => { await gameService.sampleData(); setUpdateData(true); navigation.navigate('Home', { update: true }); }}
           />
           <ButtonThemed
             title="Refresh Game List"
@@ -47,7 +47,7 @@ const SettingsScreen = ({ route, navigation }: ScreenProps) => {
             width='95%'
             borderRadius={8}
             marginTop={5}
-            onPress={async () => { setUpdateData(true); }}
+            onPress={async () => { setUpdateData(true); navigation.navigate('Home', { update: true }); }}
           />
         </View>
       </View>
