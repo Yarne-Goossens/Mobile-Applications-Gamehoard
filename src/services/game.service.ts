@@ -1,13 +1,158 @@
-// import gameDb from '../domain/database/game.db';
 import 'react-native-get-random-values';
 import {v4 as uuid} from 'uuid';
 import gameAsync from '../domain/database/game.async';
 import {Game} from '../types/types';
 import {getDate} from './util.service';
+import {
+  sortByField,
+  sortByFieldUndefined,
+} from '../components/constants/Constants';
 
 const getAllGames = async (): Promise<Game[]> => {
   console.log('service-GetAll');
   return await gameAsync.getAllGames();
+};
+const getAllGamesSorted = async (sort: string): Promise<Game[]> => {
+  console.log('service-GetAllSorted');
+  switch (sort) {
+    case 'name_asc': {
+      return (await gameAsync.getAllGames()).sort((a, b) =>
+        a.name > b.name ? 1 : -1,
+      );
+    }
+    case 'name_desc': {
+      return (await gameAsync.getAllGames()).sort((a, b) =>
+        a.name < b.name ? 1 : -1,
+      );
+    }
+    case 'id_asc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByField('game_id', 'asc'),
+      );
+    }
+    case 'id_desc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByField('game_id', 'desc'),
+      );
+    }
+    case 'genre_asc': {
+      return (await gameAsync.getAllGames()).sort(sortByField('genre', 'asc'));
+    }
+    case 'genre_desc': {
+      return (await gameAsync.getAllGames()).sort(sortByField('genre', 'desc'));
+    }
+    case 'price_asc': {
+      return (await gameAsync.getAllGames()).sort(sortByField('price', 'asc'));
+    }
+    case 'price_desc': {
+      return (await gameAsync.getAllGames()).sort(sortByField('price', 'desc'));
+    }
+    case 'msrp_asc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('msrp', 'asc'),
+      );
+    }
+    case 'msrp_desc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('msrp', 'desc'),
+      );
+    }
+    case 'added_asc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByField('added_on', 'asc'),
+      );
+    }
+    case 'added_desc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByField('added_on', 'desc'),
+      );
+    }
+    case 'completiontime_asc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('completiontime', 'asc'),
+      );
+    }
+    case 'completiontime_desc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('completiontime', 'desc'),
+      );
+    }
+    case 'rating_asc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('rating', 'asc'),
+      );
+    }
+    case 'rating_desc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('rating', 'desc'),
+      );
+    }
+    case 'user_rating_asc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('user_rating', 'asc'),
+      );
+    }
+    case 'user_rating_desc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('user_rating', 'desc'),
+      );
+    }
+    case 'critic_rating_asc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('critic_rating', 'asc'),
+      );
+    }
+    case 'critic_rating_desc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('critic_rating', 'desc'),
+      );
+    }
+    case 'platforms_asc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('platforms', 'asc'),
+      );
+    }
+    case 'platforms_desc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('platforms', 'desc'),
+      );
+    }
+    case 'multiplayer_asc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('multiplayer', 'asc'),
+      );
+    }
+    case 'multiplayer_desc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('multiplayer', 'desc'),
+      );
+    }
+    case 'coop_asc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('coop', 'asc'),
+      );
+    }
+    case 'coop_desc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('coop', 'desc'),
+      );
+    }
+    case 'physical_asc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('physical', 'asc'),
+      );
+    }
+    case 'physical_desc': {
+      return (await gameAsync.getAllGames()).sort(
+        sortByFieldUndefined('physical', 'desc'),
+      );
+    }
+    default: {
+      return (await gameAsync.getAllGames()).sort((a, b) =>
+        a.name > b.name ? 1 : -1,
+      );
+    }
+  }
 };
 
 const getGameById = async (id: string): Promise<Game> => {
@@ -164,6 +309,7 @@ const sampleData = async () => {
 
 export default {
   getAllGames,
+  getAllGamesSorted,
   getGameById,
   addGame,
   updateGame,

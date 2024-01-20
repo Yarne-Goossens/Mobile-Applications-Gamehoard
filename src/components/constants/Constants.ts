@@ -58,6 +58,75 @@ export const platformList = [
   'Android',
 ];
 
+export const sortList = [
+  {label: 'Name Asc', value: 'name_asc'},
+  {label: 'Name Desc', value: 'name_desc'},
+  {label: 'Id Asc', value: 'id_asc'},
+  {label: 'Id Desc', value: 'id_desc'},
+  {label: 'Genre Asc', value: 'genre_asc'},
+  {label: 'Genre Desc', value: 'genre_desc'},
+  {label: 'Price Asc', value: 'price_asc'},
+  {label: 'Price Desc', value: 'price_desc'},
+  {label: 'MSRP Asc', value: 'msrp_asc'},
+  {label: 'MSRP Desc', value: 'msrp_desc'},
+  {label: 'Added On Asc', value: 'added_asc'},
+  {label: 'Added On Desc', value: 'added_desc'},
+  {label: 'Completiontime Asc', value: 'completiontime_asc'},
+  {label: 'Completiontime Desc', value: 'completiontime_desc'},
+  {label: 'Own Rating Asc', value: 'rating_asc'},
+  {label: 'Own Rating Desc', value: 'rating_desc'},
+  {label: 'User Rating Asc', value: 'user_rating_asc'},
+  {label: 'User Rating Desc', value: 'user_rating_desc'},
+  {label: 'Critic Rating Asc', value: 'critic_rating_asc'},
+  {label: 'Critic Rating Desc', value: 'critic_rating_desc'},
+  {label: 'Platforms Asc', value: 'platforms_asc'},
+  {label: 'Platforms Desc', value: 'platforms_desc'},
+  {label: 'Multiplayer Asc', value: 'multiplayer_asc'},
+  {label: 'Multiplayer Desc', value: 'multiplayer_desc'},
+  {label: 'Coop Asc', value: 'coop_asc'},
+  {label: 'Coop Desc', value: 'coop_desc'},
+  {label: 'Physical Asc', value: 'physical_asc'},
+  {label: 'Physical Desc', value: 'physical_desc'},
+];
+
+export const sortByField = (fieldName: string, sortOrder = 'asc') => {
+  return (a: any, b: any) => {
+    const aValue = a[fieldName];
+    const bValue = b[fieldName];
+
+    const comparison = aValue < bValue ? 1 : -1;
+
+    if (aValue === bValue) {
+      // If ratings are equal, sort by name
+      return a.name > b.name ? 1 : -1;
+    } else {
+      return sortOrder === 'asc' ? comparison : -comparison;
+    }
+  };
+};
+
+export const sortByFieldUndefined = (fieldName: string, sortOrder = 'asc') => {
+  return (a: any, b: any) => {
+    const aValue = a[fieldName];
+    const bValue = b[fieldName];
+
+    const comparison = aValue < bValue ? 1 : -1;
+
+    if (aValue === undefined && bValue === undefined) {
+      return 0;
+    } else if (aValue === undefined) {
+      return 1;
+    } else if (bValue === undefined) {
+      return -1;
+    } else if (aValue === bValue) {
+      // If ratings are equal, sort by name
+      return a.name > b.name ? 1 : -1;
+    } else {
+      return sortOrder === 'asc' ? comparison : -comparison;
+    }
+  };
+};
+
 const colorPalette = {
   primary: '#042940',
   secondary: '#395670', //'#005C53',

@@ -16,8 +16,9 @@ import {
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import ButtonThemed from '../components/Elements/ButtonThemed';
-import { colors } from '../components/constants/Constants';
+import { colors, sortList } from '../components/constants/Constants';
 import { useData } from '../components/constants/DataContext';
+import DropdownSort from '../components/Elements/DropdownSort';
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -63,6 +64,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
 
     const [collection, setCollection] = useState<Array<Game>>();
     const [update, setUpdate] = useState<Boolean>(false)
+    const [sort, setSort] = useState<string>('')
 
     const updateScreen = () => {
         console.log("update-screen");
@@ -70,7 +72,9 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
     }
 
     const fetchData = async () => {
-        setCollection(await gameService.getAllGames())
+        setCollection(await gameService.getAllGamesSorted(sort))
+        console.log(await gameService.getAllGames())
+        console.log(await gameService.getAllGamesSorted("name_asc"))
     }
 
     const randomGame = () => {
@@ -82,7 +86,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
         console.log("home-useEffect")
         console.log('UpdateData-Home:', updateData)
         fetchData();
-    }, [updateData])
+    }, [updateData, sort])
 
     useEffect(() => {
         console.log("home-useEffect")
@@ -128,6 +132,7 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         marginTop={5}
                         onPress={() => navigation.navigate('Igdb')}
                     />
+                    <DropdownSort elemList={sortList} setSort={setSort} width={'95%'} borderRadius={8} />
                     {collection && collection.length > 0 && (
                         <ButtonThemed
                             title="Random Game"
