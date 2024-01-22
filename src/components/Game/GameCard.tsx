@@ -24,9 +24,9 @@ const GameCard = ({ game, deleteItem, navigation, updateScreen }: Props) => {
 
     return (
         <Card wrapperStyle={styles.gamecard} containerStyle={styles.gamecardContainer}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+            <View style={{ flexDirection: 'row' }}>
                 <Card.Title style={styles.gameTitle}>{game.name}</Card.Title>
-                {game.favorite ? <Icon style={{ paddingLeft: 60, paddingTop: 5 }} name='heart' size={30} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(game.game_id); updateScreen(); setUpdateData(true); }} /> : <Icon style={{ paddingLeft: 60, paddingTop: 5 }} name='heart-o' size={30} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(game.game_id); updateScreen(); setUpdateData(true); }} />}
+                {game.favorite ? <Icon style={{ paddingHorizontal: 10, paddingTop: 5, flex: 0.1 }} name='heart' size={30} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(game.game_id); updateScreen(); setUpdateData(true); }} /> : <Icon style={{ paddingHorizontal: 10, paddingTop: 5, flex: 0.1 }} name='heart-o' size={30} color={colors.iconFavorite} onPress={async () => { await gameService.favoriteGame(game.game_id); updateScreen(); setUpdateData(true); }} />}
             </View>
             <Card.Divider />
             <View style={styles.gamecardInternal}>
@@ -72,7 +72,7 @@ const GameCard = ({ game, deleteItem, navigation, updateScreen }: Props) => {
                         </View>
                         <View style={styles.textContainer}>
                             <Text style={styles.textLabel}>Added On:</Text>
-                            <Text style={styles.textGame}>{game.added_on}</Text>
+                            <Text style={[styles.textGame, { fontSize: 17, paddingHorizontal: 2, paddingVertical: 8, }]}>{game.added_on}</Text>
                         </View>
                     </View>
                     <View style={{ height: (sizes.cardHeight * .2), paddingHorizontal: 5 }}>

@@ -96,7 +96,11 @@ const styles = StyleSheet.create({
     height: sizes.cardHeight,
     backgroundColor: colors.iconColor,
   },
-  gameTitle: {fontSize: 30, fontWeight: 'bold'},
+  gameTitle: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    flex: 0.9,
+  },
   textContainer: {
     flexDirection: 'row',
     alignSelf: 'stretch',
@@ -182,6 +186,7 @@ const styles = StyleSheet.create({
   checkbox: {
     alignSelf: 'center',
     marginHorizontal: '20%',
+    marginTop: 8,
   },
   stylingaid: {
     borderColor: 'red',
