@@ -132,7 +132,6 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                         marginTop={5}
                         onPress={() => navigation.navigate('Igdb')}
                     />
-                    <DropdownSort elemList={sortList} setSort={setSort} width={'95%'} borderRadius={8} />
                     {collection && collection.length > 0 && (
                         <ButtonThemed
                             title="Random Game"
@@ -141,10 +140,10 @@ function HomeScreen({ route, navigation }: ScreenProps): React.JSX.Element {
                             width='95%'
                             borderRadius={8}
                             marginTop={5}
-                            marginBottom={5}
                             onPress={() => navigation.navigate('Details', { gameId: randomGame() })}
                         />
                     )}
+                    <DropdownSort elemList={sortList} setSort={setSort} width={'95%'} borderRadius={8} />
                     <GameCardList games={collection} deleteItem={deleteItem} navigation={navigation} updateScreen={updateScreen} />
                 </View>
             </View>
