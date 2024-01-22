@@ -18,7 +18,7 @@ const Footer: React.FC<Props> = ({ navigation, route, platform }: Props) => {
 
     const currentPage = (platformVar: string) => {
         if (platformVar === platform) {
-            return { color: colors.highlightColor, }
+            return { color: colors.highlightColor, borderBottomColor: colors.highlightColor, borderBottomWidth: 2, borderBottomLeftRadius: 14, borderBottomRightRadius: 14 }
         }
     }
 
