@@ -18,7 +18,13 @@ const Footer: React.FC<Props> = ({ navigation, route, platform }: Props) => {
 
     const currentPage = (platformVar: string) => {
         if (platformVar === platform) {
-            return { color: colors.highlightColor, borderBottomColor: colors.highlightColor, borderBottomWidth: 2, borderBottomLeftRadius: 14, borderBottomRightRadius: 14 }
+            return { color: colors.highlightColor }
+        }
+    }
+
+    const currentPageLine = (platformVar: string) => {
+        if (platformVar === platform) {
+            return { color: colors.highlightColor, borderBottomColor: colors.highlightColor, borderBottomWidth: 2, borderBottomLeftRadius: 14, borderBottomRightRadius: 14, }
         }
     }
 
@@ -26,17 +32,39 @@ const Footer: React.FC<Props> = ({ navigation, route, platform }: Props) => {
         <View style={styles.footer}>
             <ScrollView horizontal={true} style={stylesLocal.tabList} contentInsetAdjustmentBehavior="automatic">
                 <Text style={styles.tabtext} onPress={() => navigation.navigate('Home', { update: true })}>All</Text>
-                <MCIcon style={[styles.iconTab, currentPage('Steam')]} name="steam" onPress={() => navigation.navigate('Platforms', { platform: "Steam" })} />
-                <IIcon style={[styles.iconTab, currentPage('Epic')]} name="nuclear" onPress={() => navigation.navigate('Platforms', { platform: "Epic" })} />
-                <MCIcon style={[styles.iconTab, currentPage('GOG')]} name="gog" onPress={() => navigation.navigate('Platforms', { platform: "GOG" })} />
-                <MCIcon style={[styles.iconTab, currentPage('Nintendo')]} name="nintendo-switch" onPress={() => navigation.navigate('Platforms', { platform: "Nintendo" })} />
-                <IIcon style={[styles.iconTab, currentPage('PlayStation')]} name="logo-playstation" onPress={() => navigation.navigate('Platforms', { platform: "PlayStation" })} />
-                <IIcon style={[styles.iconTab, currentPage('XBox')]} name="logo-xbox" onPress={() => navigation.navigate('Platforms', { platform: "XBox" })} />
-                <IIcon style={[styles.iconTab, currentPage('Mac')]} name="logo-apple" onPress={() => navigation.navigate('Platforms', { platform: "Mac" })} />
-                <IIcon style={[styles.iconTab, currentPage('Windows')]} name="logo-windows" onPress={() => navigation.navigate('Platforms', { platform: "Windows" })} />
-                <IIcon style={[styles.iconTab, currentPage('Linux')]} name="logo-tux" onPress={() => navigation.navigate('Platforms', { platform: "Linux" })} />
-                <MCIcon style={[styles.iconTab, currentPage('iOS')]} name="apple-ios" onPress={() => navigation.navigate('Platforms', { platform: "iOS" })} />
-                <IIcon style={[styles.iconTab, currentPage('Android')]} name="logo-android" onPress={() => navigation.navigate('Platforms', { platform: "Android" })} />
+                <View style={currentPageLine('Steam')}>
+                    <MCIcon style={[styles.iconTab, currentPage('Steam')]} name="steam" onPress={() => navigation.navigate('Platforms', { platform: "Steam" })} />
+                </View>
+                <View style={currentPageLine('Epic')}>
+                    <IIcon style={[styles.iconTab, currentPage('Epic')]} name="nuclear" onPress={() => navigation.navigate('Platforms', { platform: "Epic" })} />
+                </View>
+                <View style={currentPageLine('GOG')}>
+                    <MCIcon style={[styles.iconTab, currentPage('GOG')]} name="gog" onPress={() => navigation.navigate('Platforms', { platform: "GOG" })} />
+                </View>
+                <View style={currentPageLine('Nintendo')}>
+                    <MCIcon style={[styles.iconTab, currentPage('Nintendo')]} name="nintendo-switch" onPress={() => navigation.navigate('Platforms', { platform: "Nintendo" })} />
+                </View>
+                <View style={currentPageLine('PlayStation')}>
+                    <IIcon style={[styles.iconTab, currentPage('PlayStation')]} name="logo-playstation" onPress={() => navigation.navigate('Platforms', { platform: "PlayStation" })} />
+                </View>
+                <View style={currentPageLine('XBox')}>
+                    <IIcon style={[styles.iconTab, currentPage('XBox')]} name="logo-xbox" onPress={() => navigation.navigate('Platforms', { platform: "XBox" })} />
+                </View>
+                <View style={currentPageLine('Mac')}>
+                    <IIcon style={[styles.iconTab, currentPage('Mac')]} name="logo-apple" onPress={() => navigation.navigate('Platforms', { platform: "Mac" })} />
+                </View>
+                <View style={currentPageLine('Windows')}>
+                    <IIcon style={[styles.iconTab, currentPage('Windows')]} name="logo-windows" onPress={() => navigation.navigate('Platforms', { platform: "Windows" })} />
+                </View>
+                <View style={currentPageLine('Linux')}>
+                    <IIcon style={[styles.iconTab, currentPage('Linux')]} name="logo-tux" onPress={() => navigation.navigate('Platforms', { platform: "Linux" })} />
+                </View>
+                <View style={currentPageLine('iOS')}>
+                    <MCIcon style={[styles.iconTab, currentPage('iOS')]} name="apple-ios" onPress={() => navigation.navigate('Platforms', { platform: "iOS" })} />
+                </View>
+                <View style={currentPageLine('Android')}>
+                    <IIcon style={[styles.iconTab, currentPage('Android')]} name="logo-android" onPress={() => navigation.navigate('Platforms', { platform: "Android" })} />
+                </View>
             </ScrollView>
         </View>
     )
